@@ -1,4 +1,4 @@
-package linkedlist;
+package src;
 
 public class HumanResources <E extends Comparable<E>> implements Comparable<HumanResources<E>>{
 	private String name;

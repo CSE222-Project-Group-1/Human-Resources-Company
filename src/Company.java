@@ -1,6 +1,6 @@
-package linkedlist;
+package src;
 
-public class Company {
+public class Company implements Comparable<Company> {
 	private String name;
 	private String password;
 	private ArrayList<AdvertiseClass> Advertises;
@@ -103,7 +103,7 @@ public class Company {
 	public String getName() {
 		return name;
 	}
-	public void SeeCustomerInformatýon() {
+	public void seeCustomerInformation() {
 		
 	}
 	public void setName(String name) {
@@ -119,4 +119,11 @@ public class Company {
 		StringBuilder aString =new StringBuilder();
 		return aString.toString();
 	}
+
+
+    @Override
+    public int compareTo(Company o) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

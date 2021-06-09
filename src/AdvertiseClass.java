@@ -1,4 +1,4 @@
-package linkedlist;
+package src;
 
 public class AdvertiseClass {
 		private String AdvertisementTitle;
@@ -6,7 +6,7 @@ public class AdvertiseClass {
 		private String JobRole;
 		private String JobType;
 		private String JobLocation;
-		private String NumberOfVacancies; //kaç kiþilik ilan
+		private String NumberOfVacancies; //kaï¿½ kiï¿½ilik ilan
 		private String CompanyIndustry;
 		private ArrayQueue<String> Capabilities; // Queue
 		private PriorityQueue<Candidate> applied; // Priority Queue

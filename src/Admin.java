@@ -1,4 +1,4 @@
-package linkedlist;
+package src;
 
 public class Admin {
 	private String name;

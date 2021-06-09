@@ -1,4 +1,4 @@
-package linkedlist;
+package src;
 
 public class CvClass {
 	private	String Address;
