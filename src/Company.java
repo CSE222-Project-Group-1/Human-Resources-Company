@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+
 public class Company implements Comparable<Company> {
 	private String name;
 	private String password;

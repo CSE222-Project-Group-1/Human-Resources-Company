@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+
 public class CvClass {
 	private	String Address;
 	private String Name;

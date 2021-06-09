@@ -1,5 +1,9 @@
 package src;
 
+import java.util.PriorityQueue;
+
+import src.book_implementation.ArrayQueue;
+
 public class AdvertiseClass {
 		private String AdvertisementTitle;
 		private String WayOfWork;

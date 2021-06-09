@@ -1,5 +1,7 @@
 package src;
 
+import java.util.ArrayList;
+
 public class HumanResources <E extends Comparable<E>> implements Comparable<HumanResources<E>>{
 	private String name;
 	private String password;
