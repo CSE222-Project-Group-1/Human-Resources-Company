@@ -3,6 +3,7 @@ package src;
 public class Candidate {
 	private String name;
 	private String password;
+	private String statue;
 	private CvClass Mycv;
 	public Candidate(String name, String password, CvClass mycv) {
 		super();
@@ -11,35 +12,41 @@ public class Candidate {
 		Mycv = mycv;
 	}
 	public boolean SingUp() {
+		//TODO
 		return false;
 	}
 	public int RateCompany(Company company) {
+		//TODO
 		return -1;
 	}
 	public boolean EvaluateTheOffer() {
+		//TODO
 		return false;
 	}
 	public CvClass	Giveinformation() {
 		return Mycv;
 	}
 	public void seeRatings() {
-		
+		//TODO
 	}
 	public void ApplyToAdvertisement() {
-		
+		//TODO
 	}
 	public boolean SetStatusToOpenWork() {
-		return false;
+		this.statue="Open To Work";
+		return true;
 	}
 	public int RatingTheOffer() {
+		//TODO
 		return -1;
 	}
 	public boolean ChangePassword(String newPassword) {
 		setPassword(newPassword);
-		return false;
+		return true;
 	}
 	public String toString() {
 		StringBuilder aString =new StringBuilder();
+		//TODO
 		return aString.toString();
 	}
 	public String getName() {
