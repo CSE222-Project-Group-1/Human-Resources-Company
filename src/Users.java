@@ -83,7 +83,6 @@ public abstract class Users implements Comparable, UsersInterface{
         return type;
     } 
 
-    @Override
 	public int compareTo(Users user) {
         if(userID > user.getUserID() )
             return 1;
@@ -94,7 +93,7 @@ public abstract class Users implements Comparable, UsersInterface{
 	}
 
     public boolean equals(Users user){
-        return compareTo(user);
+        return (compareTo(user) == 0);
     }
     
 }
