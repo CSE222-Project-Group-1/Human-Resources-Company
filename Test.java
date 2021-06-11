@@ -11,7 +11,7 @@ public class Test {
 
         System.out.println("First, creating our HRC Company");
         // Create new HRC
-        HRC<String> hrc = new HRC<>();
+        HRC hrc = new HRC();
         
 
         System.out.println("------Start Admin Tests------");
@@ -47,15 +47,14 @@ public class Test {
 
         System.out.println("\n------Start Candidate Tests------\n");
         System.out.println("Create new employee with name Baran Solmaz and Null CV");
-        Candidate candidate = new Candidate("Baran Solmaz", "123", null);
-        // candidate.ApplyToAdvertisement();
-        // candidate.ChangePassword("newPassword");
-        // candidate.EvaluateTheOffer();
-        // candidate.Giveinformation();
-        // candidate.RateCompany(null);
-        // candidate.RatingTheOffer();
-        // candidate.SetStatusToOpenWork();
-        // candidate.SingUp();
+        Candidate candidate = new Candidate("Baran Solmaz", "123", null, hrc);
+        candidate.applyToAdvertisement(null);
+        candidate.changePassword("newPassword");
+        candidate.rateCompany(null);
+        candidate.ratingTheOffer();
+        candidate.evaluateTheOffer();
+        candidate.giveInformation();
+        candidate.rateCompany(null);
 
         System.out.println("\n------End Candidate Tests------\n");
 
@@ -77,7 +76,7 @@ public class Test {
 
         System.out.println("\n------Start HumanResources (our employee) Tests------\n");
         System.out.println("Create new employee with name Enis PHP - Password 123");
-        HumanResources<String> employee = new HumanResources<>("Enis PHP", "123", null);
+        HumanResources employee = new HumanResources(123 ,"Enis PHP", "123", null);
         employee.ArrangeMeeting();
         employee.CompareRequests();
         employee.DeleteCandidate();
