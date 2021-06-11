@@ -1,6 +1,5 @@
 package src;
 
-import java.util.Scanner;
 
 public class Candidate  extends Users implements Comparable<Candidate>{
 	private String statue;

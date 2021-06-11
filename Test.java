@@ -50,11 +50,10 @@ public class Test {
         Candidate candidate = new Candidate("Baran Solmaz", "123", null, hrc);
         candidate.applyToAdvertisement(null);
         candidate.changePassword("newPassword");
-        candidate.rateCompany(null);
+        candidate.rateCompany(null, 10);
         candidate.ratingTheOffer();
         candidate.evaluateTheOffer();
         candidate.giveInformation();
-        candidate.rateCompany(null);
         
 
         System.out.println("\n------End Candidate Tests------\n");
