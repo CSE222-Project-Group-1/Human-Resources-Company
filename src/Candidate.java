@@ -20,18 +20,28 @@ public class Candidate {
 		//TODO
 		return false;
 	}
+	/** For Ratin Company
+	* @param Company 
+	* @return rate
+	*/
 	public int RateCompany(Company company) {
-		//TODO
-		return -1;
+		Scanner scan=new Scanner(System.in);
+		System.out.print("Rate ?/10 : ");
+		int rate= scan.nextInt();
+		company.getRatings().add(rate);
+		return rate;
 	}
 	public boolean EvaluateTheOffer() {
 		//TODO
 		return false;
 	}
-	
+	/**Returns Cv Of Candidate
+	* @return CvClass
+	*/
 	public CvClass	Giveinformation() {
 		return Mycv;
 	}
+	
 	public void seeRatings() {
 		//TODO
 	}
