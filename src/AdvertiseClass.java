@@ -215,3 +215,4 @@ public class AdvertiseClass {
 				+ ", LevelOfEducation=" + LevelOfEducation + ", ExperienceYear=" + ExperienceYear + ", Description="
 				+ Description + "]";
 	}
+}

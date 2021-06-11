@@ -55,6 +55,7 @@ public class Test {
         candidate.evaluateTheOffer();
         candidate.giveInformation();
         candidate.rateCompany(null);
+        
 
         System.out.println("\n------End Candidate Tests------\n");
 
