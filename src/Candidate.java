@@ -2,21 +2,23 @@ package src;
 
 import java.util.Scanner;
 
-public class Candidate {
+public class Candidate  extends User{
 	private String name;
 	private String password;
 	private String statue;
 	private CvClass Mycv;
+	private HRC hrc=null;
 	/**Constructor
 	* @param String name
 	* @param String password
 	* @param CvClass mycv
  	*/
-	public Candidate(String name, String password, CvClass mycv) {
+	public Candidate(String name, String password, CvClass mycv,HRC hrc) {
 		super();
 		this.name = name;
 		this.password = password;
 		Mycv = mycv;
+		this.hrc=hrc;
 	}
 	/**
 	 * Compares Name and Password
