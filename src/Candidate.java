@@ -24,7 +24,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @return boolean
 	 */
 	public boolean signUp(int id,String password) {
-		if (getId().equals(id) && getPassword().equals(password))
+		if (getUserID() == id && getPassword().equals(password))
 			return true;
 		return false;
 	}
