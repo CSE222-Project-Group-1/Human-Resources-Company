@@ -22,7 +22,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
 	public void SeeCompanyRequest(){
-//		hrc.getCompany()
+    //		hrc.getCompany()
+
 	}
 
 	public Candidate GiveOfferToCandidate() {
@@ -30,8 +31,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return aCandidate;
 	}
 
-	public void SuggestCandidateToCompany() {
-		
+	public void SuggestCandidateToCompany(Candidate candidate, AdvertiseClass as){
+		as.getSuggested().add(candidate);
 	}
 
 	public boolean CompareRequests() {
