@@ -16,53 +16,74 @@ public class Candidate {
 		this.password = password;
 		Mycv = mycv;
 	}
-	public boolean SingUp() {
+	public boolean singUp() {
 		//TODO
 		return false;
 	}
-	public int RateCompany(Company company) {
-		//TODO
-		return -1;
+	/** For Ratin Company
+	* @param Company 
+	* @return rate
+	*/
+	public int rateCompany(Company company) {
+		Scanner scan=new Scanner(System.in);
+		System.out.print("Rate ?/10 : ");
+		int rate= scan.nextInt();
+		company.getRatings().add(rate);
+		return rate;
 	}
-	public boolean EvaluateTheOffer() {
+	public boolean evaluateTheOffer() {
 		//TODO
 		return false;
 	}
-	
-	public CvClass	Giveinformation() {
+	/**Returns Cv Of Candidate
+	* @return CvClass
+	*/
+	public CvClass	giveInformation() {
 		return Mycv;
 	}
-	public void seeRatings() {
-		//TODO
+	/**
+	 * Prints Rating Average
+	 * @param company Company
+	 */
+	public void seeRatings(Company company) {
+		System.out.println("Rating: "+company.getRatingsOrt());
 	}
-	public void ApplyToAdvertisement() {
-		//TODO
+	/**
+	 * Adds Candidate to Advertise
+	 * @param ad AdvertiseClass
+	 */
+	public void applyToAdvertisement(AdvertiseClass ad) {
+		ad.getApplied().add(this);
 	}
-	public boolean SetStatusToOpenWork() {
+	/**
+	 * Sets Statue To Open To Work
+	 * @return boolen
+	 */
+	public boolean setStatusToOpenWork() {
 		this.statue="Open To Work";
-		//TODO
 		return true;
 	}
-	public int RatingTheOffer() {
+	public int ratingTheOffer() {
 		//TODO
 		return -1;
 	}
 	/**
 	*Changes Candidates Password
 	*@param String newPassword
-	* @returns Boolen 
+	* @return Boolen 
 	*/
-	public boolean ChangePassword(String newPassword) {
+	public boolean changePassword(String newPassword) {
 		setPassword(newPassword);
 		return true;
 	}
+	/**toString */
 	public String toString() {
-		StringBuilder aString =new StringBuilder();
-		//TODO
-		return aString.toString();
+		StringBuilder str =new StringBuilder();
+		str.append("Name: "+name+" Statue: "+statue);
+		return str.toString();
 	}
 	/**Returns Candidates Name
-	*@retuns String
+	*@return String
 	*/
 	public String getName() {
 		return name;
@@ -74,7 +95,7 @@ public class Candidate {
 		this.name = name;
 	}
 	/**Returns Candidates Password
-	*@retuns String
+	*@return String
 	*/
 	public String getPassword() {
 		return password;
@@ -93,4 +114,5 @@ public class Candidate {
 	}
 	
 }
+
 
