@@ -29,7 +29,19 @@ public class HRC{
 		public Candidate getCandidateID(int id){	return candidate.get(id);	}
 		
 		public NavigableMap<Integer,Candidate> getCandidate(){	return candidate;	}
-
+		
+		public Company searchCompany(int ID){
+			Company com=null;
+			Company temp=null;
+			Iterator<Company> itr=getCompany().iterator();
+			while (itr.hasNext() && com!=null){
+				temp=itr.next();
+				if (temp.getUserID()==ID){
+					com=temp;
+				}
+			}
+			return com;
+		}
 
 		public Company createCompany(int ID,String name, String password, ArrayList<AdvertiseClass> advertises,
 									 String companySector,int numberOfEmployees,
