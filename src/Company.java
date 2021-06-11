@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import src.book_implementation.ArrayQueue;
 
-public class Company implements Comparable<Company> {
+public class Company extends Users implements Comparable<Company> {
     private String name;
     private String password;
     private ArrayList<AdvertiseClass> Advertises;
@@ -16,12 +16,10 @@ public class Company implements Comparable<Company> {
     private String Address;
     private ArrayList<Integer> Ratings;
     private double RatingsOrt;
-    public Company(String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
-                   int numberOfEmployees, ArrayList<String> socialRights, String address, ArrayList<Integer> ratings,
-                   double ratingsOrt) {
-        super();
-        this.name = name;
-        this.password = password;
+    public Company(int userID,String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
+			int numberOfEmployees, ArrayList<String> socialRights, String address, ArrayList<Integer> ratings,
+			double ratingsOrt,HRC hrc) {
+        super(ID,name,password,Users.COMPANY);
         Advertises = advertises;
         CompanySector = companySector;
         NumberOfEmployees = numberOfEmployees;
@@ -127,15 +125,9 @@ public class Company implements Comparable<Company> {
     public void RateEmployee(int value) {
         Ratings.add(value);
     }
-    public String getName() {
-        return name;
-    }
     //benzaten şirketim nedeb müşteri bilgisi görücem
     public void seeCustomerInformation() {
 
-    }
-    public void setName(String name) {
-        this.name = name;
     }
    public void addSocialRights(String value){
        SocialRights.add(value);
