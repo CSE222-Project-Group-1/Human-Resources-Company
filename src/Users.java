@@ -1,9 +1,10 @@
 package src;
+ 
 /**
  * @author Group1
  * Abstract user class that contains basic info of an user.
  */
-public abstract class Users implements Comparable, UsersInterface{
+public abstract class Users implements  UsersInterface{
     private String name;
     private int userID;
     private String password;
@@ -83,17 +84,6 @@ public abstract class Users implements Comparable, UsersInterface{
         return type;
     } 
 
-	public int compareTo(Users user) {
-        if(userID > user.getUserID() )
-            return 1;
-        else if(userID < user.getUserID())
-            return -1;
-        else
-            return 0;    
-	}
 
-    public boolean equals(Users user){
-        return (compareTo(user) == 0);
-    }
     
 }
