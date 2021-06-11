@@ -4,6 +4,8 @@ package src;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import src.book_implementation.ArrayQueue;
+
 public class Company implements Comparable<Company> {
     private String name;
     private String password;

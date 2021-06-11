@@ -5,10 +5,13 @@ public class Admin {
 	private String password;
 	private static HRC hrc=null;
 	public Admin(String name, String password) {
-		super();
 		this.name = name;
 		this.password = password;
 	}
+
+    public static void setHrc(HRC hrc) {
+        Admin.hrc = hrc;
+    }
 	public boolean addCompany() {
 		return false;
 	}

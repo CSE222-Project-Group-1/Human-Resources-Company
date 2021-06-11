@@ -18,6 +18,9 @@ public class HRC<E extends Comparable<E>>{
 		private Admin admin=null;
 		
 		
+        public void setAdmin(Admin admin) {
+            this.admin = admin;
+        }
 		public SkipList<Company> getCompany() { return company; }
 		
 		
