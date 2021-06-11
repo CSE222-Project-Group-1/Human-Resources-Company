@@ -14,6 +14,31 @@ public class Admin  extends Users implements Comparable<Admin> {
 		}
 		return false;
 	}
+	public boolean updateCompany(Company com,String name, String password,  String companySector,
+								 Integer numberOfEmployees,  String address){
+		if (com==null) return false;
+		boolean result=false;
+		if (name!=null){
+			result=true;
+			com.setName(name);
+		}
+		if (password!=null){
+			result=true;
+			com.setPassword(password);
+		}
+		if (companySector!=null){
+			com.setCompanySector(companySector);
+			result=true;
+		}
+		if (numberOfEmployees!=null){
+			com.setNumberOfEmployees(numberOfEmployees);
+			result=true;
+		}
+		if (address!=null){
+			com.setAddress(address);
+		}
+		return result;
+	}
 
 	public boolean deleteCompany(Company com) {
 		Company result=hrc.getCompany().remove(com);
