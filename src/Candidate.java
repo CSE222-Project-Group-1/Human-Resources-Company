@@ -98,8 +98,12 @@ public class Candidate  extends Users implements Comparable<Candidate>{
     
     @Override
     public int compareTo(Candidate other) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (this.getUserID()>other.getUserID()) {
+		return 1;
+	} if (this.getUserID()<other.getUserID()) {
+		return -1;
+	} else 
+		return 0 ;
     }
 	
 }
