@@ -37,6 +37,9 @@ public class AdvertiseClass {
 		public String getAdvertisementTitle() {
 			return AdvertisementTitle;
 		}
+		public PriorityQueue<Candidate> getApplies(){
+			return applied;
+		}
 		public void setAdvertisementTitle(String advertisementTitle) {
 			AdvertisementTitle = advertisementTitle;
 		}
