@@ -14,6 +14,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	private String CompanyIndustry;
 	private ArrayQueue<String> Capabilities; // Queue
 	private PriorityQueue<Candidate> applied; // Priority Queue
+	private PriorityQueue<Candidate> suggested; // Priority Queue
 	
 	private String LevelOfEducation;
 	private int ExperienceYear;
