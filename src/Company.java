@@ -138,14 +138,12 @@ public class Company extends Users implements Comparable<Company> {
         return aString.toString();
     }
     @Override
-    //iki şirketin rating ortalamasıa göre karşılaştırılabiilir
     public int compareTo(Company o) {
-       if(this.getRatingsOrt()<o.getRatingsOrt())
-           return 1;
-       else if(this.getRatingsOrt()>o.getRatingsOrt())
-           return -1;
-       else
-           return 0;
-
+       if(getUserID() > humanRes.getUserID() )
+            return 1;
+        else if(getUserID() < humanRes.getUserID())
+            return -1;
+        else
+            return 0;  
     }
 }
