@@ -2,35 +2,34 @@ package src;
 
 import java.util.Scanner;
 
-public class Candidate  extends User implements Comparable{
-	private String name;
-	private String password;
+public class Candidate  extends Users implements Comparable<Candidate>{
 	private String statue;
 	private CvClass Mycv;
 	private HRC hrc=null;
+
 	/**Constructor
 	* @param String name
 	* @param String password
 	* @param CvClass mycv
  	*/
-	public Candidate(String name, String password, CvClass mycv,HRC hrc) {
-		super();
-		this.name = name;
-		this.password = password;
+	public Candidate(int userID, String name, String password, CvClass mycv,HRC hrc) {
+		super(userID, name, password, Users.CANDIDATE);
 		this.Mycv = mycv;
 		this.hrc=hrc;
 	}
+
 	/**
 	 * Compares Name and Password
 	 * @param name String
 	 * @param password String
 	 * @return boolean
 	 */
-	public boolean singUp(String name,String password) {
-		if (this.name.equals(name)&&this.password.equals(password))
+	public boolean signUp(String name,String password) {
+		if (getName().equals(name) && getPassword().equals(password))
 			return true;
 		return false;
 	}
+
 	/** For Rating Company
 	* @param Company 
 	* @return rate
@@ -90,40 +89,22 @@ public class Candidate  extends User implements Comparable{
 	/**toString */
 	public String toString() {
 		StringBuilder str =new StringBuilder();
-		str.append("Name: "+name+" Statue: "+statue);
+		str.append("Name: "+getName()+" Statue: "+statue);
 		return str.toString();
 	}
-	/**Returns Candidates Name
-	*@return String
-	*/
-	public String getName() {
-		return name;
-	}
-	/**Sets Candidates Name
-	*@param String name
-	*/
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**Returns Candidates Password
-	*@return String
-	*/
-	public String getPassword() {
-		return password;
-	}
-	/**Sets Candidates Password
-	*@param String password
-	*/
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    
 	/**Sets Candidates CV
 	*@param CvClass mycv
 	*/
 	public void setMycv(CvClass mycv) {
 		Mycv = mycv;
 	}
+    
+    @Override
+    public int compareTo(Candidate arg0) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 	
 }
-
 

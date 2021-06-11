@@ -3,17 +3,14 @@ package src;
 import java.util.*;
 
 public class HumanResources extends Users implements Comparable<HumanResources>{
-    private int userID;
-	private String name;
-	private String password;
 	private static HRC hrc=null;
 	
-	public HumanResources(int userID, String name, String password, ArrayList<Candidate> candidates) {
+	public HumanResources(int userID, String name, String password){
 		super(userID, name, password, Users.HUMAN_SOURCES);
 	}
 
 	public boolean loginSystem(String name,String password) {
-		if (this.name.equals(name) && this.password.equals(password))
+		if (getName().equals(name) && this.getPassword().equals(password))
 			return true;
 		return false;
 	}
@@ -48,21 +45,21 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return aString.toString();
 	}
 
-	public String getName() {
-		return name;
+    
+	public int compareTo(HumanResources humanRes) {
+        if(getUserID() > humanRes.getUserID() )
+            return 1;
+        else if(getUserID() < humanRes.getUserID())
+            return -1;
+        else
+            return 0;    
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public boolean equals(HumanResources humanRes){
+        return (compareTo(humanRes) == 0);
+    }
+    
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
     
 }
