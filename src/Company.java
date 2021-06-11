@@ -7,8 +7,6 @@ import java.util.Scanner;
 import src.book_implementation.ArrayQueue;
 
 public class Company extends Users implements Comparable<Company> {
-    private String name;
-    private String password;
     private ArrayList<AdvertiseClass> Advertises;
     private String CompanySector;
     private int NumberOfEmployees;
