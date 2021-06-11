@@ -3,7 +3,7 @@ package src.book_implementation;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-
+@SuppressWarnings("unchecked")
 public class ArrayQueue<E> {
 	private int front;
 	private int rear;
