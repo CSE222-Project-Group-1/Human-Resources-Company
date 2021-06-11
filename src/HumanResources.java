@@ -3,10 +3,11 @@ package src;
 import java.util.*;
 
 public class HumanResources extends Users implements Comparable<HumanResources>{
-	private static HRC hrc=null;
+	private HRC hrc=null;
 	
-	public HumanResources(int userID, String name, String password){
+	public HumanResources(int userID, String name, String password, HRC hrc){
 		super(userID, name, password, Users.HUMAN_SOURCES);
+        this.hrc = hrc;
 	}
 
 	public boolean loginSystem(String name,String password) {
@@ -15,8 +16,13 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return false;
 	}
 
-	public void SeeCompanyRequest() {
-		
+	public boolean DeleteCandidate(int userID) {
+        hrc.getCandidate().remove(userID);
+		return false;
+	}
+
+	public void SeeCompanyRequest(){
+//		hrc.getCompany()
 	}
 
 	public Candidate GiveOfferToCandidate() {
@@ -29,10 +35,6 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
 	public boolean CompareRequests() {
-		return false;
-	}
-    
-	public boolean DeleteCandidate() {
 		return false;
 	}
 
