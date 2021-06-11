@@ -30,7 +30,7 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
     
 	public boolean GiveOfferToCandidate(Candidate candidate, int offer){
-		candidate.evaluateTheOffer(offer);
+		return candidate.evaluateTheOffer(offer);
 	}
 
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int meetingRate){
