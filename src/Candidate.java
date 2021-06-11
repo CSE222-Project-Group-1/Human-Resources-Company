@@ -62,7 +62,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @param ad AdvertiseClass
 	 */
 	public void applyToAdvertisement(AdvertiseClass ad) {
-		ad.getApplied().add(this);
+		ad.getApplies().add(this);
 	}
 	/**
 	 * Sets Statue To Open To Work
