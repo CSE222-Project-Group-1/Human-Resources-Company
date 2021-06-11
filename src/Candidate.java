@@ -18,11 +18,18 @@ public class Candidate {
 		this.password = password;
 		Mycv = mycv;
 	}
-	public boolean singUp() {
-		//TODO
+	/**
+	 * Compares Name and Password
+	 * @param name String
+	 * @param password String
+	 * @return boolean
+	 */
+	public boolean singUp(String name,String password) {
+		if (this.name.equals(name)&&this.password.equals(password))
+			return true;
 		return false;
 	}
-	/** For Ratin Company
+	/** For Rating Company
 	* @param Company 
 	* @return rate
 	*/
