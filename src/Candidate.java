@@ -2,7 +2,7 @@ package src;
 
 import java.util.Scanner;
 
-public class Candidate  extends User{
+public class Candidate  extends User implements Comparable{
 	private String name;
 	private String password;
 	private String statue;
@@ -17,7 +17,7 @@ public class Candidate  extends User{
 		super();
 		this.name = name;
 		this.password = password;
-		Mycv = mycv;
+		this.Mycv = mycv;
 		this.hrc=hrc;
 	}
 	/**
