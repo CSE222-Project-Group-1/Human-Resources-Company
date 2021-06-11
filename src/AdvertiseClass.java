@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 import src.book_implementation.ArrayQueue;
 
-public class AdvertiseClass {
+public class AdvertiseClass implements Comparable<AdvertiseClass>{
 		private String AdvertisementTitle;
 		private String WayOfWork;
 		private String JobRole;
@@ -118,4 +118,12 @@ public class AdvertiseClass {
         public void setSuggested(PriorityQueue<Candidate> suggested) {
             this.suggested = suggested;
         }
+
+        @Override
+        public int compareTo(AdvertiseClass arg0) {
+            return AdvertisementTitle.compareTo(arg0.getAdvertisementTitle());
+        }
+        
+        
+
 	}

@@ -21,33 +21,31 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return false;
 	}
 
-	public void SeeCompanyRequest(){
-    //		hrc.getCompany()
-
+	public ArrayList<AdvertiseClass> SeeCompanyRequest(int companyID){
+        return hrc.searchCompany(companyID).getAdvertises();
+	}
+    
+	public int CompareRequests(AdvertiseClass as, AdvertiseClass as2){
+        return as.compareTo(as2);
+	}
+    
+	public boolean GiveOfferToCandidate(Candidate candidate, int offer){
+		candidate.evaluateTheOffer(offer);
 	}
 
-	public Candidate GiveOfferToCandidate() {
-		Candidate aCandidate = null;
-		return aCandidate;
+	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int meetingRate){
+        hrc.getMeetings().add( new Meetings(date, candidate, company, time, meetingRate));
+		return true;
 	}
 
 	public void SuggestCandidateToCompany(Candidate candidate, AdvertiseClass as){
 		as.getSuggested().add(candidate);
 	}
 
-	public boolean CompareRequests() {
-		return false;
-	}
-
-	public boolean ArrangeMeeting() {
-		return false;
-	}
-
 	public String toString() {
 		StringBuilder aString =new StringBuilder();
 		return aString.toString();
 	}
-
     
 	public int compareTo(HumanResources humanRes) {
         if(getUserID() > humanRes.getUserID() )
@@ -62,7 +60,6 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
         return (compareTo(humanRes) == 0);
     }
     
-
 	
     
 }
