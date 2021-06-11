@@ -37,8 +37,11 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		company.getRatings().add(rate);
 		return rate;
 	}
-	public boolean evaluateTheOffer() {
-		//TODO
+	public boolean evaluateTheOffer(int offer) {
+		if(offer>2850){
+			setStatusToWorking();
+			return true;
+		}
 		return false;
 	}
 	/**Returns Cv Of Candidate
@@ -59,7 +62,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @param ad AdvertiseClass
 	 */
 	public void applyToAdvertisement(AdvertiseClass ad) {
-		//ad.getApplied().add(this);
+		ad.getApplied().add(this);
 	}
 	/**
 	 * Sets Statue To Open To Work
@@ -69,7 +72,15 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		this.statue="Open To Work";
 		return true;
 	}
-	public int ratingTheOffer() {
+	/**
+	 * Sets Statue To Working
+	 * @return boolen
+	 */
+	public boolean setStatusToWorking() {
+		this.statue="Working";
+		return true;
+	}
+	public int ratingTheOffer(int offer) {
 		//TODO
 		return -1;
 	}
