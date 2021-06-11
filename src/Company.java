@@ -14,6 +14,7 @@ public class Company extends Users implements Comparable<Company> {
     private String Address;
     private ArrayList<Integer> Ratings;
     private double RatingsOrt;
+
     public Company(int userID,String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
 			int numberOfEmployees, ArrayList<String> socialRights, String address, ArrayList<Integer> ratings,
 			double ratingsOrt,HRC hrc) {
@@ -86,6 +87,35 @@ public class Company extends Users implements Comparable<Company> {
                 levelOfEducation,description;
         Integer experienceYear;
         ArrayQueue<String> Capabilities = null;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("advertisementTitle");
+        advertisementTitle = sc.next();
+        System.out.println("wayOfWork");
+        wayOfWork = sc.next();
+        System.out.println("jobRole");
+        jobRole = sc.next();
+        System.out.println("jobType");
+        jobType = sc.next();
+        System.out.println("jobLocation");
+        jobLocation = sc.next();
+        System.out.println("numberOfVacancies");
+        numberOfVacancies = sc.next();
+        System.out.println("companyIndustry");
+        companyIndustry = sc.next();
+        System.out.println("levelOfEducation");
+        levelOfEducation = sc.next();
+        System.out.println("experienceYear");
+        experienceYear = sc.nextInt();
+        System.out.println("description");
+        description = sc.next();
+        int prefer;
+        do{
+            System.out.println("Capabilities");
+            System.out.println("Eklemeye devam etmek için 1, bitirmek için 2 ye basınız");
+            prefer= sc.nextInt();
+            if(prefer==2)
+                break;
+        }while (prefer==1);
         AdvertiseClass tmp=new AdvertiseClass(advertisementTitle,wayOfWork,jobRole,jobType, jobLocation,numberOfVacancies,companyIndustry, Capabilities,
                 levelOfEducation,experienceYear,description);
         return  tmp;
@@ -109,12 +139,14 @@ public class Company extends Users implements Comparable<Company> {
         return aString.toString();
     }
     @Override
+    //iki şirketin rating ortalamasıa göre karşılaştırılabiilir
     public int compareTo(Company o) {
-       if(getUserID() > humanRes.getUserID() )
-            return 1;
-        else if(getUserID() < humanRes.getUserID())
-            return -1;
-        else
-            return 0;  
+       if(this.getRatingsOrt()<o.getRatingsOrt())
+           return 1;
+       else if(this.getRatingsOrt()>o.getRatingsOrt())
+           return -1;
+       else
+           return 0;
+
     }
 }
