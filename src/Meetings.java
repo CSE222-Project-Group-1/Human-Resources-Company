@@ -1,9 +1,21 @@
 package src;
 
-import java.util.Calendar;
-import java.util.*;
 public class Meetings{
 
+	private	String date;
+	private Candidate candidate;
+	private Company company;
+	private String time;
+	private int MeetingRate;
+
+	/**
+	 * Meetings class constructor.
+	 * @param date of meeting
+	 * @param candidate who will attened the meeting
+	 * @param company who will attened the meeting
+	 * @param time of meeting
+	 * @param meetingRate of meeting
+	 */
 	public Meetings(String date, Candidate candidate, Company company, String time, int meetingRate) {
 		super();
 		this.date = date;
@@ -12,122 +24,85 @@ public class Meetings{
 		this.time = time;
 		MeetingRate = meetingRate;
 	}
-	private	String date;
-	private Candidate candidate;
-	private Company company;
-	private String time;
-	private int MeetingRate;
+
+	/**
+	 * Returns data of meeting.
+	 * @return data of meeting.
+	 */
 	public String getDate() {
 		return date;
 	}
-	public void setDate(String date) { this.date = date; }
+
+	/**
+	 * Sets meeting date
+	 * @param date of meeting
+	 */
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	/**
+	 * Returns candidate who will attened the meeting
+	 * @return candidate who will attened the meeting
+	 */
 	public Candidate getCandidate() {
 		return candidate;
 	}
+
+	/**
+	 * Sets candidate who will attened the meeting
+	 * @param candidate who will attened the meeting
+	 */
 	public void setCandidate(Candidate candidate) {
 		this.candidate = candidate;
 	}
+
+	/**
+	 * Returns company who will attened the meeting
+	 * @return company who will attened the meeting
+	 */
 	public Company getCompany() {
 		return company;
 	}
+
+	/**
+	 * Sets company who will attened the meeting
+	 * @param company who will attened the meeting
+	 */
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	/**
+	 * Returns time of meeting
+	 * @return time of meeting
+	 */
 	public String getTime() {
 		return time;
 	}
+
+	/**
+	 * Sets time of meeting
+	 * @param time of meeting
+	 */
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+	/**
+	 * Returns meeting rate
+	 * @return meeting rate
+	 */
 	public int getMeetingRate() {
 		return MeetingRate;
 	}
+
+	/**
+	 * Sets meeting rate
+	 * @param meetingRate Rate of meeting
+	 */
 	public void setMeetingRate(int meetingRate) {
 		MeetingRate = meetingRate;
 	}
-	public void printCalender()
-	{
-		Calendar calendar = Calendar.getInstance();
-		int year = calendar.get(Calendar.YEAR);
-
-
-		int day =calendar.get(Calendar.SECOND);
-		int dayCounter = day;
-		int nbrOfDays = 0;
-		String  monthx = "";
-		for (int month= 1; month <=12; month++)
-		{
-
-			switch (month)
-			{
-				case 1: monthx = "January";
-					nbrOfDays = 31;
-					break;
-				case 2: monthx = "February";
-					if ( year % 4 == 0 && year % 100 !=0 || year % 400 == 0)
-					{
-						nbrOfDays = 29;
-						break;
-					}
-					else
-					{  nbrOfDays = 28;
-						break;
-					}
-				case 3: monthx = "March";
-					nbrOfDays = 31;
-					break;
-				case 4: monthx = "April";
-					nbrOfDays = 30;
-					break;
-				case 5: monthx = "May";
-					nbrOfDays = 31;
-					break;
-
-				case 6: monthx = "June";
-					nbrOfDays = 30;
-					break;
-				case 7: monthx = "July";
-					nbrOfDays = 31;
-					break;
-				case 8: monthx = "August";
-					nbrOfDays = 31;
-					break;
-				case 9: monthx = "September";
-					nbrOfDays = 30;
-					break;
-				case 10: monthx = "October";
-					nbrOfDays = 31;
-					break;
-				case 11: monthx = "November";
-					nbrOfDays = 30;
-					break;
-				case 12: monthx = "December";
-					nbrOfDays = 31;
-					break;
-			}
-
-			System.out.printf("%15s %d  \n", monthx , year);
-			System.out.println("----------------------------");
-			System.out.printf("%s %s %s %s %s %s %s\n ", "Sun","Mon","Tue", "Wed", "Thu","Fri","Sat");
-
-			for (int space =1; space<=day; space++)
-			{
-				System.out.printf("%4s", "    ");
-			}
-			for (int i = 1; i <=nbrOfDays; i++)
-			{
-				dayCounter++;
-				if ( dayCounter% 7==0)
-					System.out.printf("%- 4d\n", i);
-				else
-					System.out.printf("%-4d", i);
-
-			}
-			day = (day + nbrOfDays)%7;
-
-			System.out.println();
-
-		}
-
-		}
-	}
+	
+}
