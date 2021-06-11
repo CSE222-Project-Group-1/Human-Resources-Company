@@ -19,7 +19,7 @@ public class Company extends Users implements Comparable<Company> {
     public Company(int userID,String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
 			int numberOfEmployees, ArrayList<String> socialRights, String address, ArrayList<Integer> ratings,
 			double ratingsOrt,HRC hrc) {
-        super(ID,name,password,Users.COMPANY);
+        super(userID,name,password,Users.COMPANY);
         Advertises = advertises;
         CompanySector = companySector;
         NumberOfEmployees = numberOfEmployees;
