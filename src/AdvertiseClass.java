@@ -216,6 +216,20 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 				+ Description + "]";
 	}
 	
+	/*
+	* @return suggested persons priority queue.
+	*/
+	public PriorityQueue<Candidate> getSuggested() {
+            return suggested;
+        }
+	/*
+	* @param suggested priority queue to be set
+	*/
+        public void setSuggested(PriorityQueue<Candidate> suggested) {
+            this.suggested = suggested;
+        }
+	
+	
 	@Override
         public int compareTo(AdvertiseClass arg0) {
             return AdvertisementTitle.compareTo(arg0.getAdvertisementTitle());
