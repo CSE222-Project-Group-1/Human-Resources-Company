@@ -48,14 +48,14 @@ public class Test {
         System.out.println("\n------Start Candidate Tests------\n");
         System.out.println("Create new employee with name Baran Solmaz and Null CV");
         Candidate candidate = new Candidate("Baran Solmaz", "123", null);
-        candidate.ApplyToAdvertisement();
-        candidate.ChangePassword("newPassword");
-        candidate.EvaluateTheOffer();
-        candidate.Giveinformation();
-        candidate.RateCompany(null);
-        candidate.RatingTheOffer();
-        candidate.SetStatusToOpenWork();
-        candidate.SingUp();
+        // candidate.ApplyToAdvertisement();
+        // candidate.ChangePassword("newPassword");
+        // candidate.EvaluateTheOffer();
+        // candidate.Giveinformation();
+        // candidate.RateCompany(null);
+        // candidate.RatingTheOffer();
+        // candidate.SetStatusToOpenWork();
+        // candidate.SingUp();
 
         System.out.println("\n------End Candidate Tests------\n");
 

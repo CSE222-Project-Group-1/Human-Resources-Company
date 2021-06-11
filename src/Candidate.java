@@ -1,5 +1,7 @@
 package src;
 
+import java.util.Scanner;
+
 public class Candidate {
 	private String name;
 	private String password;
@@ -53,7 +55,7 @@ public class Candidate {
 	 * @param ad AdvertiseClass
 	 */
 	public void applyToAdvertisement(AdvertiseClass ad) {
-		ad.getApplied().add(this);
+		//ad.getApplied().add(this);
 	}
 	/**
 	 * Sets Statue To Open To Work
