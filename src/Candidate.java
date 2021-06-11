@@ -34,10 +34,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	* @param Company 
 	* @return rate
 	*/
-	public int rateCompany(Company company) {
-		Scanner scan=new Scanner(System.in);
-		System.out.print("Rate ?/10 : ");
-		int rate= scan.nextInt();
+	public int rateCompany(Company company, int rate) {
 		company.getRatings().add(rate);
 		return rate;
 	}
@@ -101,7 +98,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	}
     
     @Override
-    public int compareTo(Candidate arg0) {
+    public int compareTo(Candidate other) {
         // TODO Auto-generated method stub
         return 0;
     }
