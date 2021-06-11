@@ -23,8 +23,8 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @param password String
 	 * @return boolean
 	 */
-	public boolean signUp(String name,String password) {
-		if (getName().equals(name) && getPassword().equals(password))
+	public boolean signUp(int id,String password) {
+		if (getId().equals(id) && getPassword().equals(password))
 			return true;
 		return false;
 	}
