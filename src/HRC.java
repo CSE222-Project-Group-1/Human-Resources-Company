@@ -12,16 +12,44 @@ import src.book_implementation.SkipList;
 @SuppressWarnings("unused")
 public class HRC{
 		public static int  USERS_ID=0;
-		private AVLTree<HumanResources> humanResources; // AVL
-		private SkipList<Company> company;
-		private NavigableMap<Integer,Candidate> candidate= new TreeMap<>();
+		private AVLTree<HumanResources> humanResources=null;
+		private ArrayList<Users> users=null;
+		private SkipList<Company> company=null;
+		private NavigableMap<Integer,Candidate> candidate=null;
 		private ArrayList<Meetings> meetings;
 		private Admin admin=null;
 		
+		public HRC(){
+			humanResources=new AVLTree<>();
+			company=new SkipList<>();
+			candidate=new TreeMap<>();
+			meetings=new ArrayList<>();
+			users=new ArrayList<>();
+			admin=new Admin(USERS_ID++, "admin","123", this);
+			getUsers().add((Users)admin);
+			System.out.println("Information of Admin \n ID:"+admin.getUserID()+" Password:123");
+		}
 
 		public SkipList<Company> getCompany() { return company; }
 
+		public Company getCompanyID(int ID){
+			Company com=null;
+			Iterator<Company> itr=getCompany().iterator();
+			while (itr.hasNext() && com!=null){
+				com=itr.next();
+				if (com.getUserID()==ID){
+					return com;
+				}
+			}
+			return null;
+		}
+		
+
 		public AVLTree<HumanResources> getHumanResources() { return humanResources; }
+
+		public HumanResources getHumanResourcesID(int id){
+			return getHumanResources().find(new HumanResources(id, null, null, null));
+		}
 
 		public ArrayList<Meetings> getMeetings() { return meetings; }
 
@@ -31,39 +59,54 @@ public class HRC{
 		
 		public NavigableMap<Integer,Candidate> getCandidate(){	return candidate;	}
 		
-		public Company searchCompany(int ID){
-			Company com=null;
-			Company temp=null;
-			Iterator<Company> itr=getCompany().iterator();
-			while (itr.hasNext() && com!=null){
-				temp=itr.next();
-				if (temp.getUserID()==ID){
-					com=temp;
-				}
-			}
-			return com;
-		}
+		
 
-		public Company createCompany(int ID,String name, String password, ArrayList<AdvertiseClass> advertises,
-									 String companySector,int numberOfEmployees,
-									 ArrayList<String> socialRights, String address,
-									 ArrayList<Integer> ratings, double ratingsOrt){
-			return new Company(ID,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratings,ratingsOrt,this);
+		private Company createCompany(int ID,String name, String password, ArrayList<AdvertiseClass> advertises,String companySector,
+						int numberOfEmployees,ArrayList<String> socialRights,String address,double ratingsOrt){
+			Company comp=new Company(ID,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratingsOrt,this);
+			company.add(comp);
+			return comp;
 		}
 
 		public Company createCompany(String name, String password, ArrayList<AdvertiseClass> advertises,
-									 String companySector,int numberOfEmployees,
-									 ArrayList<String> socialRights, String address,
-									 ArrayList<Integer> ratings, double ratingsOrt){
-			return createCompany(USERS_ID++,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratings,ratingsOrt);
+									 String companySector,int numberOfEmployees,ArrayList<String> socialRights,
+									  String address, double ratingsOrt){
+			return createCompany(USERS_ID++,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratingsOrt);
 		}
 
-		public HumanResources createHumanResources(int ID,String name, String password){
-			return new HumanResources(ID,name,password,this);
+		private HumanResources createHumanResources(int ID,String name, String password){
+            HumanResources hr = new HumanResources(ID,name,password,this);
+            users.add( hr );
+			return hr;
 		}
 
 		public HumanResources createHumanResources(String name, String password){
 			return createHumanResources(USERS_ID++,name,password);
+		}
+
+        public Candidate createCandidate(String name,String password,CvClass cv){
+			return createCandidate(USERS_ID++,name,password,cv);
+		}
+
+		private Candidate createCandidate(int ID,String name,String password,CvClass cv){
+			Candidate temp=new Candidate(ID,name,password,cv,this);
+			getUsers().add((Users)temp);
+			return temp;
+		 }
+		public ArrayList<Users> getUsers(){
+			return users;
+		}
+
+		public Users getUserID(int ID){
+			Users user=null;
+			Iterator<Users> itr=getUsers().iterator();
+			while (itr.hasNext()){
+				user=itr.next();
+				if (user.getUserID()==ID){
+					return user;
+				}
+			}
+			return null;
 		}
 
 }

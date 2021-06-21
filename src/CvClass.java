@@ -15,7 +15,6 @@ public class CvClass {
  	private ArrayList<SchoolClass> SchoolInformation;
 	private ArrayList<Experience> Experiences;
 	private ArrayList<Certificate> Certficates;
-	private ArrayList<String> Hobbies;
 	private ArrayList<String> Capabilities;
 	private ArrayList<Referance> Referances;
 	private boolean DriversLicense;
@@ -35,15 +34,14 @@ public class CvClass {
 	 * @param schoolInformation of candidate
 	 * @param experiences of candidate
 	 * @param certficates of candidate
-	 * @param hobbies of candidate
 	 * @param capabilities of candidate
 	 * @param referances of candidate
 	 * @param driversLicense of candidate
 	 */
 	public CvClass(String address, String name, String surname, String telNo, String email, String gender,
 			String birthDay, String nationality, String coverLetter, ArrayList<SchoolClass> schoolInformation,
-			ArrayList<Experience> experiences, ArrayList<Certificate> certficates, ArrayList<String> hobbies,
-			ArrayList<String> capabilities, ArrayList<Referance> referances, boolean driversLicense) {
+			ArrayList<Experience> experiences, ArrayList<Certificate> certficates,ArrayList<String> capabilities,
+			 ArrayList<Referance> referances, boolean driversLicense) {
 		super();
 		Address = address;
 		Name = name;
@@ -57,7 +55,6 @@ public class CvClass {
 		SchoolInformation = schoolInformation;
 		Experiences = experiences;
 		Certficates = certficates;
-		Hobbies = hobbies;
 		Capabilities = capabilities;
 		Referances = referances;
 		DriversLicense = driversLicense;
@@ -199,22 +196,6 @@ public class CvClass {
 	 */
 	public void setCertficates(ArrayList<Certificate> certficates) {
 		Certficates = certficates;
-	}
-
-	/**
-	 * Returns hobbies of candidate.
-	 * @return hobbies of candidate.
-	 */
-	public ArrayList<String> getHobbies() {
-		return Hobbies;
-	}
-
-	/**
-	 * Sets hobbies of candidate.
-	 * @param hobbies of candidate.
-	 */
-	public void setHobbies(ArrayList<String> hobbies) {
-		Hobbies = hobbies;
 	}
 
 	/**
@@ -875,7 +856,7 @@ public class CvClass {
 		return "CvClass [Address=" + Address + ", Name=" + Name + ", Surname=" + Surname + ", TelNo=" + TelNo
 				+ ", Email=" + Email + ", Gender=" + Gender + ", BirthDay=" + BirthDay + ", Nationality=" + Nationality
 				+ ", CoverLetter=" + CoverLetter + ", SchoolInformation=" + SchoolInformation + ", Experiences="
-				+ Experiences + ", Certficates=" + Certficates + ", Hobbies=" + Hobbies + ", Capabilities="
+				+ Experiences + ", Certficates=" + Certficates + ", Capabilities="
 				+ Capabilities + ", Referances=" + Referances + ", DriversLicense=" + DriversLicense + "]";
 	}
 	

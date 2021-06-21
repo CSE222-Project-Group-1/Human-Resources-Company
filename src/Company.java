@@ -1,10 +1,7 @@
 package src;
 
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import src.book_implementation.ArrayQueue;
+import java.util.*;
 
 public class Company extends Users implements Comparable<Company> {
     private ArrayList<AdvertiseClass> Advertises;
@@ -12,37 +9,27 @@ public class Company extends Users implements Comparable<Company> {
     private int NumberOfEmployees;
     private ArrayList<String> SocialRights; //sosyal haklar  Binary Search Tree
     private String Address;
-    private ArrayList<Integer> Ratings;
-    private double RatingsOrt;
+    private static double rateAverage=0;
+    private static int numberOfVotes=0;
 
     public Company(int userID,String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
-			int numberOfEmployees, ArrayList<String> socialRights, String address, ArrayList<Integer> ratings,
-			double ratingsOrt,HRC hrc) {
+			int numberOfEmployees, ArrayList<String> socialRights, String address,double ratingsOrt,HRC hrc) {
         super(userID,name,password,Users.COMPANY);
         Advertises = advertises;
         CompanySector = companySector;
         NumberOfEmployees = numberOfEmployees;
         SocialRights = socialRights;
         Address = address;
-        Ratings = ratings;
-        RatingsOrt = ratingsOrt;
+        System.out.println("Your id:" + userID);
     }
-    public ArrayList<Integer> getRatings() {
-        return Ratings;
+    public void addRating(int rate) {
+        rateAverage+=((double) rate)/(++numberOfVotes);
     }
-    public void setRatings(ArrayList<Integer> ratings) {
-        Ratings = ratings;
+    
+    public double getRatingsAvg(){
+        return rateAverage;
     }
-    public double getRatingsOrt() {
-        int result=0;
-        for(int i=0;i<Ratings.size();i++)
-        {
-          result=result+Ratings.get(i);
-        }
-        RatingsOrt=result/Ratings.size();
-
-        return RatingsOrt;
-    }
+    
     public ArrayList<AdvertiseClass> getAdvertises() {
         return Advertises;
     }
@@ -81,49 +68,6 @@ public class Company extends Users implements Comparable<Company> {
     public boolean AcceptDeclineSuggestedCandidates() {
         return false;
     }
-    public AdvertiseClass Advertise() {
-        String advertisementTitle,wayOfWork,jobRole,jobType,
-                jobLocation,numberOfVacancies,companyIndustry,
-                levelOfEducation,description;
-        Integer experienceYear;
-        ArrayQueue<String> Capabilities = null;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("advertisementTitle");
-        advertisementTitle = sc.next();
-        System.out.println("wayOfWork");
-        wayOfWork = sc.next();
-        System.out.println("jobRole");
-        jobRole = sc.next();
-        System.out.println("jobType");
-        jobType = sc.next();
-        System.out.println("jobLocation");
-        jobLocation = sc.next();
-        System.out.println("numberOfVacancies");
-        numberOfVacancies = sc.next();
-        System.out.println("companyIndustry");
-        companyIndustry = sc.next();
-        System.out.println("levelOfEducation");
-        levelOfEducation = sc.next();
-        System.out.println("experienceYear");
-        experienceYear = sc.nextInt();
-        System.out.println("description");
-        description = sc.next();
-        int prefer;
-        do{
-            System.out.println("Capabilities");
-            System.out.println("Eklemeye devam etmek için 1, bitirmek için 2 ye basınız");
-            prefer= sc.nextInt();
-            if(prefer==2)
-                break;
-        }while (prefer==1);
-        AdvertiseClass tmp=new AdvertiseClass(advertisementTitle,wayOfWork,jobRole,jobType, jobLocation,numberOfVacancies,companyIndustry, Capabilities,
-                levelOfEducation,experienceYear,description);
-        return  tmp;
-    }
-    //burada şirkete görüştüğü kişi puan veriyor
-    public void RateEmployee(int value) {
-        Ratings.add(value);
-    }
     //benzaten şirketim nedeb müşteri bilgisi görücem
     public void seeCustomerInformation() {
 
@@ -141,9 +85,9 @@ public class Company extends Users implements Comparable<Company> {
     @Override
     //iki şirketin rating ortalamasıa göre karşılaştırılabiilir
     public int compareTo(Company o) {
-       if(this.getRatingsOrt()<o.getRatingsOrt())
+       if(this.getRatingsAvg()<o.getRatingsAvg())
            return 1;
-       else if(this.getRatingsOrt()>o.getRatingsOrt())
+       else if(this.getRatingsAvg()>o.getRatingsAvg())
            return -1;
        else
            return 0;

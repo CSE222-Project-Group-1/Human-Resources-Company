@@ -1,97 +1,180 @@
 import src.*;
+import src.book_implementation.*;
+import java.util.*;
+import java.io.*;
 
 @SuppressWarnings("unused")
 public class Test {
     
     public static void main(String[] args) {
-        System.out.println("Hello domates");
+        System.out.println("Hello");
 
-        System.out.println("\n\n------------Welcome to Perfect Human Resources Company------------\n\n");
-        System.out.println("Test Starting");
-
-        System.out.println("First, creating our HRC Company");
-        // Create new HRC
+        
         HRC hrc = new HRC();
+        Admin admin = hrc.getAdmin();
+        System.out.println("------ Welcome BRO!! ------"); 
+
+        while(true)
+        {  
+            System.out.println("1- Sign Up");
+            System.out.println("2- Log in");
+            
+            int choice = getInt("Choice:");
+            switch (choice) {
+                case 1:signUp(hrc);
+                    break;
+                case 2:logIn(hrc);
+                    break;
+                default:System.err.println("Wrong Input!!");
+                    break;
+            }
+
+        }
+
+    }
+
+    public static void signUp(HRC hrc) {
+        System.out.println("1- Sign Up Company");
+        System.out.println("2- Sign Up Candidate");
         
+        int key=getInt("Choose: ");
+        switch (key) {
+            case 1: hrc.createCompany(getStr("Name: "),getStr("Password: "), null/*ArrayList Advertises*/, getStr("Company Sector: "), getInt("Number Of Employees: "),null/* Array List socialRights*/,getStr("Address: "), 0);
+                break;
+            case 2: hrc.createCandidate(getStr("Name: "),getStr("Password: "),null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+                break;
+            default :System.err.println("Wrong Input!!");
+        }
+    }
 
-        System.out.println("------Start Admin Tests------");
-        System.out.println("Create an admin with Name Suleyman Golbol - Password: 123");
-        // create admin
-        Admin admin = new Admin("Suleyman", "123");
-        // set hrc company to admin
-        Admin.setHrc(hrc);
-        // set hrc admin to our admin
-        hrc.setAdmin(admin);
-     
-        System.err.println("Add new employee");
-        admin.AddHumanResources();
-        System.out.println("Remove an employee");
-        admin.RemoveHumanResources();
-
-        System.out.println("See statistics");
-        admin.SeeStatistics();
-
-        System.out.println("Add new company");
-        admin.addCompany();
-        System.out.println("Remove company");
-        admin.deleteCompany();
-
-        System.out.println("------End Admin Tests------");
-
-        System.out.println("\n\n------Start Advertise Tests------\n\n");
-        AdvertiseClass advertise = new AdvertiseClass("advertisementTitle", "wayOfWork", "jobRole", "jobType", "jobLocation", "numberOfVacancies", "companyIndustry", null, "levelOfEducation", 0, "description");
-
-        // other methods will go here
-        System.out.println("------End of Advertise Tests------\n");
-
-
-        System.out.println("\n------Start Candidate Tests------\n");
-        System.out.println("Create new employee with name Baran Solmaz and Null CV");
-        Candidate candidate = new Candidate("Baran Solmaz", "123", null, hrc);
-        candidate.applyToAdvertisement(null);
-        candidate.changePassword("newPassword");
-        candidate.rateCompany(null, 10);
-        candidate.ratingTheOffer();
-        candidate.evaluateTheOffer();
-        candidate.giveInformation();
+    public static void logIn(HRC hrc) {
+        Users user=null;
+        int index=hrc.getUsers().indexOf(new Users(getInt("ID: "),null, getStr("Password: "), 0 ));
+        if(index==-1){
+            System.out.println("Invalid input.");
+            return;
+        }
+        user=hrc.getUsers().get(index);
         
+        Candidate candidate=null;
+        HumanResources humanResources=null;
+        Company company=null;
+        Admin admin=null;
+        switch(user.getType()){
+            case Users.CANDIDATE: 
+                candidate=hrc.getCandidateID(user.getUserID());
+                System.out.println("Candidate");
+            break;
 
-        System.out.println("\n------End Candidate Tests------\n");
+            case Users.HUMAN_SOURCES: 
+                    humanResources=hrc.getHumanResourcesID(user.getUserID());
+                    System.out.println("Human Resources");
+            break;
 
-        System.out.println("\n------Start Company Tests------\n");
-        System.out.println("Create company with name Samsung");
-        Company company = new Company("Samsung", null, null, null, 10, null, null, null, 0);
-        company.AcceptDeclineSuggestedCandidates();
-        company.Advertise();
-        company.RateEmployee(2);
-        company.SeeSuggestedCandidates(null);
-        company.addAdvertise(null);
-        company.addSocialRights("food");
-        System.out.println("\n------End Company Tests------\n");
+            case Users.COMPANY: 
+            System.out.println("companyyyyyyyyyy");
+                company=hrc.getCompanyID(user.getUserID());
+            break;
+            case Users.ADMIN:
+            System.out.println("Adminnnnnn");
+                admin=hrc.getAdmin();
+             break;
 
-        System.out.println("\n------Start CV Class Tests------\n");
-        CvClass cv = new CvClass("address", "name", "surname", "tel no", "email", "gender", "birthDay", "nationality", "coverLetter", null, null, null, null, null,null, false);
+        };
+    }
+
+    public static void companyMenu(Company company) {
         
-        System.out.println("\n------End CV Class Tests------\n");
+        while(true)
+        {  
+            System.out.println("1- Give  ");
+            System.out.println("2- Log in");
+            
+            System.out.println("0- Exit");
+            int choice = getInt("Choice:");
+            switch (choice) {
+                
+                case 0: return;
+                
+                default:System.err.println("Wrong Input!!");
+                    break;
+            }
+        }
+    }
 
-        System.out.println("\n------Start HumanResources (our employee) Tests------\n");
-        System.out.println("Create new employee with name Enis PHP - Password 123");
-        HumanResources employee = new HumanResources(123 ,"Enis PHP", "123", null);
-        employee.ArrangeMeeting();
-        employee.CompareRequests();
-        employee.DeleteCandidate();
-        employee.GiveOfferToCandidate();
-        employee.SeeCompanyRequest();
-        employee.SuggestCandidateToCompany();
+    public static void candidateMenu(Company company,Candidate candidate) {
 
-        System.out.println("\n------End HumanResources (our employee) Tests------\n");
+        while (true) {
+            System.out.println("1-  ");
+            System.out.println("2-See Company Rating");
 
-        System.out.println("\n------Start Meeting Class Tests------\n");
-        Meetings meeting = new Meetings("date", null, null, "time", 19);
-        System.out.println("\n------End Meeting Class Tests------\n");
+            System.out.println("0- Exit");
+            int choice = getInt("Choice:");
+            switch (choice) {
 
-        System.out.println("\n------Start Users Tests------\n");
-        System.out.println("\n------End Users Tests------\n");
+            case 0:
+                return;
+            case 1:
+                return;
+            case 2:
+                return;
+            case 3:
+                return;
+            case 4:
+                return;
 
+            default:
+                System.err.println("Wrong Input!!");
+                break;
+            }
+        }
+    }
+
+    public static ArrayList<AdvertiseClass> getAdvertise() {
+        ArrayList<AdvertiseClass> advert = new ArrayList<>();
+
+        int size = getInt("Enter Advertise Size:");
+        for (int i = 0; i < size; i++)
+        {
+            advert.add(new AdvertiseClass(getStr("Tittle"), getStr("Way of Work (remote or location):"), getStr("Role:"), getStr("Job Type:"), getStr("Location:"), getInt("Vacancies:"), getStr("Industry:"), getCapabilities(), getStr("Education Level:"), getInt("Experience Year:"), getStr("Description:")));
+        }
+        return advert;
+    } 
+
+    public static ArrayQueue<String> getCapabilities() {
+        ArrayQueue<String> capabilities = new ArrayQueue<>();
+
+        int size = getInt("Enter Capabilities Size:");
+        for (int i = 0; i < size; i++)
+        {
+            capabilities.offer(getStr("Enter " + i+1 +". capabilites:"));
+        }
+        return capabilities;
+    }
+
+    @SuppressWarnings("resource")
+    public static int getInt(String str) {
+        System.out.print(str);
+        Scanner scanner = new Scanner(System.in);
+        int temp = -1;
+        while (temp == -1) {
+            try {
+                temp = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Wrong input. Enter an int. Try Again");
+                scanner.nextLine();
+            }
+        }
+        // scanner.close();
+        return temp;
+    }
+
+    @SuppressWarnings("resource")
+    public static String getStr(String str) {
+        System.out.print(str);
+        Scanner scanner = new Scanner(System.in);
+        String temp = scanner.nextLine();
+        // scanner.close();
+        return temp;
     }
 }

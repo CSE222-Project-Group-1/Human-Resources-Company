@@ -10,7 +10,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	private String JobRole;
 	private String JobType;
 	private String JobLocation;
-	private String NumberOfVacancies; //kac kisilik ilan
+	private int NumberOfVacancies; //kac kisilik ilan
 	private String CompanyIndustry;
 	private ArrayQueue<String> Capabilities; // Queue
 	private PriorityQueue<Candidate> applied; // Priority Queue
@@ -32,7 +32,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	 * @param Company Industry
 	 */
 	public AdvertiseClass(String advertisementTitle, String wayOfWork, String jobRole, String jobType,
-			String jobLocation, String numberOfVacancies, String companyIndustry, ArrayQueue<String> capabilities,
+			String jobLocation, int numberOfVacancies2, String companyIndustry, ArrayQueue<String> capabilities,
 			String levelOfEducation, int experienceYear, String description) {
 		super();
 		AdvertisementTitle = advertisementTitle;
@@ -40,7 +40,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 		JobRole = jobRole;
 		JobType = jobType;
 		JobLocation = jobLocation;
-		NumberOfVacancies = numberOfVacancies;
+		NumberOfVacancies = numberOfVacancies2;
 		CompanyIndustry = companyIndustry;
 		Capabilities = capabilities;
 		LevelOfEducation = levelOfEducation;
@@ -124,14 +124,14 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	 * Returns NumberOfVacancies
 	 * @return NumberOfVacancies for advertisement
 	 */
-	public String getNumberOfVacancies() {
+	public int getNumberOfVacancies() {
 		return NumberOfVacancies;
 	}
 	/**
 	 * Sets NumberOfVacancies
 	 * @param NumberOfVacancies
 	 */
-	public void setNumberOfVacancies(String numberOfVacancies) {
+	public void setNumberOfVacancies(int numberOfVacancies) {
 		NumberOfVacancies = numberOfVacancies;
 	}
 	/**

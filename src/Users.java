@@ -4,15 +4,15 @@ package src;
  * @author Group1
  * Abstract user class that contains basic info of an user.
  */
-public abstract class Users implements  UsersInterface{
+public class Users implements  UsersInterface{
     private String name;
     private int userID;
     private String password;
     private int type;
-    protected static final int HUMAN_SOURCES = 1;
-    protected static final int CANDIDATE = 2;
-    protected static final int ADMIN = 3;
-    protected static final int COMPANY = 4;
+    public static final int HUMAN_SOURCES = 1;
+    public static final int CANDIDATE = 2;
+    public static final int ADMIN = 3;
+    public static final int COMPANY = 4;
 
     /**
      * 
@@ -84,6 +84,12 @@ public abstract class Users implements  UsersInterface{
         return type;
     } 
 
-
+    public boolean equals(Object o){
+        if(o instanceof Users){
+            Users u=(Users)o;
+            return getUserID()==u.getUserID() && getPassword().equals(u.getPassword());
+        }
+        return super.equals(o);
+    }
     
 }

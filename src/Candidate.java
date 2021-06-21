@@ -15,6 +15,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		super(userID, name, password, Users.CANDIDATE);
 		this.Mycv = mycv;
 		this.hrc=hrc;
+        System.out.println("Your id:" + userID);
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	* @return rate
 	*/
 	public int rateCompany(Company company, int rate) {
-		company.getRatings().add(rate);
+		company.addRating(rate);
 		return rate;
 	}
 	public boolean evaluateTheOffer(int offer) {
@@ -55,7 +56,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @param company Company
 	 */
 	public void seeRatings(Company company) {
-		System.out.println("Rating: "+company.getRatingsOrt());
+		System.out.println("Rating: "+company.getRatingsAvg());
 	}
 	/**
 	 * Adds Candidate to Advertise
@@ -110,11 +111,11 @@ public class Candidate  extends Users implements Comparable<Candidate>{
     @Override
     public int compareTo(Candidate other) {
         if (this.getUserID()>other.getUserID()) {
-		return 1;
-	} if (this.getUserID()<other.getUserID()) {
-		return -1;
-	} else 
-		return 0 ;
+			return 1;
+		} if (this.getUserID()<other.getUserID()) {
+			return -1;
+		} else 
+			return 0 ;
     }
 	
 }

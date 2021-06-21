@@ -22,7 +22,7 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
 	public ArrayList<AdvertiseClass> SeeCompanyRequest(int companyID){
-        return hrc.searchCompany(companyID).getAdvertises();
+        return hrc.getCompanyID(companyID).getAdvertises();
 	}
     
 	public int CompareRequests(AdvertiseClass as, AdvertiseClass as2){
