@@ -85,12 +85,10 @@ public class Test {
 
             case Users.COMPANY: 
                 company = hrc.getCompanyID(user.getUserID());
-                //Hey buradaki !!!!! Sen Can yamana birşey mi söyledin ?
                 companyMenu(hrc, company);
                 break;
 
             case Users.ADMIN:
-                System.out.println("Adminnnnnn");
                 admin=hrc.getAdmin();
                 adminMenu(hrc,admin);
                 break;
@@ -481,15 +479,19 @@ public class Test {
 
     public static Candidate candidateSelectorAdvertises(Company company){
         Candidate returnVal=null;
+
+        if (company.getAdvertises().size() == 0)
+            return null;
+
         Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
 
         int i=0;
         while(iter.hasNext()){
             AdvertiseClass ad = iter.next();
-            Iterator<Candidate> itCaandiate = ad.getApplies().iterator();
-            while(itCaandiate.hasNext())
+            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
+            while(itCandidate.hasNext())
             {
-                System.out.println( i + ": " + itCaandiate.next() );
+                System.out.println( i + ": " + itCandidate.next() );
                 i++;
             }
         }
@@ -500,16 +502,15 @@ public class Test {
         i = 0;
         while(iter.hasNext()){
             AdvertiseClass ad = iter.next();
-            Iterator<Candidate> itCaandiate = ad.getApplies().iterator();
-            while(itCaandiate.hasNext())
+            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
+            while(itCandidate.hasNext())
             {
                 if (i == select)
-                    return itCaandiate.next();
+                    return itCandidate.next();
                 i++;
             }
         }
         
-        System.out.println("Hata verdim abeey candidate bulamadim");
         return null;
     }
     
