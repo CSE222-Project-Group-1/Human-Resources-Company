@@ -24,6 +24,7 @@ public class Users implements  UsersInterface{
         this.userID = userID;
         this.password = password;
         this.type = type;
+        this.name = name;
     }
 
     /**

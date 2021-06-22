@@ -1,10 +1,8 @@
 package src;
 
-
 import java.util.*;
+import src.book_implementation.*;
 
-import src.book_implementation.AVLTree;
-import src.book_implementation.BinarySearchTree;
 
 public class Company extends Users implements Comparable<Company> {
     private ArrayList<AdvertiseClass> Advertises;
@@ -108,7 +106,7 @@ public class Company extends Users implements Comparable<Company> {
         sb.append("\nAdvertises: " + Advertises);
         sb.append("\nCompanySector: " + CompanySector);
         sb.append("\nNumber of Employees: " + NumberOfEmployees);
-        sb.append("\nAdress: " + Address);
+        sb.append("\nAddress: " + Address);
         sb.append("\nRatings avg: " + rateAverage);
         sb.append("\nSocial Rights: ");
         Iterator<String> iter = SocialRights.iterator();

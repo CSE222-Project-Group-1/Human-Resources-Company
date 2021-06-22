@@ -8,6 +8,7 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	public HumanResources(int userID, String name, String password, HRC hrc){
 		super(userID, name, password, Users.HUMAN_SOURCES);
         this.hrc = hrc;
+        System.out.println("Your user id is " + userID);
 	}
 
 	public boolean loginSystem(String name,String password) {
@@ -33,8 +34,10 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return candidate.evaluateTheOffer(offer);
 	}
 
-	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int meetingRate){
-        hrc.getMeetings().add( new Meetings(date, candidate, company, time, meetingRate));
+	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
+        Meetings meeting = new Meetings(date, candidate, company, time, offer);
+        hrc.getMeetings().add( meeting );
+		candidate.setMeeting(meeting);
 		return true;
 	}
 
@@ -42,9 +45,9 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		as.getSuggested().add(candidate);
 	}
 
-	public String toString() {
+	public String toString(){
 		StringBuilder sb =new StringBuilder();
-        sb.append(   "UserID: " + getUserID() );
+        sb.append(  "UserID: " + getUserID() );
         sb.append( " | Name: " + getName() );
         
 		return sb.toString();

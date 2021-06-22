@@ -18,6 +18,7 @@ public class HRC{
 		private NavigableMap<Integer,Candidate> candidate=null;
 		private ArrayList<Meetings> meetings;
 		private Admin admin=null;
+		private HumanResources hmOne;
 		
 		public HRC(){
 			humanResources=new AVLTree<>();
@@ -27,6 +28,11 @@ public class HRC{
 			users=new ArrayList<>();
 			admin=new Admin(USERS_ID++, "admin","123", this);
 			getUsers().add((Users)admin);
+
+			hmOne=createHumanResources("human", "123");
+			System.out.println("Human- ID:"+hmOne.getUserID()+" Password:"+hmOne.getPassword());
+
+			
 			System.out.println("Information of Admin \n ID:"+admin.getUserID()+" Password:123");
 		}
 
@@ -76,6 +82,7 @@ public class HRC{
 		private HumanResources createHumanResources(int ID,String name, String password){
             HumanResources hr = new HumanResources(ID,name,password,this);
             users.add( hr );
+			getHumanResources().add(hr);
 			return hr;
 		}
 
@@ -90,6 +97,7 @@ public class HRC{
 		private Candidate createCandidate(int ID,String name,String password,CvClass cv){
 			Candidate temp=new Candidate(ID,name,password,cv,this);
 			getUsers().add((Users)temp);
+			candidate.put(ID, temp);
 			return temp;
 		 }
 		public ArrayList<Users> getUsers(){
@@ -106,6 +114,10 @@ public class HRC{
 				}
 			}
 			return null;
+		}
+
+		public HumanResources getDefaultHumanResources(){
+				return hmOne;
 		}
 
 }

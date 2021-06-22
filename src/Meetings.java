@@ -1,6 +1,6 @@
 package src;
 
-public class Meetings{
+public class Meetings implements Comparable<Meetings>{
 
 	private	String date;
 	private Candidate candidate;
@@ -14,7 +14,7 @@ public class Meetings{
 	 * @param candidate who will attened the meeting
 	 * @param company who will attened the meeting
 	 * @param time of meeting
-	 * @param meetingRate of meeting
+	 * @param offer of meeting
 	 */
 	public Meetings(String date, Candidate candidate, Company company, String time, int offer) {
 		super();
@@ -107,5 +107,10 @@ public class Meetings{
 		
 		return super.equals(o);
 	}
+
+    @Override
+    public int compareTo(Meetings meet) {
+        return (getOffer() - meet.getOffer());
+    }
 	
 }

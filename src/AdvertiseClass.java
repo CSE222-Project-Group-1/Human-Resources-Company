@@ -13,8 +13,8 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	private int NumberOfVacancies; //kac kisilik ilan
 	private String CompanyIndustry;
 	private ArrayQueue<String> Capabilities; // Queue
-	private PriorityQueue<Candidate> applied; // Priority Queue
-	private PriorityQueue<Candidate> suggested; // Priority Queue
+	private PriorityQueue<Candidate> applied  = new PriorityQueue<Candidate>(); // Priority Queue
+	private PriorityQueue<Candidate> suggested = new PriorityQueue<Candidate>(); // Priority Queue
 	
 	private String LevelOfEducation;
 	private int ExperienceYear;
@@ -210,11 +210,11 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	 */
 	@Override
 	public String toString() {
-		return "AdvertiseClass [AdvertisementTitle=" + AdvertisementTitle + ", WayOfWork=" + WayOfWork + ", JobRole="
-				+ JobRole + ", JobType=" + JobType + ", JobLocation=" + JobLocation + ", NumberOfVacancies="
-				+ NumberOfVacancies + ", CompanyIndustry=" + CompanyIndustry + ", Capabilities=" + Capabilities
-				+ ", LevelOfEducation=" + LevelOfEducation + ", ExperienceYear=" + ExperienceYear + ", Description="
-				+ Description + "]";
+		return "Info: [Title =" + AdvertisementTitle + ", WayOfWork=" + WayOfWork + ", Role ="
+				+ JobRole + ", Job Type=" + JobType + ", Location=" + JobLocation + ", Vacancies ="
+				+ NumberOfVacancies + ", Industry=" + CompanyIndustry + ", Capabilities =" + Capabilities
+				+ ", Education Level =" + LevelOfEducation + ", Experience Year =" + ExperienceYear + ", Description ="
+				+ Description + "]\n";
 	}
 	
 	/*

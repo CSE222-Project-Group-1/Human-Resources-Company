@@ -40,7 +40,7 @@ public class Admin  extends Users implements Comparable<Admin> {
 		return result;
 	}
 
-	public boolean deleteCompany(Company com) {
+	public boolean removeCompany(Company com) {
 		Company result=hrc.getCompany().remove(com);
 		return  result!=null;
 	}
@@ -62,22 +62,27 @@ public class Admin  extends Users implements Comparable<Admin> {
 
 		return result;
 	}
-	public boolean RemoveHumanResources(HumanResources hmn) {
+	public boolean removeHumanResources(HumanResources hmn) {
 
 		return hrc.getHumanResources().remove(hmn);
 	}
+
+	public boolean removeCandidate(Candidate candidate) {
+
+		return hrc.getCandidate().remove(candidate.getUserID())!=null;
+	}
+
+
 	public void SeeStatistics() {
 
 	}
 
-	
+
 
 	public String toString() {
 		StringBuilder aString =new StringBuilder();
 		return aString.toString();
 	}
-
-
 
 	/**
 	 * Compares this object with the specified object for order.  Returns a
