@@ -1,10 +1,11 @@
 package src;
-
+import java.util.*;
 
 public class Candidate  extends Users implements Comparable<Candidate>{
 	private String statue;
 	private CvClass Mycv;
 	private HRC hrc=null;
+	private Meetings meeting=null;
 
 	/**Constructor
 	* @param String name
@@ -39,7 +40,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		return rate;
 	}
 	public boolean evaluateTheOffer(int offer) {
-		if(offer>2850){
+		if(offer>2850 && statue!="Working"){
 			setStatusToWorking();
 			return true;
 		}
@@ -81,10 +82,9 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		this.statue="Working";
 		return true;
 	}
-	public int ratingTheOffer(int offer) {
-		//TODO
-		return -1;
-	}
+	/*public int ratingTheOffer(int offer,int rate) {
+		return rate;
+	}*/
 	/**
 	*Changes Candidates Password
 	*@param String newPassword
@@ -117,6 +117,8 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		} else 
 			return 0 ;
     }
-	
+	public void setMeeting(Meetings meeting) {
+		this.meeting = meeting;
+	}
 }
 

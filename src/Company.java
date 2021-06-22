@@ -3,25 +3,44 @@ package src;
 
 import java.util.*;
 
+import src.book_implementation.AVLTree;
+import src.book_implementation.BinarySearchTree;
+
 public class Company extends Users implements Comparable<Company> {
     private ArrayList<AdvertiseClass> Advertises;
     private String CompanySector;
     private int NumberOfEmployees;
-    private ArrayList<String> SocialRights; //sosyal haklar  Binary Search Tree
+    private AVLTree<String> SocialRights; //sosyal haklar  Binary Search Tree
     private String Address;
-    private static double rateAverage=0;
-    private static int numberOfVotes=0;
+    private static double rateAverage;
+    private static int numberOfVotes;
 
-    public Company(int userID,String name, String password, ArrayList<AdvertiseClass> advertises, String companySector,
-			int numberOfEmployees, ArrayList<String> socialRights, String address,double ratingsOrt,HRC hrc) {
+    public Company(int userID,String name, String password, String companySector,
+			int numberOfEmployees, String address,HRC hrc) {
         super(userID,name,password,Users.COMPANY);
-        Advertises = advertises;
         CompanySector = companySector;
         NumberOfEmployees = numberOfEmployees;
-        SocialRights = socialRights;
         Address = address;
+
+        rateAverage=0;
+        numberOfVotes=0;
+        SocialRights = new AVLTree<String>();
+        Advertises = new ArrayList<>();
         System.out.println("Your id:" + userID);
     }
+
+    	/**
+	 * Compares Name and Password
+	 * @param name String
+	 * @param password String
+	 * @return boolean
+	 */
+	public boolean signUp(int id, String password) {
+		if (getUserID() == id && getPassword().equals(password))
+			return true;
+		return false;
+	}
+
     public void addRating(int rate) {
         rateAverage+=((double) rate)/(++numberOfVotes);
     }
@@ -48,10 +67,10 @@ public class Company extends Users implements Comparable<Company> {
     public void setNumberOfEmployees(int numberOfEmployees) {
         NumberOfEmployees = numberOfEmployees;
     }
-    public ArrayList<String> getSocialRights() {
+    public AVLTree<String> getSocialRights() {
         return SocialRights;
     }
-    public void setSocialRights(ArrayList<String> socialRights) {
+    public void setSocialRights(AVLTree<String> socialRights) {
         SocialRights = socialRights;
     }
     public String getAddress() {
@@ -60,6 +79,7 @@ public class Company extends Users implements Comparable<Company> {
     public void setAddress(String address) {
         Address = address;
     }
+
     public void SeeSuggestedCandidates(Candidate[] candidates) {
         for(int i=0;i< candidates.length;i++)
             System.out.println(candidates[0].toString());
@@ -74,14 +94,31 @@ public class Company extends Users implements Comparable<Company> {
     }
    public void addSocialRights(String value){
        SocialRights.add(value);
+
    }
    public  void addAdvertise(AdvertiseClass newValue){
         Advertises.add(newValue);
    }
+
     public String toString() {
-        StringBuilder aString =new StringBuilder();
-        return aString.toString();
+        StringBuilder sb =new StringBuilder();
+
+        sb.append("Name: " + getName());
+        sb.append("\nId: " + getUserID());
+        sb.append("\nAdvertises: " + Advertises);
+        sb.append("\nCompanySector: " + CompanySector);
+        sb.append("\nNumber of Employees: " + NumberOfEmployees);
+        sb.append("\nAdress: " + Address);
+        sb.append("\nRatings avg: " + rateAverage);
+        sb.append("\nSocial Rights: ");
+        Iterator<String> iter = SocialRights.iterator();
+        while(iter.hasNext()){
+            sb.append(iter.next() + ", ");
+        }
+        sb.append("\n");
+        return sb.toString();
     }
+
     @Override
     //iki şirketin rating ortalamasıa göre karşılaştırılabiilir
     public int compareTo(Company o) {

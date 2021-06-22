@@ -35,7 +35,7 @@ public class HRC{
 		public Company getCompanyID(int ID){
 			Company com=null;
 			Iterator<Company> itr=getCompany().iterator();
-			while (itr.hasNext() && com!=null){
+			while (itr.hasNext()){
 				com=itr.next();
 				if (com.getUserID()==ID){
 					return com;
@@ -59,19 +59,18 @@ public class HRC{
 		
 		public NavigableMap<Integer,Candidate> getCandidate(){	return candidate;	}
 		
-		
-
-		private Company createCompany(int ID,String name, String password, ArrayList<AdvertiseClass> advertises,String companySector,
-						int numberOfEmployees,ArrayList<String> socialRights,String address,double ratingsOrt){
-			Company comp=new Company(ID,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratingsOrt,this);
+        
+		private Company createCompany(int ID,String name, String password ,String companySector,
+						int numberOfEmployees, String address){
+			Company comp=new Company(ID,name,password,companySector,numberOfEmployees,address,this);
 			company.add(comp);
+            users.add(comp);
 			return comp;
 		}
 
-		public Company createCompany(String name, String password, ArrayList<AdvertiseClass> advertises,
-									 String companySector,int numberOfEmployees,ArrayList<String> socialRights,
-									  String address, double ratingsOrt){
-			return createCompany(USERS_ID++,name,password,advertises,companySector,numberOfEmployees,socialRights,address,ratingsOrt);
+		public Company createCompany(String name, String password,String companySector,
+								int numberOfEmployees,String address){
+			return createCompany(USERS_ID++,name,password,companySector,numberOfEmployees,address);
 		}
 
 		private HumanResources createHumanResources(int ID,String name, String password){

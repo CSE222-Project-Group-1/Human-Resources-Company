@@ -43,8 +43,11 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
 	public String toString() {
-		StringBuilder aString =new StringBuilder();
-		return aString.toString();
+		StringBuilder sb =new StringBuilder();
+        sb.append(   "UserID: " + getUserID() );
+        sb.append( " | Name: " + getName() );
+        
+		return sb.toString();
 	}
     
 	public int compareTo(HumanResources humanRes) {

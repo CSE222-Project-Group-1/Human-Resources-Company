@@ -6,7 +6,7 @@ public class Meetings{
 	private Candidate candidate;
 	private Company company;
 	private String time;
-	private int MeetingRate;
+	private int offer;
 
 	/**
 	 * Meetings class constructor.
@@ -16,13 +16,13 @@ public class Meetings{
 	 * @param time of meeting
 	 * @param meetingRate of meeting
 	 */
-	public Meetings(String date, Candidate candidate, Company company, String time, int meetingRate) {
+	public Meetings(String date, Candidate candidate, Company company, String time, int offer) {
 		super();
 		this.date = date;
 		this.candidate = candidate;
 		this.company = company;
 		this.time = time;
-		MeetingRate = meetingRate;
+		this.offer=offer;
 	}
 
 	/**
@@ -88,21 +88,24 @@ public class Meetings{
 	public void setTime(String time) {
 		this.time = time;
 	}
-
-	/**
-	 * Returns meeting rate
-	 * @return meeting rate
-	 */
-	public int getMeetingRate() {
-		return MeetingRate;
+	public int getOffer() {
+		return offer;
+	}
+	public void updateOffer(int offer) {
+		this.offer = offer;
 	}
 
-	/**
-	 * Sets meeting rate
-	 * @param meetingRate Rate of meeting
-	 */
-	public void setMeetingRate(int meetingRate) {
-		MeetingRate = meetingRate;
+	public boolean equals(Object o){	
+		if(o instanceof Meetings){
+			Meetings meet=(Meetings) o;
+			return (getDate().equals(meet.getDate()) 
+				&& getTime().equals(meet.getTime()) 
+				&& getCompany().equals(meet.getCompany()) 
+				&& getCandidate().equals(meet.getCandidate()) 
+				&& getOffer()==meet.getOffer());
+		}
+		
+		return super.equals(o);
 	}
 	
 }
