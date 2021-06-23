@@ -3,9 +3,13 @@
 - Candidate not vermeli company'ee (rating)
 - CompanyMenuAdvertise not working correctly (boşsa da alıyo)
 
+- EvaluateOffer diyince sadece para yazıo (tüm her sey yazmalı)
+
+- Hatalar
+    - AdvertiseSelector
+        - Eger size invalid ise patliyor
+
 - Graph
-    - 
-    -
 
 ## GUI
 - Gui yok

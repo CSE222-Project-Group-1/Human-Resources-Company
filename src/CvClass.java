@@ -12,11 +12,11 @@ public class CvClass {
 	private String BirthDay;
 	private String Nationality;
 	private String CoverLetter;
- 	private ArrayList<SchoolClass> SchoolInformation= new ArrayList<SchoolClass>();
-	private ArrayList<Experience> Experiences= new ArrayList<Experience>();
-	private ArrayList<Certificate> Certficates= new ArrayList<Certificate>();
-	private ArrayList<String> Capabilities= new ArrayList<String>();
-	private ArrayList<Referance> Referances= new ArrayList<Referance>();
+ 	private ArrayList<SchoolClass> SchoolInformation;
+	private ArrayList<Experience> Experiences;
+	private ArrayList<Certificate> Certficates;
+	private ArrayList<String> Capabilities;
+	private ArrayList<Referance> Referances;
 	private boolean DriversLicense;
 
 	/**
@@ -51,12 +51,22 @@ public class CvClass {
 		Gender = gender;
 		BirthDay = birthDay;
 		Nationality = nationality;
-		CoverLetter = coverLetter;
-		Experiences = experiences;
-		Certficates = certficates;
+        CoverLetter = coverLetter;
 		Capabilities = capabilities;
-		Referances = referances;
+		if(Capabilities==null)
+			Capabilities = new ArrayList<>();
+		Experiences = experiences;
+        if(Experiences == null)
+            Experiences = new ArrayList<>();
+		Certficates = certficates;
+		if(Certficates == null)
+			Certficates = new ArrayList<>();
+        Referances = referances;
+        if(referances == null)
+            Referances = new ArrayList<>();
 		SchoolInformation = schoolInformation;
+        if(SchoolInformation == null)
+            SchoolInformation = new ArrayList<>();
 		DriversLicense = driversLicense;
 	}
 
@@ -121,6 +131,8 @@ public class CvClass {
 		return Nationality;
 	}
 	public boolean addSchoolInfo(CvClass.SchoolClass info){
+		if (SchoolInformation == null)
+			SchoolInformation = new ArrayList<SchoolClass>();
 		if(info==null) 
 		{
 			System.out.println("School Patladi");
@@ -130,9 +142,10 @@ public class CvClass {
 		return true;
 	}
 	public boolean addExperience(Experience exp){
+		if (Experiences == null)
+			Experiences = new ArrayList<Experience>();
 		if(exp== null)
-		{
-			System.out.println("Experience Patladi");		
+		{	
 			return false;
 		} 
 		Experiences.add(exp);
@@ -205,6 +218,7 @@ public class CvClass {
 
 	public void setDriversLicense(boolean driversLicense) {
 		DriversLicense = driversLicense;
+		System.out.println("Statue of Drivers License Changed!! ");
 	}
 
 	/**
@@ -389,7 +403,14 @@ public class CvClass {
 			CompanySector = companySector;
 			WayOfWork = wayOfWork;
 		}
-
+		
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Company Name: " + companyName + " Position: " + Position + " City: " + City
+					+ " Business Area: " + BusinessArea + " CompanySector: " + CompanySector + " Start Date: "
+					+ StartDate + " End Date: " + EndDate + " Way Of Work: " + WayOfWork+" Job Description: "+ JobDescription);
+			return sb.toString();
+		}
 		/**
 		 * Returns company name of experinece.
 		 * @return company name of experinece.
@@ -570,7 +591,15 @@ public class CvClass {
 			EducationLanguage = educationLanguage;
 			SchoolAvarage = schoolAvarage;
 		}
-
+		
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Schools Name: " + SchoolsName + " Faculty Name: " + FacultyName
+					+ " Department: " + Department + " Education Type: " + EducationType
+					+ "Education Language: " + EducationLanguage + " Start Date: " + StartDate
+					+ " End Date: " + endDate + " School Avarage: " + SchoolAvarage);
+			return sb.toString();
+		}
 		/**
 		 * Returns school name
 		 * @return school name
@@ -720,7 +749,12 @@ public class CvClass {
 			CertificateDate = certificateDate;
 			Explanation = explanation;
 		}
-
+		
+		public String toString() {
+			StringBuilder sb = new StringBuilder();
+			sb.append("Certificate Name: " + CertificateName + " Institution Name: " + InstitutionName + " Certificate Date: " + CertificateDate+ " Explanation: " + Explanation );
+			return sb.toString();
+		}
 		/**
 		 * Returns name of certificate
 		 * @return name of certificate
@@ -808,7 +842,11 @@ public class CvClass {
 			CompanyName = companyName;
 			Job = job;
 		}
-
+		public String toString(){
+			StringBuilder sb= new StringBuilder();
+			sb.append("Company Name: "+CompanyName+" Reference Name: "+referanceName+" Job: "+Job+" E-Mail: "+Email+" Phone Number: "+telNo);
+			return sb.toString();
+		}
 		/**
 		 * Returns name of referance.
 		 * @return name of referance.

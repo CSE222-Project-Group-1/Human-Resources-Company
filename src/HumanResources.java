@@ -62,8 +62,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
             return 0;    
 	}
 
-    public Iterator<Meetings> seeMeetings(HRC hrc){
-		return hrc.getMeetings().iterator();
+    public ArrayList<Meetings> seeMeetings(HRC hrc){
+		return hrc.getMeetings();
 	}
 
     public boolean equals(HumanResources humanRes){

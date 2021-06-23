@@ -70,6 +70,10 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * @param ad AdvertiseClass
 	 */
 	public void applyToAdvertisement(AdvertiseClass ad) {
+		if(ad==null){
+			System.out.println("NULL Geldi.");
+			return;
+		}
 		ad.getApplies().add(this);
 	}
 	/**

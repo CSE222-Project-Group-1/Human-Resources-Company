@@ -8,8 +8,9 @@ public class Company extends Users implements Comparable<Company> {
     private ArrayList<AdvertiseClass> Advertises;
     private String CompanySector;
     private int NumberOfEmployees;
-    private AVLTree<String> SocialRights; //sosyal haklar  Binary Search Tree
+    private AVLTree<String> SocialRights;
     private String Address;
+    private double rateTotal;
     private static double rateAverage;
     private static int numberOfVotes;
 
@@ -19,7 +20,7 @@ public class Company extends Users implements Comparable<Company> {
         CompanySector = companySector;
         NumberOfEmployees = numberOfEmployees;
         Address = address;
-
+        rateTotal = 0;
         rateAverage=0;
         numberOfVotes=0;
         SocialRights = new AVLTree<String>();
@@ -40,7 +41,8 @@ public class Company extends Users implements Comparable<Company> {
 	}
 
     public void addRating(int rate) {
-        rateAverage+=((double) rate)/(++numberOfVotes);
+        this.rateTotal += rate;
+        rateAverage = this.rateTotal / (++numberOfVotes);
     }
     
     public double getRatingsAvg(){
