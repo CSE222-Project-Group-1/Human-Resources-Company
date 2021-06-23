@@ -1,5 +1,8 @@
 # Baran Hariç Sorunlar//Bütün problem ben miyim hacııııı(Buda mı gol değil be ?)
 
+- Candidate not vermeli company'ee (rating)
+- CompanyMenuAdvertise not working correctly (boşsa da alıyo)
+
 - Graph
     - 
     -

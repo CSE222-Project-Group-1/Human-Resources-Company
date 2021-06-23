@@ -341,9 +341,9 @@ public class Test {
        
         while(true)
         {  
-            System.out.println("\n\n1- Get Rating Average");
-            System.out.println("2- Create New Advertise");
-            System.out.println("3- See Your Advertises");
+            System.out.println("\n\n1- Create New Advertise");
+            System.out.println("2- See Your Advertises");
+            System.out.println("3- Get Rating Average");
             System.out.println("4- Add New Social Rights");
             System.out.println("5- See Applicants");
             System.out.println("6- Change Profile Settings");
@@ -351,17 +351,19 @@ public class Test {
             
             System.out.println("0- Exit");
             int choice = getInt("Choice:");
+
+            
             switch (choice) {
                 
                 case 0: 
                     return;
-                case 1: 
+                case 3: 
                     System.out.println(company.getRatingsAvg());
                     break;
-                case 2:
+                case 1:
                     company.getAdvertises().add(createAdvertise());
                     break;
-                case 3:
+                case 2:
                     System.out.println( company.getAdvertises() );
                     break;
                 case 4:
@@ -559,13 +561,14 @@ public class Test {
         AdvertiseClass returnVal=null;
         Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
 
-        int i=0;
+        int i=1;
         while(iter.hasNext()){
             System.out.println( i + ": " + iter.next() );
             i++;
         }
         int select = getInt("Select Advertise: ");
-        if(select>-1 && select<company.getAdvertises().size())
+        if (select == 0) return null;
+        if(select > -1 && select<company.getAdvertises().size())
             return company.getAdvertises().get(select);
         else return null;
     }
@@ -577,15 +580,22 @@ public class Test {
             System.out.println("2- See Company Rating");
             System.out.println("3- Evaluate The Offer");
             System.out.println("4- Set Status To Open To Work  ");
-            System.out.println("5- Set CV");
+            System.out.println("5- CV Settings");
             System.out.println("6- Change Password");
-            System.out.println("7- Information\n\n");
+            System.out.println("7- Information\n");
+            System.out.println("8- See CV Information\n\n");
 
             System.out.println("0- Exit");
             int choice = getInt("Choice:");
             switch (choice) {
            
-                case 1: if (candidate.getStatue().equals("Open To Work") != true) 
+                case 1:
+                if (candidate.getCV() == null)
+                {
+                    System.out.println("First, create a CV");
+                    break;
+                } 
+                if (candidate.getStatue().equals("Open To Work") != true) 
                 {
                     System.out.println("Your status is not set to 'Open To Work'.");
                     System.out.println("Do you want to change status to Open To Work?");
@@ -597,6 +607,12 @@ public class Test {
                             advertiseSelector(companySelector(hrc, "Select Company: "))); 
                     }
                 }
+                if (candidate.getStatue().equals("Open To Work") == true) 
+                {
+                    candidate.applyToAdvertisement(
+                            advertiseSelector(companySelector(hrc, "Select Company: "))); 
+                }
+
                     break;
                 case 2: candidate.seeRatings(companySelector(hrc, "Select Company: "));
                     break;
@@ -604,11 +620,13 @@ public class Test {
                     break;
                 case 4:candidate.setStatusToOpenWork();
                     break;
-                case 5:candidate.setMycv(cvUpdate(candidate));
+                case 5:candidateUpdate(candidate);
                     break;
                 case 6:candidate.changePassword(getStr("New Password: "));
                     break;
                 case 7:System.out.println(candidate);
+                    break;
+                case 8:System.out.println(candidate.getCV());
                     break;
                 case 0:
                     return;
@@ -626,12 +644,15 @@ public class Test {
     } 
 
     public static CvClass createCV() {
-        CvClass cv = new CvClass(getStr("Adress:"), getStr("Name"), getStr("Surname:"), getStr("Tel no:"), getStr("E-Mail"), getStr("Gender:"), getStr("Birthday"), getStr("Nationality"), null, null, null, null, null, null, false);
+        CvClass cv = new CvClass(getStr("Adress:"), getStr("Name:"), getStr("Surname:"), getStr("Tel no:"), getStr("E-Mail:"), getStr("Gender:"), getStr("Birthday:"), getStr("Nationality:"), null, null, null, null, null, null, false);
         return cv;
     }
 
     public static CvClass.SchoolClass createSchoolInfo() {
-        CvClass.SchoolClass sc = new CvClass.SchoolClass(getStr("School Name:"), getStr("Faculty:"), getStr("Department:"), getStr("End-Date:"), getStr("Start-Date"), getStr("Education Type:"), getStr("Education Language:"), getInt("Shchool Average: "));
+        CvClass.SchoolClass sc = new CvClass.SchoolClass(getStr("School Name:"), getStr("Faculty:"), getStr("Department:"), getStr("End-Date:"), getStr("Start-Date:"), getStr("Education Type:"), getStr("Education Language:"), getInt("Shchool Average: "));
+        if (sc == null)
+            System.out.println("Null oldum abey");
+
         return sc;      
     }
 

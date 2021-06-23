@@ -121,20 +121,45 @@ public class CvClass {
 		return Nationality;
 	}
 	public boolean addSchoolInfo(CvClass.SchoolClass info){
+		if(info==null) 
+		{
+			System.out.println("School Patladi");
+			return false;
+		}
 		SchoolInformation.add(info);
 		return true;
 	}
 	public boolean addExperience(Experience exp){
+		if(exp== null)
+		{
+			System.out.println("Experience Patladi");		
+			return false;
+		} 
 		Experiences.add(exp);
 		return true;
-	}public boolean addCertificate(CvClass.Certificate info){
-		Certficates.add(info);
+	}public boolean addCertificate(CvClass.Certificate cer){
+		if(cer== null) 
+		{
+			System.out.println("Certificate Patladi");
+			return false;
+		}
+		Certficates.add(cer);
 		return true;
 	}public boolean addCapability(ArrayList<String> capability){
+		if (capability == null)
+		{
+			System.out.println("capabil Patladi");
+			return false;
+		}
 		Capabilities.addAll(capability);
 		return true;
 	}
 	public boolean addReferances(CvClass.Referance ref) {
+		if (ref == null)
+		{
+			System.out.println("Ref Patladi");
+			return false;
+		}
 		Referances.add(ref);
 		return true;
 	}

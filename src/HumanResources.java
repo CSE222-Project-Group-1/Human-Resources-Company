@@ -36,7 +36,7 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
         Meetings meeting = new Meetings(date, candidate, company, time, offer);
-        hrc.getMeetings().add( meeting );
+        hrc.getMeetings().add(meeting);
 		candidate.addMeeting(meeting);
 		return true;
 	}

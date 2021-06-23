@@ -81,7 +81,7 @@ public class HRC{
 
 		private HumanResources createHumanResources(int ID,String name, String password){
             HumanResources hr = new HumanResources(ID,name,password,this);
-            users.add( hr );
+            users.add(hr);
 			getHumanResources().add(hr);
 			return hr;
 		}
@@ -95,7 +95,7 @@ public class HRC{
 		}
 
 		private Candidate createCandidate(int ID,String name,String password,CvClass cv){
-			Candidate temp=new Candidate(ID,name,password,cv);
+			Candidate temp=new Candidate(ID,name,password,cv,this);
 			getUsers().add((Users)temp);
 			candidate.put(ID, temp);
 			return temp;

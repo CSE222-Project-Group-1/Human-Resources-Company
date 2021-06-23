@@ -5,6 +5,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	private String statue;
 	private CvClass Mycv;
 	private PriorityQueue<Meetings> meetings = null;
+	private HRC hrc=null ;
 
 
 	/**Constructor
@@ -13,12 +14,13 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	* @param String password
 	* @param CvClass mycv
  	*/
-	public Candidate(int userID, String name, String password, CvClass mycv) {
+	public Candidate(int userID, String name, String password, CvClass mycv,HRC hrc) {
 		super(userID, name, password, Users.CANDIDATE);
 		this.Mycv = mycv;
 		statue="NOT_APPLIED";
 		meetings=new PriorityQueue<>();
         System.out.println("Your id:" + userID);
+		this.hrc=hrc;
 	}
 
 	/**
@@ -43,9 +45,11 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	}
 	public boolean evaluateTheOffer(Meetings meeting) {
 		if(meeting!= null && meeting.getOffer() > 0) {
-				setStatusToWorking();
-				return true;
-			}
+			setStatusToWorking();
+			meetings.remove(meeting);
+			hrc.getMeetings().remove(meeting);
+			return true;
+		}
 		return false;
 	}
 	/**Returns Cv Of Candidate
