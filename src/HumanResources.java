@@ -30,14 +30,14 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
         return as.compareTo(as2);
 	}
     
-	public boolean GiveOfferToCandidate(Candidate candidate, int offer){
-		return candidate.evaluateTheOffer(offer);
+	public boolean GiveOfferToCandidate(Candidate candidate, Meetings meeting){
+		return candidate.evaluateTheOffer(meeting);
 	}
 
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
         Meetings meeting = new Meetings(date, candidate, company, time, offer);
         hrc.getMeetings().add( meeting );
-		candidate.setMeeting(meeting);
+		candidate.addMeeting(meeting);
 		return true;
 	}
 
@@ -62,10 +62,13 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
             return 0;    
 	}
 
+    public Iterator<Meetings> seeMeetings(HRC hrc){
+		return hrc.getMeetings().iterator();
+	}
+
     public boolean equals(HumanResources humanRes){
         return (compareTo(humanRes) == 0);
     }
     
-	
     
 }

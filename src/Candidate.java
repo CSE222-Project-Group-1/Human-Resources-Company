@@ -4,19 +4,18 @@ import java.util.*;
 public class Candidate  extends Users implements Comparable<Candidate>{
 	private String statue;
 	private CvClass Mycv;
-	private HRC hrc=null;
 	private PriorityQueue<Meetings> meetings = null;
 
 
 	/**Constructor
+    * @param userID id of user
 	* @param String name
 	* @param String password
 	* @param CvClass mycv
  	*/
-	public Candidate(int userID, String name, String password, CvClass mycv,HRC hrc) {
+	public Candidate(int userID, String name, String password, CvClass mycv) {
 		super(userID, name, password, Users.CANDIDATE);
 		this.Mycv = mycv;
-		this.hrc=hrc;
 		statue="NOT_APPLIED";
 		meetings=new PriorityQueue<>();
         System.out.println("Your id:" + userID);
@@ -24,7 +23,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 
 	/**
 	 * Compares Name and Password
-	 * @param name String
+	 * @param id id of user.
 	 * @param password String
 	 * @return boolean
 	 */
@@ -42,11 +41,11 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		company.addRating(rate);
 		return rate;
 	}
-	public boolean evaluateTheOffer(int offer) {
-		if(offer>2850 && statue!="Working"){
-			setStatusToWorking();
-			return true;
-		}
+	public boolean evaluateTheOffer(Meetings meeting) {
+		if(meeting!= null && meeting.getOffer() > 0) {
+				setStatusToWorking();
+				return true;
+			}
 		return false;
 	}
 	/**Returns Cv Of Candidate
@@ -73,6 +72,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 * Sets Statue To Open To Work
 	 * @return boolen
 	 */
+	 
 	public boolean setStatusToOpenWork() {
 		this.statue="Open To Work";
 		return true;
@@ -94,11 +94,15 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		setPassword(newPassword);
 		return true;
 	}
+
+	public String getStatue() {
+		return statue;
+	}
+
 	/**toString */
 	public String toString() {
 		StringBuilder str =new StringBuilder();
-		str.append("ID: "+getUserID()+"\n");
-		str.append("Name: "+getName()+" Statue: "+statue);
+		str.append("ID: "+getUserID()+" Name: "+getName()+" Statue: "+statue);
 		return str.toString();
 	}
     
@@ -118,8 +122,12 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		} else 
 			return 0 ;
     }
-	public void setMeeting(Meetings meeting) {
+	public void addMeeting(Meetings meeting) {
 		this.meetings.add(meeting) ;
 	}
+    public PriorityQueue<Meetings> getMeetings(){
+        return meetings;
+    }
+    
 }
 

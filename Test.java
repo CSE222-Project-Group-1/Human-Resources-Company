@@ -1,6 +1,9 @@
 import src.*;
 import src.book_implementation.*;
 import java.util.*;
+
+import javax.naming.Reference;
+
 import java.io.*;
 
 @SuppressWarnings("unused")
@@ -15,14 +18,14 @@ public class Test {
         System.out.println("Company");
         hrc.createCompany("Suleyman Company","123", "Hatay Yemekleri", 10, "Hatay OF Course");
         System.out.println("Candidate");
-        hrc.createCandidate("Sedat Peker" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+        hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
         System.out.println("Human Resources");
-        hrc.createHumanResources("Enis", "123");
+        hrc.createHumanResources("Oguz", "123");
 
         System.out.println("------ Welcome BRO!! ------"); 
 
         while(true)
-        {  
+        {
             System.out.println("\n1- Sign Up");
             System.out.println("2- Log in");
             
@@ -35,9 +38,7 @@ public class Test {
                 default:System.err.println("Wrong Input!!");
                     break;
             }
-
         }
-
     }
 
     public static void signUp(HRC hrc) {
@@ -266,7 +267,6 @@ public class Test {
                }
             }
         }
-        
     }
 
     public static Candidate candidateSelector(HRC hrc,String str){
@@ -302,7 +302,40 @@ public class Test {
         
     }
 
-    
+    public static Meetings meetingSelector(Iterator<Meetings> iterator,String str){
+        if(iterator==null) return null;
+
+        Iterator<Meetings> iter=iterator;
+        int i=1,select=-1;
+        Meetings returnVal=null,temp=null;
+        
+        while(iter.hasNext()){
+            Meetings meeting = iter.next();
+            System.out.println((i++ )+" - "+meeting.toString());
+        }
+        System.out.println("0 - Exit");
+        while(true){
+           if(str!=null && !str.isEmpty())
+                select=getInt(str+":");
+            else 
+                select=getInt("Your Select:");
+           if(select==0){
+               return null;
+           }else if(select>0){
+               iter=iterator;
+               i=1;
+               while(iter.hasNext()){
+                   temp=iter.next();
+                   if(i==select){
+                       return temp;
+                   }
+                   i++;
+               }
+
+               return null;
+           }
+        }
+    }
 
     public static void companyMenu(HRC hrc, Company company){
        
@@ -372,14 +405,11 @@ public class Test {
                     System.out.println(candidate.getCV());
                     break;
                 case 2:
-                    hrc.getDefaultHumanResources().ArrangeMeeting(getStr("Date"), candidate, company, getStr("Time:"), getInt("Money:"));
+                    hrc.getDefaultHumanResources().ArrangeMeeting(getStr("Date:"), candidate, company, getStr("Time:"), getInt("Money:"));
                     break;
                 case 3:
                     System.out.println("Declined Offer");
                     return;
-                case 4:
-                    company.addSocialRights(getStr("Social Right:"));
-                    break;
                     
                 default: 
                     System.err.println("Wrong Input!!");
@@ -431,9 +461,10 @@ public class Test {
             System.out.println("2- See company requests");
             System.out.println("3- Compare requests");
             System.out.println("4- Give offer to candidate");
-            System.out.println("5- Arrange meeting");
-            System.out.println("6- Suggest candidate to company");
-            System.out.println("7- Print human resource info.\n\n");
+            System.out.println("5- Arrange Meeting");
+            System.out.println("6- Suggest Candidate To Company");
+            System.out.println("7- Print Human Resource Info.");
+            System.out.println("8- See All Meetings\n\n");
             
             System.out.println("0- Exit");
             int choice = getInt("Choice:");
@@ -459,7 +490,7 @@ public class Test {
                     break;
                     
                 case 4:
-                    hr.GiveOfferToCandidate(candidateSelector(hrc, "Select candidate: "), getInt("Enter offer: ") );
+                    hr.GiveOfferToCandidate(candidateSelector(hrc, "Select candidate: "), createMeeting(hrc) );
                     break;
                 case 5:
                     hr.ArrangeMeeting(getStr("Enter date: "), candidateSelector(hrc, "Select candidate: "), companySelector(hrc, "Select company: "), getStr("Enter time: "), getInt("Enter offer: ") );
@@ -469,6 +500,9 @@ public class Test {
                     break;
                 case 7:
                     System.out.println( hr.toString() );
+                    break;
+                case 8:
+                    meetingSelector( hr.seeMeetings(hrc), "Type 0 To Exit:");
                     break;
                 default: 
                     System.err.println("Wrong Input!!");
@@ -485,29 +519,36 @@ public class Test {
 
         Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
 
-        int i=0;
+        int i = 1;
         while(iter.hasNext()){
             AdvertiseClass ad = iter.next();
             Iterator<Candidate> itCandidate = ad.getApplies().iterator();
             while(itCandidate.hasNext())
             {
-                System.out.println( i + ": " + itCandidate.next() );
-                i++;
+                Candidate candidate_ = itCandidate.next();
+                if (candidate_.getStatue().equals("Open To Work"))
+                {
+                    System.out.println( i + ": " + candidate_ );
+                    i++;    
+                }
             }
         }
         int select = getInt("Select candidate: ");
         
         iter = company.getAdvertises().iterator();
 
-        i = 0;
+        i = 1;
         while(iter.hasNext()){
             AdvertiseClass ad = iter.next();
             Iterator<Candidate> itCandidate = ad.getApplies().iterator();
             while(itCandidate.hasNext())
             {
+                Candidate candidate_ = itCandidate.next();
                 if (i == select)
-                    return itCandidate.next();
-                i++;
+                    return candidate_;
+                    
+                if (candidate_.getStatue().equals("Open To Work"))
+                    i++;
             }
         }
         
@@ -544,12 +585,22 @@ public class Test {
             int choice = getInt("Choice:");
             switch (choice) {
            
-                case 1: candidate.applyToAdvertisement(
-                            advertiseSelector(companySelector(hrc, "Select Company:"))); 
+                case 1: if (candidate.getStatue().equals("Open To Work") != true) 
+                {
+                    System.out.println("Your status is not set to 'Open To Work'.");
+                    System.out.println("Do you want to change status to Open To Work?");
+                    String ch = getStr("(y/n)");
+                    if (ch.equals("y") == true)
+                    {
+                        candidate.setStatusToOpenWork();
+                        candidate.applyToAdvertisement(
+                            advertiseSelector(companySelector(hrc, "Select Company: "))); 
+                    }
+                }
                     break;
-                case 2: candidate.seeRatings(companySelector(hrc, "Select Company:"));
+                case 2: candidate.seeRatings(companySelector(hrc, "Select Company: "));
                     break;
-                case 3: candidate.evaluateTheOffer(0/*int offer */);
+                case 3: candidate.evaluateTheOffer(meetingSelector(candidate.getMeetings().iterator(), "Select Meeting: "));
                     break;
                 case 4:candidate.setStatusToOpenWork();
                     break;
@@ -574,6 +625,26 @@ public class Test {
         return advert;
     } 
 
+    public static CvClass createCV() {
+        CvClass cv = new CvClass(getStr("Adress:"), getStr("Name"), getStr("Surname:"), getStr("Tel no:"), getStr("E-Mail"), getStr("Gender:"), getStr("Birthday"), getStr("Nationality"), null, null, null, null, null, null, false);
+        return cv;
+    }
+
+    public static CvClass.SchoolClass createSchoolInfo() {
+        CvClass.SchoolClass sc = new CvClass.SchoolClass(getStr("School Name:"), getStr("Faculty:"), getStr("Department:"), getStr("End-Date:"), getStr("Start-Date"), getStr("Education Type:"), getStr("Education Language:"), getInt("Shchool Average: "));
+        return sc;      
+    }
+
+    public static CvClass.Experience createExperience() {
+        CvClass.Experience exp = new CvClass.Experience(getStr("Company Name:"), getStr("Start Date"), getStr("Position"), getStr("End Date:"), getStr("City:"), getStr("Business Area:"), getStr("Job Descrpition:"), getStr("Company Sector:"), getStr("Way of Work:"));
+        return exp;
+    }
+
+    public static CvClass.Referance createReferences() {
+        CvClass.Referance ref = new CvClass.Referance(getStr("Ref Name:"), getStr("Tel No:"), getStr("E-Mail:"), getStr("Company Name:"), getStr("Job:"));
+        return ref;
+    }
+
     public static ArrayQueue<String> getCapabilities() {
         ArrayQueue<String> capabilities = new ArrayQueue<>();
 
@@ -585,7 +656,6 @@ public class Test {
         return capabilities;
     }
 
-
     public static void humanResourcesUpdate(HumanResources hm) {
         while(true)
         {  
@@ -593,14 +663,14 @@ public class Test {
             System.out.println("2- Change Human Resources Password");
             System.out.println("0- Exit\n");
 
-            int choice = getInt("Choice:");
+            int choice = getInt("Choice: ");
             switch (choice) {
                 case 0: return;
                 case 1:
-                    hm.setName(getStr("New Name:"));
+                    hm.setName(getStr("New Name: "));
                     break;
                 case 2:
-                    hm.setPassword(getStr("New Sector:"));
+                    hm.setPassword(getStr("New Password: "));
                     break;
 
                 default: 
@@ -616,6 +686,7 @@ public class Test {
             System.out.println("\n1- Change Candidate Name");
             System.out.println("2- Change Candidate Password");
             System.out.println("3- Change CV");
+            System.out.println("4- Add CV");
             System.out.println("0- Exit\n");
 
             int choice = getInt("Choice:");
@@ -628,7 +699,10 @@ public class Test {
                     candidate.changePassword(getStr("New Password:"));
                     break;
                 case 3:
-                    candidate.setMycv(null/*new Cv or menulu change */);
+                    candidate.setMycv(cvUpdate(candidate));
+                    break;
+                case 4:
+                    candidate.setMycv(createCV());
                     break;
                 default: 
                     System.err.println("Wrong Input!!");
@@ -636,6 +710,7 @@ public class Test {
             }
         }
     }
+
     public static CvClass cvUpdate(Candidate cand){
         CvClass cv=cand.getCV();
         while (true) {
@@ -648,8 +723,14 @@ public class Test {
             System.out.println("7- Change Birthday Date");
             System.out.println("8- Change Nationality");
 	        System.out.println("9- Change Cover Letter");
-            
-            System.out.println("10- Change Driver Licence"); 
+
+            System.out.println("10- Add School Info");
+            System.out.println("11- Add Experience");
+            System.out.println("12- Add Certificate");
+            System.out.println("13- Add Capability");
+            System.out.println("14- Add Referance");
+
+            System.out.println("15- Change Driver Licence"); 
 
             System.out.println("0- Exit");
             int choice = getInt("Choice:");
@@ -683,8 +764,23 @@ public class Test {
             case 9:
                 cv.setCoverLetter(getStr("New Cover Letter:"));
                 break;
-
             case 10:
+                cv.addSchoolInfo(createSchoolInfo());
+                break;
+            case 11:
+                cv.addExperience(createExperience());
+                break;
+            case 12:
+                cv.addCertificate(createCertificate());
+                break;
+            case 13:
+                cv.addCapability(createCapabilities());
+                break;
+            case 14:
+                cv.addReferances(createReferance());
+                break;
+
+            case 15:
                  cv.setDriversLicense(!cv.isDriversLicense());
                 break;
 
@@ -693,8 +789,36 @@ public class Test {
                 break;
             }
         }
+
         
     }
+
+    public static CvClass.Certificate createCertificate(){    
+        return new CvClass.Certificate(getStr("Certificate Name:"),getStr("Institution Name."),getStr("Certificate Date:"),getStr("Explanation:"));
+    }
+    
+    
+    
+    
+    public static ArrayList<String> createCapabilities(){
+        ArrayList<String> capabilities = new ArrayList<>();
+        int size = getInt("Enter Capabilities Size:");
+        for (int i = 0; i < size; i++){
+            capabilities.add( getStr("Enter " + i+1 +". capabilites:") );
+        }
+        return capabilities;
+    }
+    
+    public static CvClass.Referance createReferance(){
+        CvClass.Referance reference = new CvClass.Referance(getStr("Referance Name:"), getStr("Phone No:"), getStr("Email:"), getStr("Company Name:"), getStr("Job:"));
+        return reference;
+    }
+
+    public static Meetings createMeeting(HRC hrc){
+        //String date, Candidate candidate, Company company, String time, int offer
+        return new Meetings(getStr("Date:"),candidateSelector(hrc,"Select Candidate:"),companySelector(hrc, "Select Company:"),getStr("Time"),getInt("Offer:"));
+    }
+    
     @SuppressWarnings("resource")
     public static int getInt(String str) {
         System.out.print(str);

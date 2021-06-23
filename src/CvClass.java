@@ -12,11 +12,11 @@ public class CvClass {
 	private String BirthDay;
 	private String Nationality;
 	private String CoverLetter;
- 	private ArrayList<SchoolClass> SchoolInformation;
-	private ArrayList<Experience> Experiences;
-	private ArrayList<Certificate> Certficates;
-	private ArrayList<String> Capabilities;
-	private ArrayList<Referance> Referances;
+ 	private ArrayList<SchoolClass> SchoolInformation= new ArrayList<SchoolClass>();
+	private ArrayList<Experience> Experiences= new ArrayList<Experience>();
+	private ArrayList<Certificate> Certficates= new ArrayList<Certificate>();
+	private ArrayList<String> Capabilities= new ArrayList<String>();
+	private ArrayList<Referance> Referances= new ArrayList<Referance>();
 	private boolean DriversLicense;
 
 	/**
@@ -52,11 +52,11 @@ public class CvClass {
 		BirthDay = birthDay;
 		Nationality = nationality;
 		CoverLetter = coverLetter;
-		SchoolInformation = schoolInformation;
 		Experiences = experiences;
 		Certficates = certficates;
 		Capabilities = capabilities;
 		Referances = referances;
+		SchoolInformation = schoolInformation;
 		DriversLicense = driversLicense;
 	}
 
@@ -119,6 +119,24 @@ public class CvClass {
 
 	public String getNationality() {
 		return Nationality;
+	}
+	public boolean addSchoolInfo(CvClass.SchoolClass info){
+		SchoolInformation.add(info);
+		return true;
+	}
+	public boolean addExperience(Experience exp){
+		Experiences.add(exp);
+		return true;
+	}public boolean addCertificate(CvClass.Certificate info){
+		Certficates.add(info);
+		return true;
+	}public boolean addCapability(ArrayList<String> capability){
+		Capabilities.addAll(capability);
+		return true;
+	}
+	public boolean addReferances(CvClass.Referance ref) {
+		Referances.add(ref);
+		return true;
 	}
 
 	/**
@@ -310,7 +328,7 @@ public class CvClass {
 		Experiences = experiences;
 	}
 
-	public class Experience{
+	public static class Experience{
 		String companyName;
 		String StartDate;
 		String Position;
@@ -371,7 +389,7 @@ public class CvClass {
 		public String getStartDate() {
 			return StartDate;
 		}
-
+		
 		/**
 		 * Sets start date of experinece.
 		 * @param startDate of experinece.
@@ -493,7 +511,7 @@ public class CvClass {
 		}
 		
 	}
-	public class SchoolClass{
+	public static class SchoolClass{
 		private String SchoolsName;
 		private String FacultyName;
 		private String Department;
@@ -501,7 +519,7 @@ public class CvClass {
 		private String StartDate;
 		private String EducationType;
 		private String EducationLanguage;
-		private String SchoolAvarage;
+		private double SchoolAvarage;
 
 		/**
 		 * SchoolClass class constructor.
@@ -516,7 +534,7 @@ public class CvClass {
 		 */
 		
 		public SchoolClass(String schoolsName, String facultyName, String department, String endDate, String startDate,
-				String educationType, String educationLanguage, String schoolAvarage) {
+				String educationType, String educationLanguage, double schoolAvarage) {
 			super();
 			SchoolsName = schoolsName;
 			FacultyName = facultyName;
@@ -644,7 +662,7 @@ public class CvClass {
 		 * Returns GPA
 		 * @return GPA
 		 */
-		public String getSchoolAvarage() {
+		public double getSchoolAvarage() {
 			return SchoolAvarage;
 		}
 
@@ -652,12 +670,12 @@ public class CvClass {
 		 * Sets GPA
 		 * @param schoolAvarage GPA
 		 */
-		public void setSchoolAvarage(String schoolAvarage) {
+		public void setSchoolAvarage(double schoolAvarage) {
 			SchoolAvarage = schoolAvarage;
 		}
 		
 	}
-	public class Certificate{
+	public static class Certificate{
 		String CertificateName;
 		String InstitutionName;
 		String CertificateDate;
@@ -742,7 +760,7 @@ public class CvClass {
 			Explanation = explanation;
 		}
 	}
-	public class Referance{
+	public static class Referance{
 		String referanceName;
 		String telNo;
 		String Email;

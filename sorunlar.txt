@@ -1,22 +1,8 @@
 # Baran Hariç Sorunlar//Bütün problem ben miyim hacııııı(Buda mı gol değil be ?)
 
-## Kod Sorunları
-- İşe kabul edilince, işi reddetme kabul etme işleri
-    - Meeting Selector
-    - Company offer gönderdiği zaman bu meetingde tutuluyor
-        - Candidate bu meetingleri görerek, kabul yada reddedebilir (eveluateOffer icinde?)
-    - HumanResources içinde de tüm meetingleri görme?
-    - Meetingler hem canditae hem Humanresourcess içinde var sıkıntı olabilir
-- Candidate içinde kullanılmayan HRC silinebilinir?
-
 - Graph
     - 
     -
-- Avengerss Assemble
-- CV
-    - cv update eksik
-    - arraylistliler eksik
-    - CV (createAdvertise gibi bir method main içinde?)
 
 ## GUI
 - Gui yok

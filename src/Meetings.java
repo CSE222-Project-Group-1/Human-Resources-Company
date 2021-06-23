@@ -17,7 +17,6 @@ public class Meetings implements Comparable<Meetings>{
 	 * @param offer of meeting
 	 */
 	public Meetings(String date, Candidate candidate, Company company, String time, int offer) {
-		super();
 		this.date = date;
 		this.candidate = candidate;
 		this.company = company;
@@ -112,5 +111,28 @@ public class Meetings implements Comparable<Meetings>{
     public int compareTo(Meetings meet) {
         return (getOffer() - meet.getOffer());
     }
+
+	public String toString(){
+		StringBuilder sb=new StringBuilder();
+		/*
+		this.date = date;
+		this.candidate = candidate;
+		this.company = company;
+		this.time = time;
+		this.offer=offer;
+		 */
+		sb.append("Date:");
+		sb.append(date.toString());
+		sb.append("\nCandidate:");
+		sb.append(candidate.toString());
+		sb.append("\nCompany:");
+		sb.append(company.toString());
+		sb.append("\nTime:");
+		sb.append(time.toString());
+		sb.append("\nOffer:");
+		sb.append(offer);
+		sb.append("\n");
+		return sb.toString();
+	}
 	
 }

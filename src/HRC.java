@@ -95,7 +95,7 @@ public class HRC{
 		}
 
 		private Candidate createCandidate(int ID,String name,String password,CvClass cv){
-			Candidate temp=new Candidate(ID,name,password,cv,this);
+			Candidate temp=new Candidate(ID,name,password,cv);
 			getUsers().add((Users)temp);
 			candidate.put(ID, temp);
 			return temp;
