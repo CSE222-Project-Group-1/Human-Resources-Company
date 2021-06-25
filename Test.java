@@ -57,7 +57,7 @@ public class Test {
         switch (key) {
             case 1: hrc.createCompany(getStr("Name: "),getStr("Password: "), getStr("Company Sector: "), getInt("Number Of Employees: "), getStr("Address: "));
                 break;
-            case 2: hrc.createCandidate(getStr("Name: "),getStr("Password: "),null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+            case 2: hrc.createCandidate(getStr("Name: "),getStr("Password: "),null/*CV*/);
                 break;
             default :System.err.println("Wrong Input!!");
         }
