@@ -1,29 +1,13 @@
-
-- Candidate not vermeli company'ee (rating) (Buda tamam Test.java:664)
-- CompanyMenuAdvertise not working correctly (boşsa da alıyo)(Null Kontrolü yaparak çözüldü tekrar konuşulur.)
-
-- EvaluateOffer diyince sadece para yazıo (tüm her sey yazmalı) (Bunda bir sorun yok gözüküyor.)
-
-- CompanyMenuAdvertise not working correctly (boşsa da alıyo)
-
-- Eğer listeler null ise yine de çağırıyor fonskiyonları daha sonra da null dönderiyor hata veriyor
-    - BUnların testleri yapılmali
-    - Null return eden şeyler fonksiyonlara yollanmamalı
-    - 5-6 yerde bu hata ile karşılaşcaz muhtemelen
-    - Try-Catch kullanarak yapabiliriz bunları, böylece try-catch de kullanmış oluruz
-
-
-- Hatalar
-    - AdvertiseSelector(NULL kontrlü yapılarak çözüldü.)
-        - Eger size invalid ise patliyor
-
 - Graph
 
 ## GUI
 - Gui yok
     - Bence Olmayadabilir (Muhammed)
+    - Guiyi de sil dostum (Süleyman)
+    - Bu saatten sonra nasıl yapabilriz (Süleyman)
     - Bence 1 puan önemli (Geçemeyen Öğrenci)
 
 ## Diger
 - rapor
+    - 
 - sunum

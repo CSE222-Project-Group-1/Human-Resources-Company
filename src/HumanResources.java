@@ -58,7 +58,7 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
      * @param company company in meeting
      * @param time time of meeting
      * @param offer offer info in arrange.
-     * @return
+     * @return true if meeting info adds to candidate
      */
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
         Meetings meeting = new Meetings(date, candidate, company, time, offer);
@@ -70,15 +70,14 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
     /**
      * Suggests the candidate to compnay
      * @param candidate candidate to offered
-     * @param as
+     * @param as advertise object to be given as suggest
      */
 	public void SuggestCandidateToCompany(Candidate candidate, AdvertiseClass as){
 		as.getSuggested().add(candidate);
 	}
 
     /**
-     * 
-     * @return 
+     * @return user id and name info of human resources.
      */
 	public String toString(){
 		StringBuilder sb =new StringBuilder();
@@ -89,8 +88,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
     
     /**
-     * 
-     * @param humanRes
+     * @param humanRes human resources to compare.
+     * @return which human resources has bigger 
      */
 	public int compareTo(HumanResources humanRes) {
         if(getUserID() > humanRes.getUserID() )
@@ -102,18 +101,18 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
     /**
-     * 
-     * @param hrc
-     * @return
+     * Seeing meeting info.
+     * @param hrc hrc to get meetings.
+     * @return meetings.
      */
     public ArrayList<Meetings> seeMeetings(HRC hrc){
 		return hrc.getMeetings();
 	}
 
     /**
-     * 
-     * @param humanRes
-     * @return
+     * If to human reusources are same.
+     * @param humanRes human resources
+     * @return if comparing is equals to 0.
      */
     public boolean equals(HumanResources humanRes){
         return (compareTo(humanRes) == 0);
