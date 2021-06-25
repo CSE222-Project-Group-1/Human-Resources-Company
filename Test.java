@@ -7,47 +7,77 @@ import java.io.*;
 public class Test {
     
     public static void main(String[] args) {
+        System.out.println(CalculateLocation.calculate("Tuzla", "Pendik"));
+        System.out.println(CalculateLocation.calculate("Pendik", "Tuzla"));
+        System.out.println(CalculateLocation.calculate("Pendik", "Pendik"));
+        
         HRC hrc = new HRC();
-        Admin admin = hrc.getAdmin();
 
-        System.out.println("Create a Company and a Candidate for quick login");
-        System.out.println("Passwords are 123");
-        System.out.println("Company");
-        hrc.createCompany("Suleyman Company","123", "Hatay Yemekleri", 10, "Pendik");
-        Iterator<Company> it = hrc.getCompany().iterator();
-        Company c = it.next();
-        AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or face-to-face):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
-        c.addAdvertise(advert);
-        System.out.println("Candidate");
-        Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/*Cv*/);
-        cd.setMycv(new CvClass("Kartal", "test", "test", "test", "test", "test", "test", "test", "test", null, null, null,null, null, true) );
-         
-        System.out.println("Human Resources");
-        hrc.createHumanResources("Oguz", "123");
-
-        System.out.println("------ Welcome BRO!! ------"); 
+        System.out.println("------ Welcome to World Best Job-Matcher System! ------"); 
 
         while(true)
         {
             try {
                 System.out.println("\n1- Sign Up");
                 System.out.println("2- Log in");
-                
+                System.out.println("3- Load Quick-Login for quick test.");
+                System.out.println("4- Exit");
                 int choice = getInt("Choice:");
                 switch (choice) {
                     case 1:signUp(hrc);
                         break;
                     case 2:logIn(hrc);
                         break;
+                    case 3:
+                        quickLoginUsers(hrc);
+                        break;
+                    case 4:
+                        System.out.println("Have a Nice Day Sir/Madam <3");
+                        return;
                     default:System.err.println("Wrong Input!!");
                         break;
                 }
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
+    }
+
+    /**
+     * Create some users to system quickly
+     * @param hrc the HRC object that holds all infos
+     */
+    public static void quickLoginUsers(HRC hrc) {
+        System.out.println("Create a some users for quick login and test");
+        System.out.println("Passwords are 123");
+
+        System.out.println("\nAlso Notice that, There is a Native 2 users");
+        System.out.println("ID = 0 PASS = 123 Role = Admin");
+        System.out.println("ID = 1 PASS = 123 Role = HumanResources\n");
+
+        System.out.println("Create Company-1 With one advertise (Name = Hatay Lezzetleri) ");
+        Company c = hrc.createCompany("Hatay Yemekleri","123", "Food", 10, "Pendik");
+        AdvertiseClass advert = new AdvertiseClass("Front-End Developer in Pendik", "Face-To-Face", "Front-End", "Full Time", "Pendik",10, "Food", null, "High-School", 1, "A passionate Front-End Developer for a company that aims to grow and sell all around Istanbul.");
+        c.addAdvertise(advert);
+
+        System.out.println("Create Company-2 With one advertise (Name = IBM Turkey) ");
+        c = hrc.createCompany("IBM Turkey","123", "IT", 10, "Tuzla");
+        advert = new AdvertiseClass("Back-End Developer - Remote", "Remote", "Back-End", "Full Time", "Tuzla",10, "IT", null, "High-School", 3, "A passionate Back-End Developer for world one of the Biggest Company");
+        c.addAdvertise(advert);
+
+
+        System.out.println("Create Candidate-1 (Name = Enis Yalcin)");
+        Candidate cd= hrc.createCandidate("Enis Yalcin" ,"123",null/*Cv*/);
+        cd.setMycv(new CvClass("Tuzla", "Enis", "Yalcin", "0534-480-1454", "e.yalcin2018@gtu.edu.tr", "Male", "05.03.1998", "Turkish", null, null, null, null, null, null, true) );
+        
+        System.out.println("Create Candidate-2 (Name = Baran Solmaz)");
+        cd = hrc.createCandidate("Baran Solmaz" ,"123",null/*Cv*/);
+        cd.setMycv(new CvClass("Pendik", "Baran", "Solmaz", "0536-443-9524", "b.solmaz2018@gtu.edu.tr", "Male", "05.03.2001", "Turkish", null, null, null, null, null, null, true) );
+
+        System.out.println("Create a Human Resources (Name = Muhammed)");
+        hrc.createHumanResources("Muhammed", "123");
     }
 
     /**
@@ -124,6 +154,8 @@ public class Test {
         HumanResources hm;
         Company select;
         Candidate candidate;
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + admin.getName());
         while(true)
         {
             try {
@@ -219,7 +251,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         } 
         
@@ -231,7 +263,8 @@ public class Test {
      * @param company the company that going to showed menu
      */
     public static void companyMenu(HRC hrc, Company company){
-       
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + company.getName() +  " Company Executive" );
         while(true)
         {  
             try {
@@ -280,7 +313,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -326,7 +359,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -371,7 +404,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -382,7 +415,8 @@ public class Test {
      * @param hr the HR that going to use menu
      */
     public static void humanResourcesMenu(HRC hrc, HumanResources hr){
-        
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + hr.getName());
         while(true)
         {  
             try {
@@ -451,7 +485,7 @@ public class Test {
                     break;
             }
             }catch (Exception e){
-                System.err.println("An Exception Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occured. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -485,7 +519,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -496,7 +530,8 @@ public class Test {
      * @param candidate the candidate that going to use this menu
      */
     public static void candidateMenu(HRC hrc,Candidate candidate) {
-
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + candidate.getName());
         while (true) {
             try {
             System.out.println("\n\n1- Apply To Advertise");
@@ -571,7 +606,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -613,7 +648,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
     }
@@ -705,7 +740,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
             }
         }
 
