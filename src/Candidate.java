@@ -88,6 +88,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 
 	public boolean setStatusToOpenWork() {
 		this.statue="Open To Work";
+		System.out.println("Your Status Changed: "+statue);
 		return true;
 	}
 	/**
@@ -96,6 +97,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	 */
 	public boolean setStatusToWorking() {
 		this.statue="Working";
+		System.out.println("Your Status Changed: " + statue);
 		return true;
 	}
 	/**

@@ -6,11 +6,7 @@ import java.io.*;
 @SuppressWarnings("unused")
 public class Test {
     
-    public static void main(String[] args) {
-        System.out.println(CalculateLocation.calculate("Tuzla", "Pendik"));
-        System.out.println(CalculateLocation.calculate("Pendik", "Tuzla"));
-        System.out.println(CalculateLocation.calculate("Pendik", "Pendik"));
-        
+    public static void main(String[] args) {        
         HRC hrc = new HRC();
 
         System.out.println("------ Welcome to World Best Job-Matcher System! ------"); 
@@ -70,11 +66,11 @@ public class Test {
 
         System.out.println("Create Candidate-1 (Name = Enis Yalcin)");
         Candidate cd= hrc.createCandidate("Enis Yalcin" ,"123",null/*Cv*/);
-        cd.setMycv(new CvClass("Tuzla", "Enis", "Yalcin", "0534-480-1454", "e.yalcin2018@gtu.edu.tr", "Male", "05.03.1998", "Turkish", null, null, null, null, null, null, true) );
+        cd.setMycv(new CvClass("Tuzla", "Enis", "Yalcin", "0534-xxx-xxxx", "e.yalcin2018@gtu.edu.tr", "Male", "05.03.1998", "Turkish", null, null, null, null, null, null, true) );
         
         System.out.println("Create Candidate-2 (Name = Baran Solmaz)");
         cd = hrc.createCandidate("Baran Solmaz" ,"123",null/*Cv*/);
-        cd.setMycv(new CvClass("Pendik", "Baran", "Solmaz", "0536-443-9524", "b.solmaz2018@gtu.edu.tr", "Male", "05.03.2001", "Turkish", null, null, null, null, null, null, true) );
+        cd.setMycv(new CvClass("Pendik", "Baran", "Solmaz", "0536-xxx-xxxx", "b.solmaz2018@gtu.edu.tr", "Male", "11.09.2000", "Turkish", null, null, null, null, null, null, true) );
 
         System.out.println("Create a Human Resources (Name = Muhammed)");
         hrc.createHumanResources("Muhammed", "123");
