@@ -17,8 +17,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
      * @param userID id of candidate to remove
      * @return true if successful
      */
-	public boolean DeleteCandidate(int userID) {
-        hrc.getCandidate().remove(userID);
+	public boolean DeleteCandidate(Candidate candidate) {
+        hrc.getCandidate().remove(candidate.getUserID());
 		return true;
 	}
 
@@ -27,8 +27,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
      * @param companyID id of company
      * @return advertises from company in hrc
      */
-	public ArrayList<AdvertiseClass> SeeCompanyRequest(int companyID){
-        return hrc.getCompanyID(companyID).getAdvertises();
+	public ArrayList<AdvertiseClass> SeeCompanyRequest(Company company){
+        return hrc.getCompanyID(company.getUserID()).getAdvertises();
 	}
     
     /**
@@ -45,10 +45,12 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
      * Gives offer to candidate with meeting information.
      * @param candidate candidate to give offer
      * @param meeting hold meeting info and company info giving offer.
+     * @param offer Offer to give.
      * @return candidate's evaluating offer info.
      */
-	public boolean GiveOfferToCandidate(Candidate candidate, Meetings meeting){
-		return candidate.evaluateTheOffer(meeting);
+	public boolean GiveOfferToCandidate(Candidate candidate, Meetings meeting,int offer){
+         meeting.updateOffer(offer);
+		return true;
 	}
 
     /**

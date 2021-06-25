@@ -254,6 +254,7 @@ public class CvClass {
 	public void setDriversLicense(boolean driversLicense) {
 		DriversLicense = driversLicense;
 		System.out.println("Statue of Drivers License Changed!! ");
+		System.out.println("Having driver licence info: " + driversLicense);
 	}
 
 	/**

@@ -16,7 +16,7 @@ public class Test {
         hrc.createCompany("Suleyman Company","123", "Hatay Yemekleri", 10, "Hatay OF Course");
         Iterator<Company> it = hrc.getCompany().iterator();
         Company c = it.next();
-        AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or location):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
+        AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or face-to-face):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
         c.addAdvertise(advert);
         System.out.println("Candidate");
         Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
@@ -293,7 +293,7 @@ public class Test {
      */
     public static void companyMenuAdvertise(HRC hrc, Company company, Candidate candidate){
        if(hrc==null || company==null || candidate==null){
-           System.err.println("There is something missing in company menu's selector.");
+           System.err.println("There is no applicant");
            return;
        }
         while(true)
@@ -403,11 +403,11 @@ public class Test {
                     return;
 
                 case 1: 
-                    hr.DeleteCandidate(getInt("Enter user ID to delete: "));
+                    hr.DeleteCandidate( candidateSelector(hrc, "Select candidate: ") );
                     break;
                     
                 case 2:
-                    System.out.println( hr.SeeCompanyRequest(getInt("Enter company id to see requests")) );
+                    System.out.println( hr.SeeCompanyRequest( companySelector(hrc, "Select company: ") ) );
                     break;
 
                 case 3:
@@ -419,13 +419,19 @@ public class Test {
                         if     (c > 0)   System.out.println("First request");
                         else if(c < 0)   System.out.println("Second request");
                         else             System.out.println("Same");
-                        break;
                     }else{
                         System.err.println("Advertise Selector is not selected.");
                     }
-                    
+                    break;
                 case 4:
-                    hr.GiveOfferToCandidate(candidateSelector(hrc, "Select candidate: "), createMeeting(hrc) );
+                    Candidate temp=candidateSelector(hrc, "Select candidate: ");
+                    Meetings meet= meetingSelector(temp.getMeetings(), "Select Meetings");
+                    if(temp!=null && meet!=null){
+                        hr.GiveOfferToCandidate(temp,meet, getInt("Offer:") );
+                    }else{
+                        System.err.println("Candidate or Meetings is not selected.");
+                    }
+                    
                     break;
                 case 5:
                     hr.ArrangeMeeting(getStr("Enter date: "), candidateSelector(hrc, "Select candidate: "), companySelector(hrc, "Select company: "), getStr("Enter time: "), getInt("Enter offer: ") );
@@ -444,9 +450,7 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
             }
         }
@@ -961,7 +965,7 @@ public class Test {
     }
 
     public static AdvertiseClass createAdvertise() {
-        AdvertiseClass advert = new AdvertiseClass(getStr("Title:"), getStr("Way of Work (remote or location):"), getStr("Role:"), getStr("Job Type:"), getStr("Location:"), getInt("Vacancies:"), getStr("Industry:"), getCapabilities(), getStr("Education Level:"), getInt("Experience Year:"), getStr("Description:"));
+        AdvertiseClass advert = new AdvertiseClass(getStr("Title:"), getStr("Way of Work (remote or face-to-face):"), getStr("Role:"), getStr("Job Type:"), getStr("Location:"), getInt("Vacancies:"), getStr("Industry:"), getCapabilities(), getStr("Education Level:"), getInt("Experience Year:"), getStr("Description:"));
         return advert;
     } 
 
