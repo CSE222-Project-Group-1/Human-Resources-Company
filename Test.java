@@ -20,7 +20,13 @@ public class Test {
         c.addAdvertise(advert);
         System.out.println("Candidate");
         Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
-        cd.setMyClass(new CvClass("test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test","test"));
+        /**
+        String address, String name, String surname, String telNo, String email, String gender,
+			String birthDay, String nationality, String coverLetter, ArrayList<SchoolClass> schoolInformation,
+			ArrayList<Experience> experiences, ArrayList<Certificate> certficates,ArrayList<String> capabilities,
+			 ArrayList<Referance> referances, boolean driversLicense
+         */
+        //cd.setMyClass(new CvClass("test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test","test"));
         System.out.println("Human Resources");
         hrc.createHumanResources("Oguz", "123");
 
