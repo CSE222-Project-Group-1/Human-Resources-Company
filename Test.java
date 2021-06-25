@@ -151,6 +151,8 @@ public class Test {
         HumanResources hm;
         Company select;
         Candidate candidate;
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + admin.getName());
         while(true)
         {
             try {
@@ -258,7 +260,8 @@ public class Test {
      * @param company the company that going to showed menu
      */
     public static void companyMenu(HRC hrc, Company company){
-       
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + company.getName() +  " Company Executive" );
         while(true)
         {  
             try {
@@ -409,7 +412,8 @@ public class Test {
      * @param hr the HR that going to use menu
      */
     public static void humanResourcesMenu(HRC hrc, HumanResources hr){
-        
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + hr.getName());
         while(true)
         {  
             try {
@@ -523,7 +527,8 @@ public class Test {
      * @param candidate the candidate that going to use this menu
      */
     public static void candidateMenu(HRC hrc,Candidate candidate) {
-
+        System.out.println("\n*********** *********** ***********");
+        System.out.println("Welcome " + candidate.getName());
         while (true) {
             try {
             System.out.println("\n\n1- Apply To Advertise");
