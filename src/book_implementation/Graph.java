@@ -27,7 +27,7 @@ public interface Graph {
 
     /**
      * Insert a new edge into the graph
-     * @param edge The new edge
+     * @param e The new edge
      */
     void insert(Edge e);
 
