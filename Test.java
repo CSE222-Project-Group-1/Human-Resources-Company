@@ -10,9 +10,8 @@ public class Test {
         System.out.println(CalculateLocation.calculate("Tuzla", "Pendik"));
         System.out.println(CalculateLocation.calculate("Pendik", "Tuzla"));
         System.out.println(CalculateLocation.calculate("Pendik", "Pendik"));
-        HRC hrc = new HRC();
-
         
+        HRC hrc = new HRC();
 
         System.out.println("------ Welcome to World Best Job-Matcher System! ------"); 
 
@@ -46,6 +45,10 @@ public class Test {
         }
     }
 
+    /**
+     * Create some users to system quickly
+     * @param hrc the HRC object that holds all infos
+     */
     public static void quickLoginUsers(HRC hrc) {
         System.out.println("Create a some users for quick login and test");
         System.out.println("Passwords are 123");
