@@ -1,6 +1,7 @@
 package src;
 
 import java.util.*;
+import src.book_implementation.HeapSort;
 
 public class HumanResources extends Users implements Comparable<HumanResources>{
 	private HRC hrc=null;
@@ -70,5 +71,16 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
         return (compareTo(humanRes) == 0);
     }
     
+    @SuppressWarnings("unchecked")
+	public ArrayList<Meetings> sortMeetings(ArrayList<Meetings> arr){
+		
+		if(arr!=null) 
+		{
+			ArrayList<Meetings> temp=(ArrayList<Meetings>)arr.clone();
+			HeapSort.heapSort(temp);
+			return temp;
+		}
+		return null;
+	}
     
 }

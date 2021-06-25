@@ -45,6 +45,7 @@ public class Test {
         }
     }
 
+    
     public static void signUp(HRC hrc) {
         System.out.println("1- Sign Up Company");
         System.out.println("2- Sign Up Candidate");
@@ -200,162 +201,6 @@ public class Test {
         
     }
 
-    public static Company companySelector(HRC hrc,String str){
-        if(hrc==null) return null;
-        
-
-        Iterator<Company> iter=hrc.getCompany().iterator();
-        int i=1,select=-1;
-        Company returnVal=null,temp=null;
-        
-        while(iter.hasNext()){
-            Company company = iter.next();
-            System.out.println((i++ )+" - "+company.getName());
-        }
-        if(i == 1){
-            System.err.println("No Company!!");
-            return null;
-        } 
-        System.out.println("0 - Exit");
-        while(true){
-           if(str!=null && !str.isEmpty())
-                select=getInt(str+":");
-            else 
-                select=getInt("Your Select:");
-           if(select==0){
-               return null;
-           }else if(select>0 && hrc.getCompany().size()>=select){
-               iter=hrc.getCompany().iterator();
-               i=1;
-               while(iter.hasNext()){
-                   temp=iter.next();
-                   if(i==select){
-                       returnVal=temp;
-                       return returnVal;
-                   }
-                   i++;
-               }
-           }
-        }
-
-       // return null;
-    }
-
-    public static HumanResources humanResourcesSelector(HRC hrc,String str){
-        if(hrc==null) return null;
-        
-        
-        Iterator<HumanResources> iter=hrc.getHumanResources().iterator();
-        
-        int i=1,select=-1;
-        HumanResources returnVal=null,temp=null;
-        
-        while(iter.hasNext()){
-            HumanResources humanResources = iter.next();
-            System.out.println(i+++" - "+humanResources.toString());
-        }
-        if (i == 1) {
-            System.err.println("No Human Resources!!");
-            return null;
-        }
-        System.out.println("0 - Exit");
-        while(true){
-           if(str!=null && !str.isEmpty())
-                select=getInt(str+":");
-            else 
-                select=getInt("Your Select:");
-           if(select==0){
-               return null;
-           }else if(select>0){
-               iter=hrc.getHumanResources().iterator();
-               i=1;
-               while(iter.hasNext()){
-                   temp=iter.next();
-                   if(i==select){
-                       returnVal=temp;
-                       return returnVal;
-                   }
-                   i++;
-               }
-            }
-        }
-    }
-
-    public static Candidate candidateSelector(HRC hrc,String str){
-        if(hrc==null) return null;
-        Iterator<Map.Entry<Integer,Candidate>> iter= hrc.getCandidate().entrySet().iterator();
-        Map.Entry<Integer, Candidate> temp=null;
-        int i=1,select=-1;
-        while(iter.hasNext()){
-            System.out.println(i+" - "+iter.next().getValue().getName());
-            i++;
-        }
-        if(i==1){
-            System.err.println("No Candidate!!");
-            return null;
-        } 
-        System.out.println("0 - Exit");
-
-        while(true){
-           if(str!=null && !str.isEmpty())
-                select=getInt(str+":");
-            else 
-                select=getInt("Your Select:");
-           if(select==0){
-               return null;
-           }else if(select>0){
-               iter= hrc.getCandidate().entrySet().iterator();
-               i=1;
-               while(iter.hasNext()){
-                   temp=iter.next();
-                   if(i==select){
-                       return temp.getValue();
-                   }
-                   i++;
-               }
-            }
-        }
-        
-    }
-
-    public static Meetings meetingSelector(Collection<Meetings> meetings,String str){
-        if(meetings == null) return null;
-        Iterator<Meetings> iter=meetings.iterator();
-        int i=1,select=-1;
-        Meetings returnVal=null,temp=null;
-        while(iter.hasNext()){
-            Meetings meeting = iter.next();
-            System.out.println((i++ )+" - "+meeting.toString());
-        }
-        if (i == 1) {
-            System.err.println("No Meeting!!");
-            return null;
-        }
-        System.out.println("0 - Exit");
-        while(true){
-           if(str!=null && !str.isEmpty())
-                select=getInt(str+":");
-            else 
-                select=getInt("Your Select:");
-            System.out.println("kkk");
-           if(select==0){
-               return null;
-           }else if(select>0){
-               iter=meetings.iterator();
-               i=1;
-               while(iter.hasNext()){
-                   // System.out.println(iter.next() + " bastir");
-                   temp=iter.next();
-                   if(i==select){
-                       return temp;
-                   }
-                   i++;
-               }
-               //return null;
-           }
-        }
-    }
-
     public static void companyMenu(HRC hrc, Company company){
        
         while(true)
@@ -398,9 +243,6 @@ public class Test {
                 case 7:
                     System.out.println(company);
                     break;
-                case 8:
-
-                    break;
                 default: 
                     System.err.println("Wrong Input!!");
                     break;
@@ -409,7 +251,10 @@ public class Test {
     }
 
     public static void companyMenuAdvertise(HRC hrc, Company company, Candidate candidate){
-       
+       if(hrc==null || company==null || candidate==null){
+           System.err.println("There is something missing in company menu's selector.");
+           return;
+       }
         while(true)
         {  
             System.out.println("\n\n1- See Candidate's CV");
@@ -504,11 +349,17 @@ public class Test {
 
                 case 3:
                     int c = 0;
-                    c = hr.CompareRequests( advertiseSelector(companySelector(hrc, "Select company: ")), advertiseSelector(companySelector(hrc, "Select company: ")) );
-                    if     (c > 0)   System.out.println("First request");
-                    else if(c < 0)   System.out.println("Second request");
-                    else             System.out.println("Same");
-                    break;
+                    AdvertiseClass temp1=advertiseSelector(companySelector(hrc, "Select company: "));
+                    AdvertiseClass temp2=advertiseSelector(companySelector(hrc, "Select company: "));
+                    if(temp1!=null && temp2!=null){
+                        c = hr.CompareRequests(temp1 ,  temp2);
+                        if     (c > 0)   System.out.println("First request");
+                        else if(c < 0)   System.out.println("Second request");
+                        else             System.out.println("Same");
+                        break;
+                    }else{
+                        System.err.println("Advertise Selector is not selected.");
+                    }
                     
                 case 4:
                     hr.GiveOfferToCandidate(candidateSelector(hrc, "Select candidate: "), createMeeting(hrc) );
@@ -523,7 +374,8 @@ public class Test {
                     System.out.println( hr.toString() );
                     break;
                 case 8:
-                    meetingSelector( hr.seeMeetings(hrc), "Type 0 To Exit:");
+                   // meetingSelector( hr.seeMeetings(hrc), "Type 0 To Exit:");
+                    meetingSelector( hr.sortMeetings(hrc.getMeetings()), "Type 0 To Exit:");
                     break;
                 default: 
                     System.err.println("Wrong Input!!");
@@ -532,72 +384,28 @@ public class Test {
         }
     }
 
-    public static Candidate candidateSelectorAdvertises(Company company){
-        Candidate returnVal=null;
+    public static void humanResourcesUpdate(HumanResources hm) {
+        while(true)
+        {  
+            System.out.println("\n1- Change Human Resources Name");
+            System.out.println("2- Change Human Resources Password");
+            System.out.println("0- Exit\n");
 
-        if (company.getAdvertises().size() == 0)
-            return null;
+            int choice = getInt("Choice: ");
+            switch (choice) {
+                case 0: return;
+                case 1:
+                    hm.setName(getStr("New Name: "));
+                    break;
+                case 2:
+                    hm.setPassword(getStr("New Password: "));
+                    break;
 
-        Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
-
-        int i = 1;
-        while(iter.hasNext()){
-            AdvertiseClass ad = iter.next();
-            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
-            while(itCandidate.hasNext())
-            {
-                Candidate candidate_ = itCandidate.next();
-                if (candidate_.getStatue().equals("Open To Work"))
-                {
-                    System.out.println( i + ": " + candidate_ );
-                    i++;    
-                }
+                default: 
+                    System.err.println("Wrong Input!!");
+                    break;
             }
         }
-        if(i==1){
-            System.err.println("No Candidate!!");
-            return null;
-        } 
-        int select = getInt("Select candidate: ");
-        
-        iter = company.getAdvertises().iterator();
-
-        i = 1;
-        while(iter.hasNext()){
-            AdvertiseClass ad = iter.next();
-            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
-            while(itCandidate.hasNext())
-            {
-                Candidate candidate_ = itCandidate.next();
-                if (i == select)
-                    return candidate_;
-                    
-                if (candidate_.getStatue().equals("Open To Work"))
-                    i++;
-            }
-        }
-        
-        return null;
-    }
-    
-    public static AdvertiseClass advertiseSelector(Company company){
-        AdvertiseClass returnVal=null;
-        Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
-
-        int i=1;
-        while(iter.hasNext()){
-            System.out.println( i + ": " + iter.next() );
-            i++;
-        }
-        if (i == 1) {
-            System.err.println("No Advertise!!");
-            return null;
-        }
-        int select = getInt("Select Advertise: ");
-        if (select == 0) return null;
-        if(select > -1 && select - 1 < company.getAdvertises().size())
-            return company.getAdvertises().get(select-1);
-        else return null;
     }
 
     public static void candidateMenu(HRC hrc,Candidate candidate) {
@@ -617,31 +425,31 @@ public class Test {
             switch (choice) {
            
                 case 1:
-                // if (candidate.getCV() == null)
-                // {
-                //     System.out.println("First, create a CV");
-                //     break;
-                // } 
-                if (candidate.getStatue().equals("Open To Work") != true) 
-                {
-                    System.out.println("Your status is not set to 'Open To Work'.");
-                    System.out.println("Do you want to change status to Open To Work?");
-                    String ch = getStr("(y/n):");
-                    if (ch.equals("y") == true)
+                    // if (candidate.getCV() == null)
+                    // {
+                    //     System.out.println("First, create a CV");
+                    //     break;
+                    // } 
+                    if (candidate.getStatue().equals("Open To Work") != true) 
                     {
-                        AdvertiseClass ad = advertiseSelector(companySelector(hrc, "Select Company:"));
-                        if (ad != null)
+                        System.out.println("Your status is not set to 'Open To Work'.");
+                        System.out.println("Do you want to change status to Open To Work?");
+                        String ch = getStr("(y/n):");
+                        if (ch.equals("y") == true)
                         {
-                            candidate.setStatusToOpenWork();
-                            candidate.applyToAdvertisement(ad); 
+                            AdvertiseClass ad = advertiseSelector(companySelector(hrc, "Select Company:"));
+                            if (ad != null)
+                            {
+                                candidate.setStatusToOpenWork();
+                                candidate.applyToAdvertisement(ad); 
+                            }
                         }
                     }
-                }
-                else if (candidate.getStatue().equals("Open To Work") == true) 
-                {
-                    candidate.applyToAdvertisement(
-                            advertiseSelector(companySelector(hrc, "Select Company: "))); 
-                }
+                    else if (candidate.getStatue().equals("Open To Work") == true) 
+                    {
+                        candidate.applyToAdvertisement(
+                                advertiseSelector(companySelector(hrc, "Select Company: "))); 
+                    }
 
                     break;
                 case 2: candidate.seeRatings(companySelector(hrc, "Select Company: "));
@@ -669,69 +477,6 @@ public class Test {
                     return;
                 
                 default:
-                    System.err.println("Wrong Input!!");
-                    break;
-            }
-        }
-    }
-
-    public static AdvertiseClass createAdvertise() {
-        AdvertiseClass advert = new AdvertiseClass(getStr("Title:"), getStr("Way of Work (remote or location):"), getStr("Role:"), getStr("Job Type:"), getStr("Location:"), getInt("Vacancies:"), getStr("Industry:"), getCapabilities(), getStr("Education Level:"), getInt("Experience Year:"), getStr("Description:"));
-        return advert;
-    } 
-
-    public static CvClass createCV() {
-        CvClass cv = new CvClass(getStr("Adress:"), getStr("Name:"), getStr("Surname:"), getStr("Tel no:"), getStr("E-Mail:"), getStr("Gender:"), getStr("Birthday:"), getStr("Nationality:"), null, null, null, null, null, null, false);
-        return cv;
-    }
-
-    public static CvClass.SchoolClass createSchoolInfo() {
-        CvClass.SchoolClass sc = new CvClass.SchoolClass(getStr("School Name:"), getStr("Faculty:"), getStr("Department:"), getStr("End-Date:"), getStr("Start-Date:"), getStr("Education Type:"), getStr("Education Language:"), getInt("Shchool Average: "));
-        if (sc == null)
-            System.out.println("Null oldum abey");
-
-        return sc;      
-    }
-
-    public static CvClass.Experience createExperience() {
-        CvClass.Experience exp = new CvClass.Experience(getStr("Company Name:"), getStr("Start Date: "), getStr("Position: "), getStr("End Date:"), getStr("City:"), getStr("Business Area:"), getStr("Job Descrpition:"), getStr("Company Sector:"), getStr("Way of Work:"));
-        return exp;
-    }
-
-    public static CvClass.Referance createReferences() {
-        CvClass.Referance ref = new CvClass.Referance(getStr("Ref Name:"), getStr("Tel No:"), getStr("E-Mail:"), getStr("Company Name:"), getStr("Job:"));
-        return ref;
-    }
-
-    public static ArrayQueue<String> getCapabilities() {
-        ArrayQueue<String> capabilities = new ArrayQueue<>();
-
-        int size = getInt("Enter Capabilities Size:");
-        for (int i = 0; i < size; i++)
-        {
-            capabilities.offer(getStr("Enter " + i+1 +". capabilites:"));
-        }
-        return capabilities;
-    }
-
-    public static void humanResourcesUpdate(HumanResources hm) {
-        while(true)
-        {  
-            System.out.println("\n1- Change Human Resources Name");
-            System.out.println("2- Change Human Resources Password");
-            System.out.println("0- Exit\n");
-
-            int choice = getInt("Choice: ");
-            switch (choice) {
-                case 0: return;
-                case 1:
-                    hm.setName(getStr("New Name: "));
-                    break;
-                case 2:
-                    hm.setPassword(getStr("New Password: "));
-                    break;
-
-                default: 
                     System.err.println("Wrong Input!!");
                     break;
             }
@@ -852,12 +597,266 @@ public class Test {
         
     }
 
+    public static Candidate candidateSelectorAdvertises(Company company){
+        Candidate returnVal=null;
+
+        if (company.getAdvertises().size() == 0)
+            return null;
+
+        Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
+
+        int i = 1;
+        while(iter.hasNext()){
+            AdvertiseClass ad = iter.next();
+            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
+            while(itCandidate.hasNext())
+            {
+                Candidate candidate_ = itCandidate.next();
+                if (candidate_.getStatue().equals("Open To Work"))
+                {
+                    System.out.println( i + ": " + candidate_ );
+                    i++;    
+                }
+            }
+        }
+        if(i==1){
+            System.err.println("No Candidate!!");
+            return null;
+        } 
+        int select = getInt("Select candidate: ");
+        
+        iter = company.getAdvertises().iterator();
+
+        i = 1;
+        while(iter.hasNext()){
+            AdvertiseClass ad = iter.next();
+            Iterator<Candidate> itCandidate = ad.getApplies().iterator();
+            while(itCandidate.hasNext())
+            {
+                Candidate candidate_ = itCandidate.next();
+                if (i == select)
+                    return candidate_;
+                    
+                if (candidate_.getStatue().equals("Open To Work"))
+                    i++;
+            }
+        }
+        
+        return null;
+    }
+    
+    public static AdvertiseClass advertiseSelector(Company company){
+        AdvertiseClass returnVal=null;
+        Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
+        int i=1;
+        while(iter.hasNext()){
+            System.out.println( i + ": " + iter.next() );
+            i++;
+        }
+        if (i == 1) {
+            System.err.println("No Advertise!!");
+            return null;
+        }
+        int select = getInt("Select Advertise: ");
+        if (select == 0) return null;
+        if(select > -1 && select - 1 < company.getAdvertises().size())
+            return company.getAdvertises().get(select-1);
+        else return null;
+    }
+
+    public static Company companySelector(HRC hrc,String str){
+        if(hrc==null) return null;
+        
+        Iterator<Company> iter=hrc.getCompany().iterator();
+        int i=1,select=-1;
+        Company returnVal=null,temp=null;
+        
+        while(iter.hasNext()){
+            Company company = iter.next();
+            System.out.println((i++ )+" - "+company.getName());
+        }
+        if(i == 1){
+            System.err.println("No Company!!");
+            return null;
+        } 
+        System.out.println("0 - Exit");
+        while(true){
+           if(str!=null && !str.isEmpty())
+                select=getInt(str+":");
+            else 
+                select=getInt("Your Select:");
+           if(select==0){
+               return null;
+           }else if(select>0 && hrc.getCompany().size()>=select){
+               iter=hrc.getCompany().iterator();
+               i=1;
+               while(iter.hasNext()){
+                   temp=iter.next();
+                   if(i==select){
+                       returnVal=temp;
+                       return returnVal;
+                   }
+                   i++;
+               }
+           }
+        }
+    }
+
+    public static HumanResources humanResourcesSelector(HRC hrc,String str){
+        if(hrc==null) return null;
+        
+        Iterator<HumanResources> iter=hrc.getHumanResources().iterator();
+        
+        int i=1,select=-1;
+        HumanResources returnVal=null,temp=null;
+        
+        while(iter.hasNext()){
+            HumanResources humanResources = iter.next();
+            System.out.println(i+++" - "+humanResources.toString());
+        }
+        if (i == 1) {
+            System.err.println("No Human Resources!!");
+            return null;
+        }
+        System.out.println("0 - Exit");
+        while(true){
+           if(str!=null && !str.isEmpty())
+                select=getInt(str+":");
+            else 
+                select=getInt("Your Select:");
+           if(select==0){
+               return null;
+           }else if(select>0){
+               iter=hrc.getHumanResources().iterator();
+               i=1;
+               while(iter.hasNext()){
+                   temp=iter.next();
+                   if(i==select){
+                       returnVal=temp;
+                       return returnVal;
+                   }
+                   i++;
+               }
+            }
+        }
+    }
+
+    public static Candidate candidateSelector(HRC hrc,String str){
+        if(hrc==null) return null;
+        Iterator<Map.Entry<Integer,Candidate>> iter= hrc.getCandidate().entrySet().iterator();
+        Map.Entry<Integer, Candidate> temp=null;
+        int i=1,select=-1;
+        while(iter.hasNext()){
+            System.out.println(i+" - "+iter.next().getValue().getName());
+            i++;
+        }
+        if(i==1){
+            System.err.println("No Candidate!!");
+            return null;
+        } 
+        System.out.println("0 - Exit");
+
+        while(true){
+           if(str!=null && !str.isEmpty())
+                select=getInt(str+":");
+            else 
+                select=getInt("Your Select:");
+           if(select==0){
+               return null;
+           }else if(select>0){
+               iter= hrc.getCandidate().entrySet().iterator();
+               i=1;
+               while(iter.hasNext()){
+                   temp=iter.next();
+                   if(i==select){
+                       return temp.getValue();
+                   }
+                   i++;
+               }
+            }
+        }
+        
+    }
+
+    public static Meetings meetingSelector(Collection<Meetings> meetings,String str){
+        if(meetings == null)
+            return null;
+        Iterator<Meetings> iter=meetings.iterator();
+        int i=1,select=-1;
+        Meetings returnVal=null,temp=null;
+        while(iter.hasNext()){
+            Meetings meeting = iter.next();
+            System.out.println((i++ )+" - "+meeting.toString());
+        }
+        if (i == 1) {
+            System.err.println("No Meeting!!");
+            return null;
+        }
+        System.out.println("0 - Exit");
+        while(true){
+           if(str!=null && !str.isEmpty())
+                select=getInt(str+":");
+            else 
+                select=getInt("Your Select:");
+           if(select==0){
+               return null;
+           }else if(select>0){
+               iter=meetings.iterator();
+               i=1;
+               while(iter.hasNext()){
+                   temp=iter.next();
+                   if(i==select){
+                       return temp;
+                   }
+                   i++;
+               }
+               //return null;
+           }
+        }
+    }
+
+    public static AdvertiseClass createAdvertise() {
+        AdvertiseClass advert = new AdvertiseClass(getStr("Title:"), getStr("Way of Work (remote or location):"), getStr("Role:"), getStr("Job Type:"), getStr("Location:"), getInt("Vacancies:"), getStr("Industry:"), getCapabilities(), getStr("Education Level:"), getInt("Experience Year:"), getStr("Description:"));
+        return advert;
+    } 
+
+    public static CvClass createCV() {
+        CvClass cv = new CvClass(getStr("Adress:"), getStr("Name:"), getStr("Surname:"), getStr("Tel no:"), getStr("E-Mail:"), getStr("Gender:"), getStr("Birthday:"), getStr("Nationality:"), null, null, null, null, null, null, false);
+        return cv;
+    }
+
+    public static CvClass.SchoolClass createSchoolInfo() {
+        CvClass.SchoolClass sc = new CvClass.SchoolClass(getStr("School Name:"), getStr("Faculty:"), getStr("Department:"), getStr("End-Date:"), getStr("Start-Date:"), getStr("Education Type:"), getStr("Education Language:"), getInt("Shchool Average: "));
+        if (sc == null)
+            System.out.println("Null");
+
+        return sc;      
+    }
+
+    public static CvClass.Experience createExperience() {
+        CvClass.Experience exp = new CvClass.Experience(getStr("Company Name:"), getStr("Start Date: "), getStr("Position: "), getStr("End Date:"), getStr("City:"), getStr("Business Area:"), getStr("Job Descrpition:"), getStr("Company Sector:"), getStr("Way of Work:"));
+        return exp;
+    }
+
+    public static CvClass.Referance createReferences() {
+        CvClass.Referance ref = new CvClass.Referance(getStr("Ref Name:"), getStr("Tel No:"), getStr("E-Mail:"), getStr("Company Name:"), getStr("Job:"));
+        return ref;
+    }
+
+    public static ArrayQueue<String> getCapabilities() {
+        ArrayQueue<String> capabilities = new ArrayQueue<>();
+
+        int size = getInt("Enter Capabilities Size:");
+        for (int i = 0; i < size; i++)
+        {
+            capabilities.offer(getStr("Enter " + (i+1) +". capabilites:"));
+        }
+        return capabilities;
+    }
+
     public static CvClass.Certificate createCertificate(){    
         return new CvClass.Certificate(getStr("Certificate Name:"),getStr("Institution Name: "),getStr("Certificate Date:"),getStr("Explanation:"));
     }
-    
-    
-    
     
     public static ArrayList<String> createCapabilities(){
         ArrayList<String> capabilities = new ArrayList<>();
