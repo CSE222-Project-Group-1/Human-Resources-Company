@@ -39,67 +39,110 @@ public class Company extends Users implements Comparable<Company> {
 			return true;
 		return false;
 	}
-
+    /**Updates Rating Average
+     * @param int rate 
+     */
     public void addRating(int rate) {
         this.rateTotal += rate;
         rateAverage = this.rateTotal / (++numberOfVotes);
     }
-    
+    /**Retruns Rating Average */
     public double getRatingsAvg(){
         return rateAverage;
     }
-    
+    /**Retruns Advertises */
     public ArrayList<AdvertiseClass> getAdvertises() {
         return Advertises;
     }
+    
+    /**
+     * Sets Advertises
+     * 
+     * @param ArrayList<AdvertiseClass>
+     */
     public void setAdvertises(ArrayList<AdvertiseClass> advertises) {
         Advertises = advertises;
     }
+    /**Returns Company Sector */
     public String getCompanySector() {
         return CompanySector;
     }
+    
+    /**
+     * Sets Company Sector
+     * 
+     * @param String
+     */
     public void setCompanySector(String companySector) {
         CompanySector = companySector;
     }
+    /**Returns Number of Employees */
     public int getNumberOfEmployees() {
         return NumberOfEmployees;
     }
+     /**
+     * Sets Number of Employees
+     * 
+     * @param int
+     */
     public void setNumberOfEmployees(int numberOfEmployees) {
         NumberOfEmployees = numberOfEmployees;
     }
+    /**Returns Social Rights */
     public AVLTree<String> getSocialRights() {
         return SocialRights;
     }
+    
+    /**
+     * Sets Social Rights
+     * 
+     * @param AVLTree<String>
+     */
     public void setSocialRights(AVLTree<String> socialRights) {
         SocialRights = socialRights;
     }
+    /**Returns Adress */
     public String getAddress() {
         return Address;
     }
+    
+    /**
+     * Sets Address
+     * 
+     * @param String
+     */
     public void setAddress(String address) {
         Address = address;
     }
-
+    /**
+     * Prints Suggested Candidates
+     * 
+     * @param Candidate[]
+     */
     public void SeeSuggestedCandidates(Candidate[] candidates) {
         for(int i=0;i< candidates.length;i++)
             System.out.println(candidates[0].toString());
 
     }
-    public boolean AcceptDeclineSuggestedCandidates() {
-        return false;
-    }
-    //benzaten şirketim nedeb müşteri bilgisi görücem
-    public void seeCustomerInformation() {
-
-    }
-   public void addSocialRights(String value){
+    /**
+     * Adds New Social Rights
+     * 
+     * @param String
+     */
+    public void addSocialRights(String value){
        SocialRights.add(value);
 
    }
-   public  void addAdvertise(AdvertiseClass newValue){
-        Advertises.add(newValue);
-   }
-
+   
+   /**
+    * Adds New Addvertise
+    * 
+    * @param AdvertiseClass
+    */
+    public  void addAdvertise(AdvertiseClass newValue){
+            Advertises.add(newValue);
+    }
+    /**ToString */
     public String toString() {
         StringBuilder sb =new StringBuilder();
 
@@ -118,9 +161,8 @@ public class Company extends Users implements Comparable<Company> {
         sb.append("\n");
         return sb.toString();
     }
-
+    /**CompareTo */
     @Override
-    //iki şirketin rating ortalamasıa göre karşılaştırılabiilir
     public int compareTo(Company o) {
        if(this.getRatingsAvg()<o.getRatingsAvg())
            return 1;

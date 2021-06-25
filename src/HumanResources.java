@@ -23,29 +23,29 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
     /**
-     * 
+     * Gets company requests.
      * @param companyID id of company
-     * @return
+     * @return advertises from company in hrc
      */
 	public ArrayList<AdvertiseClass> SeeCompanyRequest(int companyID){
         return hrc.getCompanyID(companyID).getAdvertises();
 	}
     
-    /***
-     * 
-     * @param as
-     * @param as2
-     * @return
+    /**
+     * Compares advertise objects titles
+     * @param as  first advertise object.
+     * @param as2 second advertise object.
+     * @return which title is bigger in form of comparing.
      */
 	public int CompareRequests(AdvertiseClass as, AdvertiseClass as2){
         return as.compareTo(as2);
 	}
     
     /**
-     * 
-     * @param candidate
-     * @param meeting
-     * @return
+     * Gives offer to candidate with meeting information.
+     * @param candidate candidate to give offer
+     * @param meeting hold meeting info and company info giving offer.
+     * @return candidate's evaluating offer info.
      */
 	public boolean GiveOfferToCandidate(Candidate candidate, Meetings meeting){
 		return candidate.evaluateTheOffer(meeting);
@@ -53,11 +53,11 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 
     /**
      * 
-     * @param date
-     * @param candidate
-     * @param company
-     * @param time
-     * @param offer
+     * @param date date of meeting
+     * @param candidate candidate
+     * @param company company in meeting
+     * @param time time of meeting
+     * @param offer offer info in arrange.
      * @return
      */
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
@@ -68,8 +68,8 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
     /**
-     * 
-     * @param candidate
+     * Suggests the candidate to compnay
+     * @param candidate candidate to offered
      * @param as
      */
 	public void SuggestCandidateToCompany(Candidate candidate, AdvertiseClass as){

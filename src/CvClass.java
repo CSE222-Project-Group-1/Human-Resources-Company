@@ -195,6 +195,13 @@ public class CvClass {
 		Capabilities.addAll(capability);
 		return true;
 	}
+	
+	/**
+	 * Adds New References
+	 * 
+	 * @param CvClass.Referance
+	 * @return boolean
+	 */
 	public boolean addReferances(CvClass.Referance ref) {
 		if (ref == null)
 		{
@@ -431,7 +438,7 @@ public class CvClass {
 			CompanySector = companySector;
 			WayOfWork = wayOfWork;
 		}
-		
+		/**ToString */
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Company Name: " + companyName + " Position: " + Position + " City: " + City
@@ -619,7 +626,7 @@ public class CvClass {
 			EducationLanguage = educationLanguage;
 			SchoolAvarage = schoolAvarage;
 		}
-		
+		/**ToString */
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Schools Name: " + SchoolsName + " Faculty Name: " + FacultyName
@@ -777,7 +784,7 @@ public class CvClass {
 			CertificateDate = certificateDate;
 			Explanation = explanation;
 		}
-		
+		/**ToString */
 		public String toString() {
 			StringBuilder sb = new StringBuilder();
 			sb.append("Certificate Name: " + CertificateName + " Institution Name: " + InstitutionName + " Certificate Date: " + CertificateDate+ " Explanation: " + Explanation );
@@ -870,6 +877,7 @@ public class CvClass {
 			CompanyName = companyName;
 			Job = job;
 		}
+		/**ToString */
 		public String toString(){
 			StringBuilder sb= new StringBuilder();
 			sb.append("Company Name: "+CompanyName+" Reference Name: "+referanceName+" Job: "+Job+" E-Mail: "+Email+" Phone Number: "+telNo);

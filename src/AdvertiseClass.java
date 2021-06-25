@@ -54,6 +54,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	public String getAdvertisementTitle() {
 		return AdvertisementTitle;
 	}
+	/**Returns Applied Candidates*/
 	public PriorityQueue<Candidate> getApplies(){
 		return applied;
 	}
@@ -166,7 +167,7 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 	 * Returns Level of education
 	 * @return Level of education for advertisement.
 	 */
-	public String getLevelOfEducation() {
+	public String getLevelOfEducation(){
 		return LevelOfEducation;
 	}
 	/**
@@ -217,23 +218,23 @@ public class AdvertiseClass implements Comparable<AdvertiseClass>{
 				+ Description + "]\n";
 	}
 	
-	/*
-	* @return suggested persons priority queue.
-	*/
+	/**
+	 * @return suggested persons priority queue.
+	 */
 	public PriorityQueue<Candidate> getSuggested() {
-            return suggested;
-        }
-	/*
-	* @param suggested priority queue to be set
+		return suggested;
+	}
+	/**
+	 * Sets Suggested Candidates
+	 * @param suggested priority queue to be set
 	*/
-        public void setSuggested(PriorityQueue<Candidate> suggested) {
-            this.suggested = suggested;
-        }
-	
-	
+	public void setSuggested(PriorityQueue<Candidate> suggested) {
+		this.suggested = suggested;
+	}
+	/**CompareTo */	
 	@Override
-        public int compareTo(AdvertiseClass arg0) {
-            return AdvertisementTitle.compareTo(arg0.getAdvertisementTitle());
-        }
+	public int compareTo(AdvertiseClass arg0) {
+		return AdvertisementTitle.compareTo(arg0.getAdvertisementTitle());
+	}
 	
 }

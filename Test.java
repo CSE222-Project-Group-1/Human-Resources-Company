@@ -1,9 +1,6 @@
 import src.*;
 import src.book_implementation.*;
 import java.util.*;
-
-import javax.naming.Reference;
-
 import java.io.*;
 
 @SuppressWarnings("unused")
@@ -22,7 +19,8 @@ public class Test {
         AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or location):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
         c.addAdvertise(advert);
         System.out.println("Candidate");
-        hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+        Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+        cd.setMyClass(new CvClass("test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test","test"));
         System.out.println("Human Resources");
         hrc.createHumanResources("Oguz", "123");
 
@@ -30,6 +28,7 @@ public class Test {
 
         while(true)
         {
+            try {
             System.out.println("\n1- Sign Up");
             System.out.println("2- Log in");
             
@@ -41,6 +40,11 @@ public class Test {
                     break;
                 default:System.err.println("Wrong Input!!");
                     break;
+            }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
             }
         }
     }
@@ -120,7 +124,8 @@ public class Test {
         Company select;
         Candidate candidate;
         while(true)
-        {  
+        {
+            try {
             System.out.println("\n\n1- Add Company ");
             System.out.println("2- Update Company");
             System.out.println("3- Delete Company ");
@@ -209,7 +214,13 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
-        }
+
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
+        } 
         
     }
 
@@ -222,6 +233,7 @@ public class Test {
        
         while(true)
         {  
+            try {
             System.out.println("\n\n1- Create New Advertise");
             System.out.println("2- See Your Advertises");
             System.out.println("3- Get Rating Average");
@@ -264,6 +276,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
 
@@ -280,6 +297,7 @@ public class Test {
        }
         while(true)
         {  
+            try {
             System.out.println("\n\n1- See Candidate's CV");
             System.out.println("2- Accept Candidate and Arrange Meeting");
             System.out.println("3- Decline Candidate\n\n");
@@ -295,7 +313,7 @@ public class Test {
                     break;
                 case 2:
                     hrc.getDefaultHumanResources().ArrangeMeeting(getStr("Date:"), candidate, company, getStr("Time:"), getInt("Money:"));
-                    break;
+                    return;
                 case 3:
                     System.out.println("Declined Offer");
                     return;
@@ -303,6 +321,11 @@ public class Test {
                 default: 
                     System.err.println("Wrong Input!!");
                     break;
+            }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
             }
         }
     }
@@ -314,6 +337,7 @@ public class Test {
     public static void companyMenuSettings(Company company) {
         while(true)
         {  
+            try {
             System.out.println("\n1- Change Company Name");
             System.out.println("2- Change Company Sector");
             System.out.println("3- Change Company Address");
@@ -343,6 +367,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
     
@@ -355,6 +384,7 @@ public class Test {
         
         while(true)
         {  
+            try {
             System.out.println("\n\n1- Delete candidate");
             System.out.println("2- See company requests");
             System.out.println("3- Compare requests");
@@ -413,6 +443,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
 
@@ -423,6 +458,7 @@ public class Test {
     public static void humanResourcesUpdate(HumanResources hm) {
         while(true)
         {  
+            try {
             System.out.println("\n1- Change Human Resources Name");
             System.out.println("2- Change Human Resources Password");
             System.out.println("0- Exit\n");
@@ -441,6 +477,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
 
@@ -452,6 +493,7 @@ public class Test {
     public static void candidateMenu(HRC hrc,Candidate candidate) {
 
         while (true) {
+            try {
             System.out.println("\n\n1- Apply To Advertise");
             System.out.println("2- See Company Rating");
             System.out.println("3- Evaluate The Offer");
@@ -466,11 +508,11 @@ public class Test {
             switch (choice) {
            
                 case 1:
-                    // if (candidate.getCV() == null)
-                    // {
-                    //     System.out.println("First, create a CV");
-                    //     break;
-                    // } 
+                    if (candidate.getCV() == null)
+                     {
+                         System.out.println("First, create a CV");
+                         break;
+                     } 
                     if (candidate.getStatue().equals("Open To Work") != true) 
                     {
                         System.out.println("Your status is not set to 'Open To Work'.");
@@ -521,6 +563,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
 
@@ -531,6 +578,7 @@ public class Test {
     public static void candidateUpdate(Candidate candidate) {
         while(true)
         {  
+            try {
             System.out.println("\n1- Add CV");
             System.out.println("2- Change Candidate Name");
             System.out.println("3- Change Candidate Password");
@@ -557,6 +605,11 @@ public class Test {
                     System.err.println("Wrong Input!!");
                     break;
             }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+            }
         }
     }
 
@@ -568,6 +621,7 @@ public class Test {
     public static CvClass cvUpdate(Candidate cand){
         CvClass cv=cand.getCV();
         while (true) {
+            try{
             System.out.println("\n1- Change Address");
             System.out.println("2- Change Name");
 	        System.out.println("3- Change Surname");
@@ -588,7 +642,8 @@ public class Test {
 
             System.out.println("0- Exit");
             int choice = getInt("Choice:");
-            switch (choice) {
+            switch (choice) 
+            {
             case 0:cand.setMycv(cv);
                 return cv;
             case 1:
@@ -641,6 +696,11 @@ public class Test {
             default:
                 System.err.println("Wrong Input!!");
                 break;
+            }
+            }
+            catch (Exception e)
+            {
+                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
             }
         }
 

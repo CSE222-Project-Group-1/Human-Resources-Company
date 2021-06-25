@@ -99,18 +99,50 @@ public class Admin  extends Users implements Comparable<Admin> {
 	}
 	
     /**
-     * 
-     * @param hmn
-     * @return
+     * Removes Human Resources 
+     * @param hmn Human Resources to be deleted.
+     * @return True if deleted, false otherwise.
      */
 	public boolean removeHumanResources(HumanResources hmn) {
 
 		return hrc.getHumanResources().remove(hmn);
 	}
 
+
+	/**
+     * Adds Candidate
+     * @param hm Candidate to be added
+     * @return True if appened, false otherwise.
+     */
+	public boolean AddCandidate(Candidate cd) {
+		 return hrc.getCandidate().put(cd.getUserID(),cd)!=null;
+	}
+
+
+	/**
+     * Update Candidate
+     * @param cd Candidate to be updated.
+     * @param name New Name
+     * @param password New Password
+     * @return True if there is a change, false otherwise.
+     */
+	public boolean updateCandidate(Candidate cd,String name, String password){
+		if (cd==null) return false;
+		boolean result=false;
+		if (name!=null && !name.isEmpty()){
+			cd.setName(name);
+			result=true;
+		}
+		if (password!=null && !password.isEmpty()){
+			cd.setPassword(password);
+			result=true;
+		}
+
+		return result;
+	}
     /**
-     * 
-     * @param candidate
+     * Removes the Candidate  
+     * @param candidate Candidate to be deleted. 
      * @return
      */
 	public boolean removeCandidate(Candidate candidate) {
@@ -119,7 +151,7 @@ public class Admin  extends Users implements Comparable<Admin> {
 	}
 
     /**
-     * 
+     * Print Statics
      */
 	public void SeeStatistics() {
 
