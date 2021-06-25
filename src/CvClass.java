@@ -130,17 +130,29 @@ public class CvClass {
 	public String getNationality() {
 		return Nationality;
 	}
+	
+	/**
+	 * Adds New School Information
+	 * 
+	 * @param CvClass.SchoolClass
+	 * @return boolean
+	 */
 	public boolean addSchoolInfo(CvClass.SchoolClass info){
 		if (SchoolInformation == null)
 			SchoolInformation = new ArrayList<SchoolClass>();
 		if(info==null) 
 		{
-			System.out.println("School Patladi");
 			return false;
 		}
 		SchoolInformation.add(info);
 		return true;
 	}
+	/**
+	 * Adds New Experience
+	 * 
+	 * @param Experience
+	 * @return boolean
+	 */
 	public boolean addExperience(Experience exp){
 		if (Experiences == null)
 			Experiences = new ArrayList<Experience>();
@@ -150,7 +162,15 @@ public class CvClass {
 		} 
 		Experiences.add(exp);
 		return true;
-	}public boolean addCertificate(CvClass.Certificate cer){
+	}
+	
+	/**
+	 * Adds New Certificate
+	 * 
+	 * @param CvClass.Certificate
+	 * @return boolean
+	 */
+	public boolean addCertificate(CvClass.Certificate cer){
 		if(cer== null) 
 		{
 			System.out.println("Certificate Patladi");
@@ -158,7 +178,15 @@ public class CvClass {
 		}
 		Certficates.add(cer);
 		return true;
-	}public boolean addCapability(ArrayList<String> capability){
+	}
+	
+	/**
+	 * Adds New Capabilities
+	 * 
+	 * @param ArrayList<String>
+	 * @return boolean
+	 */
+	 public boolean addCapability(ArrayList<String> capability){
 		if (capability == null)
 		{
 			System.out.println("capabil Patladi");

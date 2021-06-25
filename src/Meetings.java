@@ -87,13 +87,17 @@ public class Meetings implements Comparable<Meetings>{
 	public void setTime(String time) {
 		this.time = time;
 	}
+	/**Returns Meeting Offer
+	 * @return int
+	*/
 	public int getOffer() {
 		return offer;
 	}
+	/** Updates Offer*/
 	public void updateOffer(int offer) {
 		this.offer = offer;
 	}
-
+	/**Equals Method */
 	public boolean equals(Object o){	
 		if(o instanceof Meetings){
 			Meetings meet=(Meetings) o;
@@ -106,21 +110,14 @@ public class Meetings implements Comparable<Meetings>{
 		
 		return super.equals(o);
 	}
-
+	/**CompareTo */
     @Override
     public int compareTo(Meetings meet) {
         return (getOffer() - meet.getOffer());
     }
-
+	/**ToString */
 	public String toString(){
 		StringBuilder sb=new StringBuilder();
-		/*
-		this.date = date;
-		this.candidate = candidate;
-		this.company = company;
-		this.time = time;
-		this.offer=offer;
-		 */
 		sb.append("Date:");
 		sb.append(date.toString());
 		sb.append("\nCandidate:");

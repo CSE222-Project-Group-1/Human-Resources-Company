@@ -12,29 +12,54 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
         System.out.println("Your user id is " + userID);
 	}
 
-	public boolean loginSystem(String name,String password) {
-		if (getName().equals(name) && this.getPassword().equals(password))
-			return true;
-		return false;
-	}
-
+    /**
+     * Removes candidate with userID
+     * @param userID id of candidate to remove
+     * @return true if successful
+     */
 	public boolean DeleteCandidate(int userID) {
         hrc.getCandidate().remove(userID);
-		return false;
+		return true;
 	}
 
+    /**
+     * 
+     * @param companyID id of company
+     * @return
+     */
 	public ArrayList<AdvertiseClass> SeeCompanyRequest(int companyID){
         return hrc.getCompanyID(companyID).getAdvertises();
 	}
     
+    /***
+     * 
+     * @param as
+     * @param as2
+     * @return
+     */
 	public int CompareRequests(AdvertiseClass as, AdvertiseClass as2){
         return as.compareTo(as2);
 	}
     
+    /**
+     * 
+     * @param candidate
+     * @param meeting
+     * @return
+     */
 	public boolean GiveOfferToCandidate(Candidate candidate, Meetings meeting){
 		return candidate.evaluateTheOffer(meeting);
 	}
 
+    /**
+     * 
+     * @param date
+     * @param candidate
+     * @param company
+     * @param time
+     * @param offer
+     * @return
+     */
 	public boolean ArrangeMeeting(String date, Candidate candidate, Company company, String time, int offer){
         Meetings meeting = new Meetings(date, candidate, company, time, offer);
         hrc.getMeetings().add(meeting);
@@ -42,10 +67,19 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return true;
 	}
 
+    /**
+     * 
+     * @param candidate
+     * @param as
+     */
 	public void SuggestCandidateToCompany(Candidate candidate, AdvertiseClass as){
 		as.getSuggested().add(candidate);
 	}
 
+    /**
+     * 
+     * @return 
+     */
 	public String toString(){
 		StringBuilder sb =new StringBuilder();
         sb.append(  "UserID: " + getUserID() );
@@ -54,6 +88,10 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 		return sb.toString();
 	}
     
+    /**
+     * 
+     * @param humanRes
+     */
 	public int compareTo(HumanResources humanRes) {
         if(getUserID() > humanRes.getUserID() )
             return 1;
@@ -63,14 +101,28 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
             return 0;    
 	}
 
+    /**
+     * 
+     * @param hrc
+     * @return
+     */
     public ArrayList<Meetings> seeMeetings(HRC hrc){
 		return hrc.getMeetings();
 	}
 
+    /**
+     * 
+     * @param humanRes
+     * @return
+     */
     public boolean equals(HumanResources humanRes){
         return (compareTo(humanRes) == 0);
     }
     
+	/**
+	 * Sorts Meetings
+	 * @param ArrayList<Meetings>
+	 */
     @SuppressWarnings("unchecked")
 	public ArrayList<Meetings> sortMeetings(ArrayList<Meetings> arr){
 		

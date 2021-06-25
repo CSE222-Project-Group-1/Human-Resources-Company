@@ -43,6 +43,11 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		company.addRating(rate);
 		return rate;
 	}
+	/**
+	 *	Evaluates The Offer
+	 * @param Meeting
+	 * @return boolean
+	 */
 	public boolean evaluateTheOffer(Meetings meeting) {
 		if(meeting!= null && meeting.getOffer() > 0) {
 			setStatusToWorking();
@@ -102,7 +107,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		setPassword(newPassword);
 		return true;
 	}
-
+	/**Returns Statue */
 	public String getStatue() {
 		return statue;
 	}
@@ -120,7 +125,7 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 	public void setMycv(CvClass mycv) {
 		Mycv = mycv;
 	}
-    
+    /**CompareTo */
     @Override
     public int compareTo(Candidate other) {
         if (this.getUserID()>other.getUserID()) {
@@ -130,9 +135,13 @@ public class Candidate  extends Users implements Comparable<Candidate>{
 		} else 
 			return 0 ;
     }
+	/**Adds Meeting
+	 * @param Meeting
+	 */
 	public void addMeeting(Meetings meeting) {
 		this.meetings.add(meeting) ;
 	}
+	/** Retruns Meetings*/
     public PriorityQueue<Meetings> getMeetings(){
         return meetings;
     }

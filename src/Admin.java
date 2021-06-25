@@ -7,6 +7,12 @@ public class Admin  extends Users implements Comparable<Admin> {
 		super(userID,name,password,Users.ADMIN);
 		this.hrc=hrc;
 	}
+
+    /**
+     * Adds the company
+     * @param com Company to be added
+     * @return True if appended, false otherwise.
+     */
 	public boolean addCompany(Company com) {
 		if (!hrc.getCompany().contains(com)){
 			hrc.getCompany().add(com);
@@ -14,6 +20,17 @@ public class Admin  extends Users implements Comparable<Admin> {
 		}
 		return false;
 	}
+
+    /**
+     * Update the company
+     * @param com Company to be updated.
+     * @param name New Name
+     * @param password New Password
+     * @param companySector New Company Sector
+     * @param numberOfEmployees New Number of Employees
+     * @param address New Adress
+     * @return True if there is a change, false otherwise.
+     */
 	public boolean updateCompany(Company com,String name, String password,  String companySector,
 								 Integer numberOfEmployees,  String address){
 		if (com==null) return false;
@@ -40,14 +57,32 @@ public class Admin  extends Users implements Comparable<Admin> {
 		return result;
 	}
 
+    /**
+     * Removes the company
+     * @param com true if appended, false otherwise.
+     * @return True if deleted, false otherwise.
+     */
 	public boolean removeCompany(Company com) {
 		Company result=hrc.getCompany().remove(com);
 		return  result!=null;
 	}
 
+    /**
+     * Adds the HumanResources
+     * @param hm HumanResources to be added
+     * @return True if appened, false otherwise.
+     */
 	public boolean AddHumanResources(HumanResources hm) {
 		return hrc.getHumanResources().add(hm);
 	}
+
+    /**
+     * Update Human Resources
+     * @param hm Human Resources to be updated.
+     * @param name New Name
+     * @param password New Password
+     * @return True if there is a change, false otherwise.
+     */
 	public boolean updateHumanResources(HumanResources hm,String name, String password){
 		if (hm==null) return false;
 		boolean result=false;
@@ -62,23 +97,39 @@ public class Admin  extends Users implements Comparable<Admin> {
 
 		return result;
 	}
+	
+    /**
+     * 
+     * @param hmn
+     * @return
+     */
 	public boolean removeHumanResources(HumanResources hmn) {
 
 		return hrc.getHumanResources().remove(hmn);
 	}
 
+    /**
+     * 
+     * @param candidate
+     * @return
+     */
 	public boolean removeCandidate(Candidate candidate) {
 
 		return hrc.getCandidate().remove(candidate.getUserID())!=null;
 	}
 
-
+    /**
+     * 
+     */
 	public void SeeStatistics() {
 
 	}
 
 
-
+    /**
+     * 
+     * @return string
+     */
 	public String toString() {
 		StringBuilder aString =new StringBuilder();
 		return aString.toString();
@@ -128,6 +179,11 @@ public class Admin  extends Users implements Comparable<Admin> {
 		return getUserID() - o.getUserID();
 	}
 
+    /**
+     * 
+     * @param o  
+     * @return 
+     */
 	public boolean equals(Admin o){
 		return getName().equals(o.getName()) && getPassword().equals(o.getPassword());
 	}
