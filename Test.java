@@ -7,6 +7,9 @@ import java.io.*;
 public class Test {
     
     public static void main(String[] args) {
+        System.out.println(CalculateLocation.calculate("Tuzla", "Pendik"));
+        System.out.println(CalculateLocation.calculate("Pendik", "Tuzla"));
+        System.out.println(CalculateLocation.calculate("Pendik", "Pendik"));
         HRC hrc = new HRC();
         Admin admin = hrc.getAdmin();
 
@@ -19,7 +22,7 @@ public class Test {
         AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or face-to-face):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
         c.addAdvertise(advert);
         System.out.println("Candidate");
-        Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+        Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/*Cv*/);
         cd.setMycv(new CvClass("test", "test", "test", "test", "test", "test", "test", "test", "test", null, null, null,null, null, true) );
          
         System.out.println("Human Resources");
@@ -30,18 +33,18 @@ public class Test {
         while(true)
         {
             try {
-            System.out.println("\n1- Sign Up");
-            System.out.println("2- Log in");
-            
-            int choice = getInt("Choice:");
-            switch (choice) {
-                case 1:signUp(hrc);
-                    break;
-                case 2:logIn(hrc);
-                    break;
-                default:System.err.println("Wrong Input!!");
-                    break;
-            }
+                System.out.println("\n1- Sign Up");
+                System.out.println("2- Log in");
+                
+                int choice = getInt("Choice:");
+                switch (choice) {
+                    case 1:signUp(hrc);
+                        break;
+                    case 2:logIn(hrc);
+                        break;
+                    default:System.err.println("Wrong Input!!");
+                        break;
+                }
             }
             catch (Exception e)
             {
@@ -451,7 +454,7 @@ public class Test {
                     break;
             }
             }catch (Exception e){
-                System.err.println("An Expection Occured. \nProbably you tried to acces a non existing list.");
+                System.err.println("An Exception Occured. \nProbably you tried to acces a non existing list.");
             }
         }
     }
