@@ -344,7 +344,7 @@ public class Test {
                iter=meetings.iterator();
                i=1;
                while(iter.hasNext()){
-                   System.out.println(iter.next() + " bastir");
+                   // System.out.println(iter.next() + " bastir");
                    temp=iter.next();
                    if(i==select){
                        return temp;
