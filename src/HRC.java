@@ -9,7 +9,6 @@ import src.book_implementation.AVLTree;
 import src.book_implementation.SkipList;
 
 
-@SuppressWarnings("unused")
 public class HRC{
 		public static int  USERS_ID=0;
 		private AVLTree<HumanResources> humanResources=null;

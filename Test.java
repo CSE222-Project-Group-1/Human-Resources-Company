@@ -7,23 +7,20 @@ import java.io.*;
 public class Test {
     
     public static void main(String[] args) {
-        System.out.println(CalculateLocation.calculate("Tuzla", "Pendik"));
-        System.out.println(CalculateLocation.calculate("Pendik", "Tuzla"));
-        System.out.println(CalculateLocation.calculate("Pendik", "Pendik"));
         HRC hrc = new HRC();
         Admin admin = hrc.getAdmin();
 
         System.out.println("Create a Company and a Candidate for quick login");
         System.out.println("Passwords are 123");
         System.out.println("Company");
-        hrc.createCompany("Suleyman Company","123", "Hatay Yemekleri", 10, "Hatay OF Course");
+        hrc.createCompany("Suleyman Company","123", "Hatay Yemekleri", 10, "Pendik");
         Iterator<Company> it = hrc.getCompany().iterator();
         Company c = it.next();
         AdvertiseClass advert = new AdvertiseClass("Title:", "Way of Work (remote or face-to-face):", "Role:", "Job Type:", "Location:",1, "Industry:", null, "aa", 11, "sss");
         c.addAdvertise(advert);
         System.out.println("Candidate");
         Candidate cd= hrc.createCandidate("Enis Yalcın" ,"123",null/*Cv*/);
-        cd.setMycv(new CvClass("test", "test", "test", "test", "test", "test", "test", "test", "test", null, null, null,null, null, true) );
+        cd.setMycv(new CvClass("Kartal", "test", "test", "test", "test", "test", "test", "test", "test", null, null, null,null, null, true) );
          
         System.out.println("Human Resources");
         hrc.createHumanResources("Oguz", "123");

@@ -1,4 +1,3 @@
-- Graph
 
 ## GUI
 - Gui yok

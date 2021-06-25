@@ -54,7 +54,6 @@ public class HumanResources extends Users implements Comparable<HumanResources>{
 	}
 
     /**
-     * 
      * @param date date of meeting
      * @param candidate candidate
      * @param company company in meeting

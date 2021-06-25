@@ -1,4 +1,5 @@
 package src;
+import src.book_implementation.CalculateLocation;
 
 public class Meetings implements Comparable<Meetings>{
 
@@ -129,6 +130,12 @@ public class Meetings implements Comparable<Meetings>{
 		sb.append("\nOffer:");
 		sb.append(offer);
 		sb.append("\n");
+		if(candidate.getCV()!=null){
+			sb.append("Distance:");
+			sb.append(CalculateLocation.calculate(candidate.getCV().getAddress(),company.getAddress()));
+			sb.append(" KM\n");
+		}
+		
 		return sb.toString();
 	}
 	

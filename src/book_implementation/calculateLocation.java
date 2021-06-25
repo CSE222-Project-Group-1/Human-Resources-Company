@@ -38,19 +38,19 @@ public class CalculateLocation {
     }
 
     public static int locate(String location){
-        if(location.equals("Kartal"))
+        if(location.contains("Kartal"))
             return 0;
-        else if(location.equals("Pendik"))
+        else if(location.contains("Pendik"))
             return 1;
-        else if(location.equals("Tuzla"))
+        else if(location.contains("Tuzla"))
             return 2;
-        else if(location.equals("Kadıköy"))
+        else if(location.contains("Kadıköy"))
             return 3;
-        else if(location.equals("Maltepe"))
+        else if(location.contains("Maltepe"))
             return 4;
-        else if(location.equals("Beykoz"))
+        else if(location.contains("Beykoz"))
             return 5;
-        else if(location.equals("Beşiktaş"))
+        else if(location.contains("Beşiktaş"))
             return 6;
         else
         {
@@ -59,6 +59,7 @@ public class CalculateLocation {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public static void dijkstrasAlgorithm(Graph graph,
                                           int start,
                                           int[] pred,
@@ -93,7 +94,6 @@ public class CalculateLocation {
             while(edgeIter.hasNext()){
                 Edge edge = edgeIter.next();
                 int v = edge.getDest();
-                @Deprecated
                 if(vMinusS.contains(new Integer(v))){
                     double weight = edge.getWeight();
                     if(dist[u] + weight < dist[v]){
