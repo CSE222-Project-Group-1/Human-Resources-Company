@@ -45,7 +45,10 @@ public class Test {
         }
     }
 
-    
+    /**
+     * Sign-up as Company or candidate
+     * @param hrc the HRC object that holds all infos
+     */
     public static void signUp(HRC hrc) {
         System.out.println("1- Sign Up Company");
         System.out.println("2- Sign Up Candidate");
@@ -60,6 +63,10 @@ public class Test {
         }
     }
 
+    /**
+     * logIn as a user
+     * @param hrc the HRC object that holds all infos
+     */
     public static void logIn(HRC hrc) {
         Users user = null;
         int index = hrc.getUsers().indexOf(new Users(getInt("ID: "),null, getStr("Password: "), 0 ));
@@ -102,6 +109,11 @@ public class Test {
         };
     }
 
+    /**
+     * Admin menu that shows options for admin
+     * @param hrc the HRC object that holds all infos
+     * @param admin the admin object
+     */
     public static void adminMenu(HRC hrc, Admin admin){
         if(hrc==null || admin==null) return;
         HumanResources hm;
@@ -201,6 +213,11 @@ public class Test {
         
     }
 
+    /**
+     * Company menu that shows option for company
+     * @param hrc the HRC object that holds all infos
+     * @param company the company that going to showed menu
+     */
     public static void companyMenu(HRC hrc, Company company){
        
         while(true)
@@ -250,6 +267,12 @@ public class Test {
         }
     }
 
+    /**
+     * Company menu for choosing new candidate
+     * @param hrc the HRC object that holds all infos
+     * @param company company that select candidate
+     * @param candidate the candidate that going to selected
+     */
     public static void companyMenuAdvertise(HRC hrc, Company company, Candidate candidate){
        if(hrc==null || company==null || candidate==null){
            System.err.println("There is something missing in company menu's selector.");
@@ -284,6 +307,10 @@ public class Test {
         }
     }
 
+    /**
+     * Company menu settings for changing profile settings
+     * @param company the company that going to set
+     */
     public static void companyMenuSettings(Company company) {
         while(true)
         {  
@@ -319,6 +346,11 @@ public class Test {
         }
     }
     
+    /**
+     * HumanResources Menu
+     * @param hrc the HRC object that holds all infos
+     * @param hr the HR that going to use menu
+     */
     public static void humanResourcesMenu(HRC hrc, HumanResources hr){
         
         while(true)
@@ -384,6 +416,10 @@ public class Test {
         }
     }
 
+    /**
+     * HR update profile settings menu
+     * @param hm the HR that going to updated
+     */
     public static void humanResourcesUpdate(HumanResources hm) {
         while(true)
         {  
@@ -408,6 +444,11 @@ public class Test {
         }
     }
 
+    /**
+     * Candidate menu
+     * @param hrc the HRC object that holds all infos
+     * @param candidate the candidate that going to use this menu
+     */
     public static void candidateMenu(HRC hrc,Candidate candidate) {
 
         while (true) {
@@ -483,6 +524,10 @@ public class Test {
         }
     }
 
+    /**
+     * Candidate update menu for update profile settings and ad CV
+     * @param candidate the candidate that updated
+     */
     public static void candidateUpdate(Candidate candidate) {
         while(true)
         {  
@@ -515,6 +560,11 @@ public class Test {
         }
     }
 
+    /**
+     * CV update menu for Candidate
+     * @param cand the candidate that used to create and update cv
+     * @return created CV 
+     */
     public static CvClass cvUpdate(Candidate cand){
         CvClass cv=cand.getCV();
         while (true) {
@@ -597,6 +647,11 @@ public class Test {
         
     }
 
+    /**
+     * A selector for select advertises of a given company
+     * @param company the company that going to showed advertises
+     * @return candidate 
+     */
     public static Candidate candidateSelectorAdvertises(Company company){
         Candidate returnVal=null;
 
@@ -645,6 +700,11 @@ public class Test {
         return null;
     }
     
+    /**
+     * A selector for select advertises of a given company
+     * @param company the company that going to showed advertises
+     * @return selected advertise
+     */
     public static AdvertiseClass advertiseSelector(Company company){
         AdvertiseClass returnVal=null;
         Iterator<AdvertiseClass> iter = company.getAdvertises().iterator();
@@ -664,6 +724,12 @@ public class Test {
         else return null;
     }
 
+    /**
+     * A selector for choosing a company from all companies
+     * @param hrc the hrc for choosing companies
+     * @param str the str for showing selection 
+     * @return selected company if exist
+     */
     public static Company companySelector(HRC hrc,String str){
         if(hrc==null) return null;
         
@@ -702,6 +768,12 @@ public class Test {
         }
     }
 
+    /**
+     * A selector for selecting HR
+     * @param hrc the hrc object that contains all HR
+     * @param str the str for showing output
+     * @return
+     */
     public static HumanResources humanResourcesSelector(HRC hrc,String str){
         if(hrc==null) return null;
         
@@ -741,6 +813,12 @@ public class Test {
         }
     }
 
+    /**
+     * A selector for choosing a candidate
+     * @param hrc the hrc object that contains all candidates
+     * @param str the str for showing desired output
+     * @return selected candidate if exist
+     */
     public static Candidate candidateSelector(HRC hrc,String str){
         if(hrc==null) return null;
         Iterator<Map.Entry<Integer,Candidate>> iter= hrc.getCandidate().entrySet().iterator();
@@ -778,6 +856,12 @@ public class Test {
         
     }
 
+    /**
+     * A meeting selector for selecting meetings
+     * @param meetings the meeting collection for choosing 
+     * @param str the str for showing output
+     * @return selected meeting if not null
+     */
     public static Meetings meetingSelector(Collection<Meetings> meetings,String str){
         if(meetings == null)
             return null;
