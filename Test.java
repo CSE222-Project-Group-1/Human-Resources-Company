@@ -221,7 +221,7 @@ public class Test {
                         hrc.createCandidate(
                             getStr("Name: "),
                             getStr("Password: "),
-                            null/* new CvClass(address, name, surname, telNo, email, gender, birthDay, nationality, coverLetter, schoolInformation, experiences, certficates, capabilities, referances, driversLicense)*/);
+                            null/* CV*/);
                     break;
                 case 8:
                     candidate=candidateSelector(hrc,"Select");
@@ -247,7 +247,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         } 
         
@@ -309,7 +309,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -355,7 +355,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -398,7 +398,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -471,7 +471,6 @@ public class Test {
                     System.out.println( hr.toString() );
                     break;
                 case 8:
-                   // meetingSelector( hr.seeMeetings(hrc), "Type 0 To Exit:");
                     meetingSelector( hr.sortMeetings(hrc.getMeetings()), "Type 0 To Exit:");
                     break;
                 default: 
@@ -479,7 +478,7 @@ public class Test {
                     break;
             }
             }catch (Exception e){
-                System.err.println("An Exception Occured. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -513,7 +512,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -600,7 +599,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -642,7 +641,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
     }
@@ -734,7 +733,7 @@ public class Test {
             }
             catch (Exception e)
             {
-                System.err.println("An Exception Occurred. \nProbably you tried to access a non existing list.");
+                System.err.println("Probably you tried to access a non existing list.");
             }
         }
 
@@ -988,7 +987,6 @@ public class Test {
                    }
                    i++;
                }
-               //return null;
            }
         }
     }
