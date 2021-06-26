@@ -1040,7 +1040,7 @@ public class Test {
         ArrayList<String> capabilities = new ArrayList<>();
         int size = getInt("Enter Capabilities Size:");
         for (int i = 0; i < size; i++){
-            capabilities.add( getStr("Enter " + i+1 +". capabilites:") );
+            capabilities.add( getStr("Enter " + (i+1) +". capabilites:") );
         }
         return capabilities;
     }
