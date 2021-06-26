@@ -29,10 +29,10 @@ public class HRC{
 			getUsers().add((Users)admin);
 
 			hmOne=createHumanResources("human", "123");
-			System.out.println("Human- ID:"+hmOne.getUserID()+" Password:"+hmOne.getPassword());
+			//System.out.println("Human- ID:"+hmOne.getUserID()+" Password:"+hmOne.getPassword());
 
 			
-			System.out.println("Information of Admin \n ID:"+admin.getUserID()+" Password:123");
+			//System.out.println("Information of Admin \n ID:"+admin.getUserID()+" Password:123");
 		}
 
 		public SkipList<Company> getCompany() { return company; }
