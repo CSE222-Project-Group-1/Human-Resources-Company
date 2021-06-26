@@ -373,8 +373,6 @@ public class Test {
             System.out.println("3- Change Company Address");
             System.out.println("4- Change Company Employee Number");
             System.out.println("0- Exit\n");
-            
-            System.out.println("0- Exit");
             int choice = getInt("Choice:");
             switch (choice) {
                 case 0: return;
